@@ -1,0 +1,266 @@
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:v24.3.0
+    container_name: cockroachdb
+    command: start-single-node --insecure --advertise-addr=cockroachdb
+    ports:
+      - 26257:26257
+      - 8090:8080
+    volumes:
+      - cockroachdb_data:/cockroach/cockroach-data
+    restart: unless-stopped
+    networks:
+      - npm_net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health?ready=1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.3.1
+    container_name: redpanda
+    command:
+      - redpanda
+      - start
+      - --mode=dev-container
+      - --smp=1
+      - --memory=1G
+      - --reserve-memory=0M
+      - --overprovisioned
+      - --node-id=0
+      - --check=false
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:9092
+    ports:
+      - 9092:9092
+      - 9644:9644
+    volumes:
+      - redpanda_data:/var/lib/redpanda/data
+    restart: unless-stopped
+    networks:
+      - npm_net
+    healthcheck:
+      test: ["CMD-SHELL", "rpk cluster health | grep -q 'Healthy:.*true' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    command: server /data --address ":9000" --console-address ":9001"
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+    networks:
+      - npm_net
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  elastic:
+    image: elasticsearch:7.14.2
+    container_name: elastic
+    command: |
+      /bin/sh -c "./bin/elasticsearch-plugin list | grep -q ingest-attachment || yes | ./bin/elasticsearch-plugin install --silent ingest-attachment;
+      /usr/local/bin/docker-entrypoint.sh eswrapper"
+    volumes:
+      - elastic_data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    environment:
+      ELASTICSEARCH_PORT_NUMBER: "9200"
+      BITNAMI_DEBUG: "true"
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms1024m -Xmx1024m"
+      http.cors.enabled: "true"
+      http.cors.allow-origin: "http://${SERVER_ADDRESS}:8087"
+    healthcheck:
+      interval: 20s
+      retries: 10
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
+    restart: unless-stopped
+    networks:
+      - npm_net
+
+  account:
+    image: hardcoreeng/account:${HULY_VERSION}
+    container_name: account
+    depends_on:
+      cockroachdb:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      redpanda:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=3000
+      - SERVER_SECRET=${SERVER_SECRET}
+      - DB_URL=postgresql://root@cockroachdb:26257/defaultdb?sslmode=disable
+      - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
+      # BACKEND: Comunicación interna entre contenedores (rápida)
+      - TRANSACTOR_URL=ws://transactor:3333
+      - ACCOUNTS_URL=http://account:3000
+      - ACCOUNT_PORT=3000
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
+      - SECURE_COOKIES=false
+      - MODEL_ENABLED=*
+      - QUEUE_CONFIG=redpanda:9092
+      # Para nginx proxy manager
+      - FRONT_URL=https://huly.edfpinar.xyz
+    restart: unless-stopped
+    networks:
+      - npm_net
+    healthcheck:
+      test: ["CMD-SHELL", "test -e /proc/1/exe || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  transactor:
+    image: hardcoreeng/transactor:${HULY_VERSION}
+    container_name: transactor
+    depends_on:
+      cockroachdb:
+        condition: service_healthy
+      elastic:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      account:
+        condition: service_healthy
+      redpanda:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=3333
+      - SERVER_SECRET=${SERVER_SECRET}
+      - SERVER_CURSOR_MAXTIMEMS=30000
+      - ELASTIC_URL=http://elastic:9200
+      - FULLTEXT_URL=http://elastic:9200
+      - ELASTIC_INDEX_NAME=huly_storage_index
+      - DB_URL=postgresql://root@cockroachdb:26257?sslmode=disable
+      - METRICS_CONSOLE=false
+      - METRICS_FILE=metrics.txt
+      - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
+      # Para nginx proxy manager
+      - FRONT_URL=https://huly.edfpinar.xyz
+      - SERVER_PROVIDER=ws
+      # BACKEND: Comunicación interna entre contenedores
+      - ACCOUNTS_URL=http://account:3000
+      - LAST_NAME_FIRST=true
+      - UPLOAD_URL=/files
+      - QUEUE_CONFIG=redpanda:9092
+    restart: unless-stopped
+    networks:
+      - npm_net
+    healthcheck:
+      test: ["CMD-SHELL", "test -e /proc/1/exe || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
+
+  collaborator:
+    image: hardcoreeng/collaborator:${HULY_VERSION}
+    container_name: collaborator
+    depends_on:
+      cockroachdb:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      transactor:
+        condition: service_started
+      redpanda:
+        condition: service_healthy
+    environment:
+      - COLLABORATOR_PORT=3078
+      - SECRET=${SERVER_SECRET}
+      - ACCOUNTS_URL=http://account:3000
+      - UPLOAD_URL=/files
+      - DB_URL=postgresql://root@cockroachdb:26257?sslmode=disable
+      - STORAGE_CONFIG=minio|minio?accessKey=minioadmin&secretKey=minioadmin
+      - QUEUE_CONFIG=redpanda:9092
+    restart: unless-stopped
+    networks:
+      - npm_net
+
+  front:
+    image: hardcoreeng/front:${HULY_VERSION}
+    container_name: front
+    depends_on:
+      account:
+        condition: service_healthy
+      collaborator:
+        condition: service_started
+      transactor:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      - SERVER_PORT=8080
+      - SERVER_SECRET=${SERVER_SECRET}
+      - ELASTIC_URL=http://elastic:9200
+      
+      # --- CONFIGURACIÓN PARA NGINX PROXY MANAGER ---
+      # URLs a través del proxy pero con ruta API correcta
+      - ACCOUNTS_URL=https://huly.edfpinar.xyz/api/
+      - TRANSACTOR_URL=wss://huly.edfpinar.xyz/ws
+      - COLLABORATOR_URL=wss://huly.edfpinar.xyz/ws
+      - COLLABORATOR_API_URL=https://huly.edfpinar.xyz/api/
+
+      # -----------------------------------------
+
+      - UPLOAD_URL=/files
+      - FILES_URL=/files
+      - MINIO_ENDPOINT=minio
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - REKONI_URL=
+      - CALENDAR_URL=
+      - GMAIL_URL=
+      - TELEGRAM_URL=
+      - PRINT_URL=
+      - SIGN_URL=
+      - STATS_URL=http://stats:4900
+      - LOVE_URL=
+      - VIEW_URL=
+      - PUSH_PUBLIC_KEY=
+      - TITLE=Huly Self Hosted
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
+      - LAST_NAME_FIRST=true
+    restart: unless-stopped
+    networks:
+      - npm_net
+
+  stats:
+    image: hardcoreeng/stats:${HULY_VERSION}
+    container_name: stats
+    environment:
+      - PORT=4900
+      - SERVER_SECRET=${SERVER_SECRET}
+    restart: unless-stopped
+    networks:
+      - npm_net
+
+networks:
+  npm_net:
+    external: true
+
+volumes:
+  cockroachdb_data:
+  redpanda_data:
+  minio_data:
+  elastic_data:

@@ -1,0 +1,9 @@
+services:
+  rancher:
+    image: rancher/rancher:latest
+    container_name: rancher
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "18080:80"    # HTTP
+      - "18443:443"   # HTTPS

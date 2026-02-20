@@ -1,0 +1,19 @@
+services:
+  postgresql-condo_sasq:
+    image: postgres:16
+    container_name: postgresql-condo_sasq
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: condo_sasq
+      POSTGRES_PASSWORD: "Micc1070004642*"
+      POSTGRES_DB: condo_sasq
+    ports:
+      - "55432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - npm_net
+
+networks:
+  npm_net:
+    external: true

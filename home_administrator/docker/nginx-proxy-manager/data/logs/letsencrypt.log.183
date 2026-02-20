@@ -1,0 +1,325 @@
+2026-02-18 20:24:06,265:DEBUG:certbot._internal.main:certbot version: 5.1.0
+2026-02-18 20:24:06,265:DEBUG:certbot._internal.main:Location of certbot entry point: /opt/certbot/bin/certbot
+2026-02-18 20:24:06,265:DEBUG:certbot._internal.main:Arguments: ['--force-renewal', '--config', '/etc/letsencrypt.ini', '--work-dir', '/tmp/letsencrypt-lib', '--logs-dir', '/data/logs', '--cert-name', 'npm-16', '--preferred-challenges', 'http', '--no-random-sleep-on-renew', '--disable-hook-validation']
+2026-02-18 20:24:06,265:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2026-02-18 20:24:06,312:DEBUG:certbot._internal.log:Root logging level set at 30
+2026-02-18 20:24:06,315:DEBUG:certbot._internal.display.obj:Notifying user: Processing /etc/letsencrypt/renewal/npm-16.conf
+2026-02-18 20:24:06,318:DEBUG:certbot.configuration:Var pref_challs=['http-01'] (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var config_dir=/etc/letsencrypt (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var logs_dir=/data/logs (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var work_dir=/tmp/letsencrypt-lib (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot._internal.plugins.selection:Requested authenticator None and installer None
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var preferred_chain=ISRG Root X1 (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var key_type=ecdsa (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var elliptic_curve=secp384r1 (set by user).
+2026-02-18 20:24:06,319:DEBUG:certbot.configuration:Var webroot_path=['/data/letsencrypt-acme-challenge'] (set by user).
+2026-02-18 20:24:06,320:DEBUG:certbot.configuration:Var webroot_map={'webroot_path'} (set by user).
+2026-02-18 20:24:06,320:DEBUG:certbot.configuration:Var webroot_path=['/data/letsencrypt-acme-challenge'] (set by user).
+2026-02-18 20:24:06,338:DEBUG:certbot._internal.renewal:Auto-renewal forced with --force-renewal...
+2026-02-18 20:24:06,338:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2026-02-18 20:24:06,338:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
+Description: Saves the necessary validation files to a .well-known/acme-challenge/ directory within the nominated webroot path. A separate HTTP server must be running and serving files from the webroot path. HTTP challenge only (wildcards not supported).
+Interfaces: Authenticator, Plugin
+Entry point: EntryPoint(name='webroot', value='certbot._internal.plugins.webroot:Authenticator', group='certbot.plugins')
+Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7f831f5ac410>
+Prep: True
+2026-02-18 20:24:06,339:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7f831f5ac410> and installer None
+2026-02-18 20:24:06,339:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2026-02-18 20:24:06,412:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/2655109521', new_authzr_uri=None, terms_of_service=None), 2d9f6b6ac41e79f9b21bf4e260f4e563, Meta(creation_dt=datetime.datetime(2025, 9, 11, 21, 16, 38, tzinfo=datetime.timezone.utc), creation_host='2688a1d29855', register_to_eff=None))>
+2026-02-18 20:24:06,414:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2026-02-18 20:24:06,419:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2026-02-18 20:24:06,847:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 1033
+2026-02-18 20:24:06,848:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:06 GMT
+Content-Type: application/json
+Content-Length: 1033
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+  "meta": {
+    "caaIdentities": [
+      "letsencrypt.org"
+    ],
+    "profiles": {
+      "classic": "https://letsencrypt.org/docs/profiles#classic",
+      "shortlived": "https://letsencrypt.org/docs/profiles#shortlived",
+      "tlsclient": "https://letsencrypt.org/docs/profiles#tlsclient",
+      "tlsserver": "https://letsencrypt.org/docs/profiles#tlsserver"
+    },
+    "termsOfService": "https://letsencrypt.org/documents/LE-SA-v1.6-August-18-2025.pdf",
+    "website": "https://letsencrypt.org"
+  },
+  "newAccount": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+  "newNonce": "https://acme-v02.api.letsencrypt.org/acme/new-nonce",
+  "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+  "renewalInfo": "https://acme-v02.api.letsencrypt.org/acme/renewal-info",
+  "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert",
+  "ucNn1wlbNNM": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417"
+}
+2026-02-18 20:24:06,849:DEBUG:certbot._internal.display.obj:Notifying user: Renewing an existing certificate for test-sasq.sytes.net
+2026-02-18 20:24:06,854:DEBUG:acme.client:Requesting fresh nonce
+2026-02-18 20:24:06,854:DEBUG:acme.client:Sending HEAD request to https://acme-v02.api.letsencrypt.org/acme/new-nonce.
+2026-02-18 20:24:06,991:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "HEAD /acme/new-nonce HTTP/1.1" 200 0
+2026-02-18 20:24:06,991:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:06 GMT
+Connection: keep-alive
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: NeKnt8TGJ0CAWqq4WFafRkmAAWNI5TalsMMCKoQrSNLO7ZQzmbE
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+
+2026-02-18 20:24:06,992:DEBUG:acme.client:Storing nonce: NeKnt8TGJ0CAWqq4WFafRkmAAWNI5TalsMMCKoQrSNLO7ZQzmbE
+2026-02-18 20:24:06,992:DEBUG:acme.client:JWS payload:
+b'{\n  "identifiers": [\n    {\n      "type": "dns",\n      "value": "test-sasq.sytes.net"\n    }\n  ]\n}'
+2026-02-18 20:24:06,995:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/new-order:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY1NTEwOTUyMSIsICJub25jZSI6ICJOZUtudDhUR0owQ0FXcXE0V0ZhZlJrbUFBV05JNVRhbHNNTUNLb1FyU05MTzdaUXptYkUiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL25ldy1vcmRlciJ9",
+  "signature": "C4BaOPK70i_rrtAc9IxaMPdpjiY6C2z4PE6o2dO3PGfCHBe6ej1WV2d9zRuAnAw0p7qUKva0R6QJ20SxMkfGvfNW2FIkqsulcJBPD1wYKIbg8mcPKZXNF7RJc1IDg1-dTggQj4JCciuaVM_X5qbQAUfII9KFRYDbSA50pIZ0XgxKhPaxVxryx-NcJFUteQBPwmkbly_6bCxqgPZ9Mb5iBKiRANzDnF6X_vUMMXO6gZMORKqzbNDeih9h6YH1sceh94Y5iOY4ITLS084EX3HrtPOOshF24QlaF3linAFzyc6Wt61Uf4wrRjWZqrd8V2bqUepJ1EkJNnTWekm3HIBvDA",
+  "payload": "ewogICJpZGVudGlmaWVycyI6IFsKICAgIHsKICAgICAgInR5cGUiOiAiZG5zIiwKICAgICAgInZhbHVlIjogInRlc3Qtc2FzcS5zeXRlcy5uZXQiCiAgICB9CiAgXQp9"
+}
+2026-02-18 20:24:07,401:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/new-order HTTP/1.1" 201 353
+2026-02-18 20:24:07,402:DEBUG:acme.client:Received response:
+HTTP 201
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:07 GMT
+Content-Type: application/json
+Content-Length: 353
+Connection: keep-alive
+Boulder-Requester: 2655109521
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Location: https://acme-v02.api.letsencrypt.org/acme/order/2655109521/481798054566
+Replay-Nonce: NeKnt8TGDF0FRQFQn7gLeMX1Q2UTigZCHLlTZiroYByWNd41-Dc
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "status": "pending",
+  "expires": "2026-02-25T20:24:07Z",
+  "identifiers": [
+    {
+      "type": "dns",
+      "value": "test-sasq.sytes.net"
+    }
+  ],
+  "authorizations": [
+    "https://acme-v02.api.letsencrypt.org/acme/authz/2655109521/660792413876"
+  ],
+  "finalize": "https://acme-v02.api.letsencrypt.org/acme/finalize/2655109521/481798054566"
+}
+2026-02-18 20:24:07,402:DEBUG:acme.client:Storing nonce: NeKnt8TGDF0FRQFQn7gLeMX1Q2UTigZCHLlTZiroYByWNd41-Dc
+2026-02-18 20:24:07,402:DEBUG:acme.client:JWS payload:
+b''
+2026-02-18 20:24:07,404:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/2655109521/660792413876:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY1NTEwOTUyMSIsICJub25jZSI6ICJOZUtudDhUR0RGMEZSUUZRbjdnTGVNWDFRMlVUaWdaQ0hMbFRaaXJvWUJ5V05kNDEtRGMiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzI2NTUxMDk1MjEvNjYwNzkyNDEzODc2In0",
+  "signature": "S8P2f_QktRbry0WslgKQvzjePsMeMjII58g4zyGLBgbED2FPmA778VelbzWkderx4BJR7wiDwVc69a6Hiwh1526fDmxR3p-CPCy6AE6qzEXB7AjZeTq2rzeQYeue4Fd09mbMR-lO5QuikTsqbrsJ5QSiWj9VjEfVKqjw8a7rdH-OowxDMBMahzJsKwWQ0NDSfuWD6RpKbQiqvZ23f1bdNi0xVh96UtuwFxoUXB8e653JpmPsXzMAUs5TidJcSOwVnAmtCeL9LNMac8Hh22aQJnxVxzohKKep14paOuH9sLcOHOQ8Dm-FOQhCJyf-p1WE7e9V6ja8Nro5aztVMgAdWQ",
+  "payload": ""
+}
+2026-02-18 20:24:07,545:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/2655109521/660792413876 HTTP/1.1" 200 827
+2026-02-18 20:24:07,545:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:07 GMT
+Content-Type: application/json
+Content-Length: 827
+Connection: keep-alive
+Boulder-Requester: 2655109521
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: NeKnt8TGgxKdwa9H3_ka1TNFdKDBIJ5mMNVrLsRFcN3DkQvokDA
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "test-sasq.sytes.net"
+  },
+  "status": "pending",
+  "expires": "2026-02-25T20:24:07Z",
+  "challenges": [
+    {
+      "type": "dns-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/d8SJCQ",
+      "status": "pending",
+      "token": "acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc"
+    },
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/8zqifw",
+      "status": "pending",
+      "token": "acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc"
+    },
+    {
+      "type": "tls-alpn-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/-GEFDw",
+      "status": "pending",
+      "token": "acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc"
+    }
+  ]
+}
+2026-02-18 20:24:07,545:DEBUG:acme.client:Storing nonce: NeKnt8TGgxKdwa9H3_ka1TNFdKDBIJ5mMNVrLsRFcN3DkQvokDA
+2026-02-18 20:24:07,546:DEBUG:acme.challenges:tls-alpn-01 was not recognized, full message: {'type': 'tls-alpn-01', 'url': 'https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/-GEFDw', 'status': 'pending', 'token': 'acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc'}
+2026-02-18 20:24:07,546:INFO:certbot._internal.auth_handler:Performing the following challenges:
+2026-02-18 20:24:07,546:INFO:certbot._internal.auth_handler:http-01 challenge for test-sasq.sytes.net
+2026-02-18 20:24:07,547:INFO:certbot._internal.plugins.webroot:Using the webroot path /data/letsencrypt-acme-challenge for all unmatched domains.
+2026-02-18 20:24:07,547:DEBUG:certbot._internal.plugins.webroot:Creating root challenges validation dir at /data/letsencrypt-acme-challenge/.well-known/acme-challenge
+2026-02-18 20:24:07,549:DEBUG:certbot._internal.plugins.webroot:Attempting to save validation to /data/letsencrypt-acme-challenge/.well-known/acme-challenge/acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc
+2026-02-18 20:24:07,549:DEBUG:acme.client:JWS payload:
+b'{}'
+2026-02-18 20:24:07,551:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/8zqifw:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY1NTEwOTUyMSIsICJub25jZSI6ICJOZUtudDhUR2d4S2R3YTlIM19rYTFUTkZkS0RCSUo1bU1OVnJMc1JGY04zRGtRdm9rREEiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2NoYWxsLzI2NTUxMDk1MjEvNjYwNzkyNDEzODc2Lzh6cWlmdyJ9",
+  "signature": "bqS7aeNEl2AVOCOnATyY13u54n5Ht2YXsGe81tQRRiUEfgw9ms6k9sgJjwirrFtYJLYebKkVkzl4_u61Ss4wThR2ovE5KNip4fxR3gVF-wJz8CmUmQS4q7tShZgU14espHaxmUQYghAYjMspdjQlDSc4gMuEFY4dawBKFMJ_A1sscJ8G47YplyQdayITeRcJt73MwaC0RaOn9goxwId_4iEoJdNI-vCsNfLSiZBKDsASHfsi1BL3g_NxWU-upqw2WBVdNhbHzA-tEnxMxqVoqAQAiQsTFxucthiFCV547OjIJVUBm7X-X4RpWeZ-lJlmYs0cRCAujfyvTxBm3ivG9A",
+  "payload": "e30"
+}
+2026-02-18 20:24:07,704:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/chall/2655109521/660792413876/8zqifw HTTP/1.1" 200 195
+2026-02-18 20:24:07,705:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:07 GMT
+Content-Type: application/json
+Content-Length: 195
+Connection: keep-alive
+Boulder-Requester: 2655109521
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index", <https://acme-v02.api.letsencrypt.org/acme/authz/2655109521/660792413876>;rel="up"
+Location: https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/8zqifw
+Replay-Nonce: NeKnt8TGEdYrrEeVWxv_Xzsi7IFnALv2x14knBzjQ1WwBBHIlHE
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "type": "http-01",
+  "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/8zqifw",
+  "status": "pending",
+  "token": "acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc"
+}
+2026-02-18 20:24:07,705:DEBUG:acme.client:Storing nonce: NeKnt8TGEdYrrEeVWxv_Xzsi7IFnALv2x14knBzjQ1WwBBHIlHE
+2026-02-18 20:24:07,706:INFO:certbot._internal.auth_handler:Waiting for verification...
+2026-02-18 20:24:08,709:DEBUG:acme.client:JWS payload:
+b''
+2026-02-18 20:24:08,721:DEBUG:acme.client:Sending POST request to https://acme-v02.api.letsencrypt.org/acme/authz/2655109521/660792413876:
+{
+  "protected": "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2FjY3QvMjY1NTEwOTUyMSIsICJub25jZSI6ICJOZUtudDhUR0VkWXJyRWVWV3h2X1h6c2k3SUZuQUx2MngxNGtuQnpqUTFXd0JCSElsSEUiLCAidXJsIjogImh0dHBzOi8vYWNtZS12MDIuYXBpLmxldHNlbmNyeXB0Lm9yZy9hY21lL2F1dGh6LzI2NTUxMDk1MjEvNjYwNzkyNDEzODc2In0",
+  "signature": "iuAWjHaUgeAWzeUmkCLmXnxwkzC2-jwwPBZxd04-vK6fJLzPzngIzow2ri_tmE9gGibsb3yA3Dcormq6EaNOM7nWRsG1JJffotexQslf_xTQqLetckbvs25rJ6w4oAmAurPNH8Yzhn2Lru5SVQu98M7qFfEVjoONeSzwTclWo49jKAmTlhs8MfzWFGFJTwUtKBBOMe5tqWD2UxXVrO0N3518B3ngoM9YhbwnMAaHP9LhQnBuVt-a3Qvxjc2-WEAwYEvRjhvYLpydZbAQaoJ66ZFjC8febGwof0ke9pcfprH7YNNx2WESHgkDWqRuuETeU3OSAYr7A7toKb9DtJhDMg",
+  "payload": ""
+}
+2026-02-18 20:24:08,864:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "POST /acme/authz/2655109521/660792413876 HTTP/1.1" 200 646
+2026-02-18 20:24:08,866:DEBUG:acme.client:Received response:
+HTTP 200
+Server: nginx
+Date: Wed, 18 Feb 2026 20:24:08 GMT
+Content-Type: application/json
+Content-Length: 646
+Connection: keep-alive
+Boulder-Requester: 2655109521
+Cache-Control: public, max-age=0, no-cache
+Link: <https://acme-v02.api.letsencrypt.org/directory>;rel="index"
+Replay-Nonce: NeKnt8TGE9bb_gFQPa-sxocbnzsnVmOXuN1Jj3GHdNWpm4w9ysc
+X-Frame-Options: DENY
+Strict-Transport-Security: max-age=604800
+
+{
+  "identifier": {
+    "type": "dns",
+    "value": "test-sasq.sytes.net"
+  },
+  "status": "invalid",
+  "expires": "2026-02-25T20:24:07Z",
+  "challenges": [
+    {
+      "type": "http-01",
+      "url": "https://acme-v02.api.letsencrypt.org/acme/chall/2655109521/660792413876/8zqifw",
+      "status": "invalid",
+      "validated": "2026-02-18T20:24:07Z",
+      "error": {
+        "type": "urn:ietf:params:acme:error:dns",
+        "detail": "no valid A records found for test-sasq.sytes.net; no valid AAAA records found for test-sasq.sytes.net",
+        "status": 400
+      },
+      "token": "acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc"
+    }
+  ]
+}
+2026-02-18 20:24:08,866:DEBUG:acme.client:Storing nonce: NeKnt8TGE9bb_gFQPa-sxocbnzsnVmOXuN1Jj3GHdNWpm4w9ysc
+2026-02-18 20:24:08,866:INFO:certbot._internal.auth_handler:Challenge failed for domain test-sasq.sytes.net
+2026-02-18 20:24:08,866:INFO:certbot._internal.auth_handler:http-01 challenge for test-sasq.sytes.net
+2026-02-18 20:24:08,867:DEBUG:certbot._internal.display.obj:Notifying user: 
+Certbot failed to authenticate some domains (authenticator: webroot). The Certificate Authority reported these problems:
+  Domain: test-sasq.sytes.net
+  Type:   dns
+  Detail: no valid A records found for test-sasq.sytes.net; no valid AAAA records found for test-sasq.sytes.net
+
+Hint: The Certificate Authority failed to download the temporary challenge files created by Certbot. Ensure that the listed domains serve their content from the provided --webroot-path/-w and that files created there can be downloaded from the internet.
+
+2026-02-18 20:24:08,870:DEBUG:certbot._internal.error_handler:Encountered exception:
+Traceback (most recent call last):
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 104, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 208, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+
+2026-02-18 20:24:08,870:DEBUG:certbot._internal.error_handler:Calling registered functions
+2026-02-18 20:24:08,870:INFO:certbot._internal.auth_handler:Cleaning up challenges
+2026-02-18 20:24:08,870:DEBUG:certbot._internal.plugins.webroot:Removing /data/letsencrypt-acme-challenge/.well-known/acme-challenge/acFuioNv7R4rEjrDmibrz570nMJTsy2OpvLRrcKkgrc
+2026-02-18 20:24:08,870:DEBUG:certbot._internal.plugins.webroot:All challenges cleaned up
+2026-02-18 20:24:08,871:ERROR:certbot._internal.renewal:Failed to renew certificate npm-16 with error: Some challenges have failed.
+2026-02-18 20:24:08,874:DEBUG:certbot._internal.renewal:Traceback was:
+Traceback (most recent call last):
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/renewal.py", line 711, in handle_renewal_request
+    main.renew_cert(lineage_config, plugins, renewal_candidate)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 1512, in renew_cert
+    renewed_lineage = _get_and_save_cert(le_client, config, lineage=lineage)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 129, in _get_and_save_cert
+    renewal.renew_cert(config, domains, le_client, lineage)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/renewal.py", line 564, in renew_cert
+    new_cert, new_chain, new_key, _ = le_client.obtain_certificate(domains, new_key)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/client.py", line 427, in obtain_certificate
+    orderr = self._get_order_and_authorizations(csr.data, self.config.allow_subset_of_names)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/client.py", line 505, in _get_order_and_authorizations
+    authzr = self.auth_handler.handle_authorizations(orderr, self.config, best_effort)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 104, in handle_authorizations
+    self._poll_authorizations(authzrs, max_retries, max_time_mins, best_effort)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/auth_handler.py", line 208, in _poll_authorizations
+    raise errors.AuthorizationError('Some challenges have failed.')
+certbot.errors.AuthorizationError: Some challenges have failed.
+
+2026-02-18 20:24:08,882:DEBUG:certbot._internal.display.obj:Notifying user: 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-02-18 20:24:08,883:ERROR:certbot._internal.renewal:All renewals failed. The following certificates could not be renewed:
+2026-02-18 20:24:08,883:ERROR:certbot._internal.renewal:  /etc/letsencrypt/live/npm-16/fullchain.pem (failure)
+2026-02-18 20:24:08,883:DEBUG:certbot._internal.display.obj:Notifying user: - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2026-02-18 20:24:08,883:DEBUG:certbot._internal.log:Exiting abnormally:
+Traceback (most recent call last):
+  File "/opt/certbot/bin/certbot", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/main.py", line 18, in main
+    return internal_main.main(cli_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 1850, in main
+    return config.func(config, plugins)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/main.py", line 1600, in renew
+    renewal.handle_renewal_request(config)
+  File "/opt/certbot/lib/python3.11/site-packages/certbot/_internal/renewal.py", line 741, in handle_renewal_request
+    raise errors.Error(
+certbot.errors.Error: 1 renew failure(s), 0 parse failure(s)
+2026-02-18 20:24:08,885:ERROR:certbot._internal.log:1 renew failure(s), 0 parse failure(s)

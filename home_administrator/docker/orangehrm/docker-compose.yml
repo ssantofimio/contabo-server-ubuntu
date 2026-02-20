@@ -1,0 +1,36 @@
+services:
+  mysql-orangehrm:
+    image: mysql:8.0
+    container_name: mysql-orangehrm
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "Micc1070004642*"
+      MYSQL_DATABASE: orangehrm
+      MYSQL_USER: orange_user
+      MYSQL_PASSWORD: "Micc1070004642*"
+    ports:
+      - "33306:3306"   # Puerto personalizado en el host
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - npm_net
+
+  orangehrm:
+    image: orangehrm/orangehrm:latest
+    container_name: orangehrm
+    restart: unless-stopped
+    depends_on:
+      - mysql-orangehrm
+    environment:
+      ORANGEHRM_DB_HOST: mysql-orangehrm
+      ORANGEHRM_DB_USER: orange_user
+      ORANGEHRM_DB_PASSWORD: "Micc1070004642*"
+      ORANGEHRM_DB_NAME: orangehrm
+    ports:
+      - "8088:80"  # Puerto de acceso web
+    networks:
+      - npm_net
+
+networks:
+  npm_net:
+    external: true

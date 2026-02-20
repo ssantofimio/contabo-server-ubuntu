@@ -1,0 +1,21 @@
+services:
+  focalboard:
+    image: mattermost/focalboard:latest
+    container_name: focalboard
+    restart: unless-stopped
+    environment:
+      - DB_TYPE=sqlite3
+      - DB_CONFIG_STRING=./data/focalboard.db
+      - SERVER_PORT=8090
+      - SERVER_ADDRESS=0.0.0.0
+      #- PORT=8090
+      #- BIND_ADDRESS=0.0.0.0
+      - FILES_PATH=./data/files
+    volumes:
+      - ./data:/data
+    networks:
+      - npm_net
+
+networks:
+  npm_net:
+    external: true

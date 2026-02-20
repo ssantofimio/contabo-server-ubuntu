@@ -1,0 +1,53 @@
+services:
+  mysql:
+    image: mariadb:10.3
+    container_name: ospos-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: ospos
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: pointofsale
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_net
+    ports:
+      - "3308:3306"
+
+  sqlscript:
+    image: jekkos/opensourcepos:sql-master
+    command: /bin/sh -c 'exit 0'
+    networks:
+      - app_net
+
+  ospos:
+    image: jekkos/opensourcepos:master
+    container_name: ospos-web
+    depends_on:
+      - mysql
+    restart: always
+    ports:
+      - "8082:80"
+    networks:
+      - app_net
+    volumes:
+      - uploads:/app/writable/uploads
+      - logs:/app/writable/logs
+    environment:
+      - CI_ENVIRONMENT=production
+      - FORCE_HTTPS=false
+      - PHP_TIMEZONE=America/Bogota
+      - MYSQL_USERNAME=admin
+      - MYSQL_PASSWORD=pointofsale
+      - MYSQL_DB_NAME=ospos
+      - MYSQL_HOST_NAME=mysql
+
+volumes:
+  db_data:
+  uploads:
+  logs:
+
+networks:
+  app_net:
+    driver: bridge

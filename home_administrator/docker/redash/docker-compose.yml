@@ -1,0 +1,70 @@
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:13
+    container_name: redash_postgres
+    environment:
+      POSTGRES_USER: redash
+      POSTGRES_PASSWORD: redash
+      POSTGRES_DB: redash
+    volumes:
+      - redash_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Redis (para tareas en background)
+  redis:
+    image: redis:6
+    container_name: redash_redis
+    restart: unless-stopped
+
+  # Redash server
+  server:
+    image: redash/redash:latest
+    network_mode: "host"
+    container_name: redash_server
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5000:5000"
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redash@postgres:5432/redash"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "supersecretcookiekey"   # Cambiar por algo seguro
+      REDASH_MAIL_DEFAULT_SENDER: "redash@example.com"
+      REDASH_MAIL_SERVER: "localhost"
+    restart: unless-stopped
+
+  # Redash worker (ejecuta consultas y tareas)
+  worker:
+    image: redash/redash:latest
+    container_name: redash_worker
+    command: worker
+    depends_on:
+      - server
+      - redis
+      - postgres
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redash@postgres:5432/redash"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "supersecretcookiekey"
+    restart: unless-stopped
+
+  # Redash scheduler (planifica consultas)
+  scheduler:
+    image: redash/redash:latest
+    container_name: redash_scheduler
+    command: scheduler
+    depends_on:
+      - server
+      - redis
+      - postgres
+    environment:
+      REDASH_DATABASE_URL: "postgresql://redash:redash@postgres:5432/redash"
+      REDASH_REDIS_URL: "redis://redis:6379/0"
+      REDASH_COOKIE_SECRET: "supersecretcookiekey"
+    restart: unless-stopped
+
+volumes:
+  redash_postgres_data:
+

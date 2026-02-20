@@ -1,0 +1,29 @@
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    container_name: bookstack_app
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - APP_URL=${APP_URL}
+      - APP_KEY=base64:LhwHa6vkJYHXiQoAqbO+ylmE+iwm4lIVTe5DwN2vX/c=
+    volumes:
+      - bookstack_data:/config
+    ports:
+      - "6875:80"
+    networks:
+      - npm_net
+
+volumes:
+  bookstack_data:
+
+networks:
+  npm_net:
+    external: true

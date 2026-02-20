@@ -1,0 +1,2 @@
+2026/02/16 08:56:49 [warn] 7190#7190: *4796165 an upstream response is buffered to a temporary file /var/cache/nginx/proxy_temp/7/75/0001949757 while reading upstream, client: 204.76.203.25, server: huly.edfpinar.xyz, request: "GET /bundle.40ca76ac3d2a10d4dd5e.js HTTP/1.1", upstream: "http://172.21.0.12:8080/bundle.40ca76ac3d2a10d4dd5e.js", host: "huly.edfpinar.xyz"
+2026/02/16 13:43:52 [warn] 7232#7232: *4800816 using uninitialized "server" variable while logging request, client: 165.22.235.3, server: huly.edfpinar.xyz, request: "LEAKIX"

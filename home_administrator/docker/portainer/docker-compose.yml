@@ -1,0 +1,22 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "9020:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    environment:
+      - TZ=America/Bogota
+    networks:
+      - npm_net
+
+volumes:
+  portainer_data:
+    driver: local
+
+networks:
+  npm_net:
+    external: true

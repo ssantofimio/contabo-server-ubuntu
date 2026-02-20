@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: tryton-postgres
+    environment:
+      POSTGRES_DB: tryton
+      POSTGRES_USER: tryton
+      POSTGRES_PASSWORD: tryton
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - tryton-net
+
+  tryton:
+    image: tryton/tryton
+    container_name: tryton-server
+    depends_on:
+      - postgres
+    environment:
+      TRYTOND_DATABASE_URI: postgresql://tryton:tryton@postgres:5432/tryton
+    command: trytond
+    ports:
+       - "127.0.0.1:8011:8000"
+#      - "8011:8000"
+    volumes:
+      - trytond-data:/var/lib/trytond
+    networks:
+      - tryton-net
+
+volumes:
+  pgdata:
+  trytond-data:
+
+networks:
+  tryton-net:
