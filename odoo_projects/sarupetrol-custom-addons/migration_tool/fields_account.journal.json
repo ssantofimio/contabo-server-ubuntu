@@ -1,0 +1,539 @@
+{
+    "activity_ids": {
+        "relation": "mail.activity",
+        "required": false,
+        "string": "Activities",
+        "type": "one2many"
+    },
+    "activity_state": {
+        "help": "Status based on activities\nOverdue: Due date is already passed\nToday: Activity date is today\nPlanned: Future activities.",
+        "required": false,
+        "string": "Activity State",
+        "type": "selection"
+    },
+    "activity_user_id": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Responsible User",
+        "type": "many2one"
+    },
+    "activity_type_id": {
+        "relation": "mail.activity.type",
+        "required": false,
+        "string": "Next Activity Type",
+        "type": "many2one"
+    },
+    "activity_type_icon": {
+        "help": "Font awesome icon e.g. fa-tasks",
+        "required": false,
+        "string": "Activity Type Icon",
+        "type": "char"
+    },
+    "activity_date_deadline": {
+        "required": false,
+        "string": "Next Activity Deadline",
+        "type": "date"
+    },
+    "my_activity_date_deadline": {
+        "required": false,
+        "string": "My Activity Deadline",
+        "type": "date"
+    },
+    "activity_summary": {
+        "required": false,
+        "string": "Next Activity Summary",
+        "type": "char"
+    },
+    "activity_exception_decoration": {
+        "help": "Type of the exception activity on record.",
+        "required": false,
+        "string": "Activity Exception Decoration",
+        "type": "selection"
+    },
+    "activity_exception_icon": {
+        "help": "Icon to indicate an exception activity.",
+        "required": false,
+        "string": "Icon",
+        "type": "char"
+    },
+    "message_is_follower": {
+        "required": false,
+        "string": "Is Follower",
+        "type": "boolean"
+    },
+    "message_follower_ids": {
+        "relation": "mail.followers",
+        "required": false,
+        "string": "Followers",
+        "type": "one2many"
+    },
+    "message_partner_ids": {
+        "relation": "res.partner",
+        "required": false,
+        "string": "Followers (Partners)",
+        "type": "many2many"
+    },
+    "message_ids": {
+        "relation": "mail.message",
+        "required": false,
+        "string": "Messages",
+        "type": "one2many"
+    },
+    "has_message": {
+        "required": false,
+        "string": "Has Message",
+        "type": "boolean"
+    },
+    "message_needaction": {
+        "help": "If checked, new messages require your attention.",
+        "required": false,
+        "string": "Action Needed",
+        "type": "boolean"
+    },
+    "message_needaction_counter": {
+        "help": "Number of messages requiring action",
+        "required": false,
+        "string": "Number of Actions",
+        "type": "integer"
+    },
+    "message_has_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "Message Delivery error",
+        "type": "boolean"
+    },
+    "message_has_error_counter": {
+        "help": "Number of messages with delivery error",
+        "required": false,
+        "string": "Number of errors",
+        "type": "integer"
+    },
+    "message_attachment_count": {
+        "required": false,
+        "string": "Attachment Count",
+        "type": "integer"
+    },
+    "website_message_ids": {
+        "help": "Website communication history",
+        "relation": "mail.message",
+        "required": false,
+        "string": "Website Messages",
+        "type": "one2many"
+    },
+    "message_has_sms_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "SMS Delivery error",
+        "type": "boolean"
+    },
+    "alias_id": {
+        "help": "Send one separate email for each invoice.\n\nAny file extension will be accepted.\n\nOnly PDF and XML files will be interpreted by Odoo",
+        "relation": "mail.alias",
+        "required": false,
+        "string": "Alias",
+        "type": "many2one"
+    },
+    "alias_name": {
+        "help": "The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>",
+        "required": false,
+        "string": "Alias Name",
+        "type": "char"
+    },
+    "alias_domain_id": {
+        "relation": "mail.alias.domain",
+        "required": false,
+        "string": "Alias Domain",
+        "type": "many2one"
+    },
+    "alias_domain": {
+        "help": "Email domain e.g. 'example.com' in 'odoo@example.com'",
+        "required": false,
+        "string": "Alias Domain Name",
+        "type": "char"
+    },
+    "alias_defaults": {
+        "help": "A Python dictionary that will be evaluated to provide default values when creating new records for this alias.",
+        "required": false,
+        "string": "Default Values",
+        "type": "text"
+    },
+    "alias_email": {
+        "required": false,
+        "string": "Email Alias",
+        "type": "char"
+    },
+    "access_url": {
+        "help": "Customer Portal URL",
+        "required": false,
+        "string": "Portal Access URL",
+        "type": "char"
+    },
+    "access_token": {
+        "required": false,
+        "string": "Security Token",
+        "type": "char"
+    },
+    "access_warning": {
+        "required": false,
+        "string": "Access warning",
+        "type": "text"
+    },
+    "name": {
+        "required": true,
+        "string": "Journal Name",
+        "type": "char"
+    },
+    "code": {
+        "help": "Shorter name used for display. The journal entries of this journal will also be named using this prefix by default.",
+        "required": true,
+        "string": "Short Code",
+        "type": "char"
+    },
+    "active": {
+        "help": "Set active to false to hide the Journal without removing it.",
+        "required": false,
+        "string": "Active",
+        "type": "boolean"
+    },
+    "type": {
+        "help": "\n        Select 'Sale' for customer invoices journals.\n        Select 'Purchase' for vendor bills journals.\n        Select 'Cash', 'Bank' or 'Credit Card' for journals that are used in customer or vendor payments.\n        Select 'General' for miscellaneous operations journals.\n        ",
+        "required": true,
+        "string": "Type",
+        "type": "selection"
+    },
+    "autocheck_on_post": {
+        "required": false,
+        "string": "Auto-Check on Post",
+        "type": "boolean"
+    },
+    "account_control_ids": {
+        "relation": "account.account",
+        "required": false,
+        "string": "Allowed accounts",
+        "type": "many2many"
+    },
+    "default_account_type": {
+        "required": false,
+        "string": "Default Account Type",
+        "type": "char"
+    },
+    "default_account_id": {
+        "relation": "account.account",
+        "required": false,
+        "string": "Default Account",
+        "type": "many2one"
+    },
+    "suspense_account_id": {
+        "help": "Bank statements transactions will be posted on the suspense account until the final reconciliation allowing finding the right account.",
+        "relation": "account.account",
+        "required": false,
+        "string": "Suspense Account",
+        "type": "many2one"
+    },
+    "restrict_mode_hash_table": {
+        "help": "If ticked, when an entry is posted, we retroactively hash all moves in the sequence from the entry back to the last hashed entry. The hash can also be performed on demand by the Secure Entries wizard.",
+        "required": false,
+        "string": "Secure Posted Entries with Hash",
+        "type": "boolean"
+    },
+    "sequence": {
+        "help": "Used to order Journals in the dashboard view",
+        "required": false,
+        "string": "Sequence",
+        "type": "integer"
+    },
+    "invoice_reference_type": {
+        "help": "You can set here the default communication that will appear on customer invoices, once validated, to help the customer to refer to that particular invoice when making the payment.",
+        "required": true,
+        "string": "Communication Type",
+        "type": "selection"
+    },
+    "invoice_reference_model": {
+        "help": "You can choose different models for each type of reference. The default one is the Odoo reference.",
+        "required": true,
+        "string": "Communication Standard",
+        "type": "selection"
+    },
+    "currency_id": {
+        "help": "The currency used to enter statement",
+        "relation": "res.currency",
+        "required": false,
+        "string": "Currency",
+        "type": "many2one"
+    },
+    "company_id": {
+        "help": "Company related to this journal",
+        "relation": "res.company",
+        "required": true,
+        "string": "Company",
+        "type": "many2one"
+    },
+    "country_code": {
+        "help": "The ISO country code in two chars. \nYou can use this field for quick search.",
+        "required": false,
+        "string": "Country Code",
+        "type": "char"
+    },
+    "refund_sequence": {
+        "help": "Check this box if you don't want to share the same sequence for invoices and credit notes made from this journal",
+        "required": false,
+        "string": "Dedicated Credit Note Sequence",
+        "type": "boolean"
+    },
+    "payment_sequence": {
+        "help": "Check this box if you don't want to share the same sequence on payments and bank transactions posted on this journal",
+        "required": false,
+        "string": "Dedicated Payment Sequence",
+        "type": "boolean"
+    },
+    "sequence_override_regex": {
+        "help": "Technical field used to enforce complex sequence composition that the system would normally misunderstand.\nThis is a regex that can include all the following capture groups: prefix1, year, prefix2, month, prefix3, seq, suffix.\nThe prefix* groups are the separators between the year, month and the actual increasing sequence number (seq).\ne.g: ^(?P<prefix1>.*?)(?P<year>\\d{4})(?P<prefix2>\\D*?)(?P<month>\\d{2})(?P<prefix3>\\D+?)(?P<seq>\\d+)(?P<suffix>\\D*?)$",
+        "required": false,
+        "string": "Sequence Override Regex",
+        "type": "text"
+    },
+    "inbound_payment_method_line_ids": {
+        "help": "Manual: Get paid by any method outside of Odoo.\nPayment Providers: Each payment provider has its own Payment Method. Request a transaction on/to a card thanks to a payment token saved by the partner when buying or subscribing online.\nBatch Deposit: Collect several customer checks at once generating and submitting a batch deposit to your bank. Module account_batch_payment is necessary.\nSEPA Direct Debit: Get paid in the SEPA zone thanks to a mandate your partner will have granted to you. Module account_sepa is necessary.\n",
+        "relation": "account.payment.method.line",
+        "required": false,
+        "string": "Inbound Payment Methods",
+        "type": "one2many"
+    },
+    "outbound_payment_method_line_ids": {
+        "help": "Manual: Pay by any method outside of Odoo.\nCheck: Pay bills by check and print it from Odoo.\nSEPA Credit Transfer: Pay in the SEPA zone by submitting a SEPA Credit Transfer file to your bank. Module account_sepa is necessary.\n",
+        "relation": "account.payment.method.line",
+        "required": false,
+        "string": "Outbound Payment Methods",
+        "type": "one2many"
+    },
+    "profit_account_id": {
+        "help": "Used to register a profit when the ending balance of a cash register differs from what the system computes",
+        "relation": "account.account",
+        "required": false,
+        "string": "Profit Account",
+        "type": "many2one"
+    },
+    "loss_account_id": {
+        "help": "Used to register a loss when the ending balance of a cash register differs from what the system computes",
+        "relation": "account.account",
+        "required": false,
+        "string": "Loss Account",
+        "type": "many2one"
+    },
+    "company_partner_id": {
+        "relation": "res.partner",
+        "required": false,
+        "string": "Account Holder",
+        "type": "many2one"
+    },
+    "bank_account_id": {
+        "relation": "res.partner.bank",
+        "required": false,
+        "string": "Bank Account",
+        "type": "many2one"
+    },
+    "bank_statements_source": {
+        "help": "Defines how the bank statements will be registered",
+        "required": false,
+        "string": "Bank Feeds",
+        "type": "selection"
+    },
+    "bank_acc_number": {
+        "required": false,
+        "string": "Account Number",
+        "type": "char"
+    },
+    "bank_id": {
+        "relation": "res.bank",
+        "required": false,
+        "string": "Bank",
+        "type": "many2one"
+    },
+    "journal_group_ids": {
+        "relation": "account.journal.group",
+        "required": false,
+        "string": "Ledger Group",
+        "type": "many2many"
+    },
+    "available_payment_method_ids": {
+        "relation": "account.payment.method",
+        "required": false,
+        "string": "Available Payment Method",
+        "type": "many2many"
+    },
+    "selected_payment_method_codes": {
+        "required": false,
+        "string": "Selected Payment Method Codes",
+        "type": "char"
+    },
+    "accounting_date": {
+        "required": false,
+        "string": "Accounting Date",
+        "type": "date"
+    },
+    "display_alias_fields": {
+        "required": false,
+        "string": "Display Alias Fields",
+        "type": "boolean"
+    },
+    "id": {
+        "required": false,
+        "string": "ID",
+        "type": "integer"
+    },
+    "display_name": {
+        "required": false,
+        "string": "Display Name",
+        "type": "char"
+    },
+    "create_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Created by",
+        "type": "many2one"
+    },
+    "create_date": {
+        "required": false,
+        "string": "Created on",
+        "type": "datetime"
+    },
+    "write_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Last Updated by",
+        "type": "many2one"
+    },
+    "write_date": {
+        "required": false,
+        "string": "Last Updated on",
+        "type": "datetime"
+    },
+    "kanban_dashboard": {
+        "required": false,
+        "string": "Kanban Dashboard",
+        "type": "text"
+    },
+    "kanban_dashboard_graph": {
+        "required": false,
+        "string": "Kanban Dashboard Graph",
+        "type": "text"
+    },
+    "json_activity_data": {
+        "required": false,
+        "string": "Json Activity Data",
+        "type": "text"
+    },
+    "show_on_dashboard": {
+        "help": "Whether this journal should be displayed on the dashboard or not",
+        "required": false,
+        "string": "Show journal on dashboard",
+        "type": "boolean"
+    },
+    "color": {
+        "required": false,
+        "string": "Color Index",
+        "type": "integer"
+    },
+    "current_statement_balance": {
+        "required": false,
+        "string": "Current Statement Balance",
+        "type": "monetary"
+    },
+    "has_statement_lines": {
+        "required": false,
+        "string": "Has Statement Lines",
+        "type": "boolean"
+    },
+    "entries_count": {
+        "required": false,
+        "string": "Entries Count",
+        "type": "integer"
+    },
+    "has_posted_entries": {
+        "required": false,
+        "string": "Has Posted Entries",
+        "type": "boolean"
+    },
+    "has_entries": {
+        "required": false,
+        "string": "Has Entries",
+        "type": "boolean"
+    },
+    "has_sequence_holes": {
+        "required": false,
+        "string": "Has Sequence Holes",
+        "type": "boolean"
+    },
+    "has_unhashed_entries": {
+        "required": false,
+        "string": "Unhashed Entries",
+        "type": "boolean"
+    },
+    "last_statement_id": {
+        "relation": "account.bank.statement",
+        "required": false,
+        "string": "Last Statement",
+        "type": "many2one"
+    },
+    "check_manual_sequencing": {
+        "help": "Check this option if your pre-printed checks are not numbered.",
+        "required": false,
+        "string": "Manual Numbering",
+        "type": "boolean"
+    },
+    "check_sequence_id": {
+        "help": "Checks numbering sequence.",
+        "relation": "ir.sequence",
+        "required": false,
+        "string": "Check Sequence",
+        "type": "many2one"
+    },
+    "check_next_number": {
+        "help": "Sequence number of the next printed check.",
+        "required": false,
+        "string": "Next Check Number",
+        "type": "char"
+    },
+    "bank_check_printing_layout": {
+        "required": false,
+        "string": "Check Layout",
+        "type": "selection"
+    },
+    "debit_sequence": {
+        "help": "Check this box if you don't want to share the same sequence for invoices and debit notes made from this journal",
+        "required": false,
+        "string": "Dedicated Debit Note Sequence",
+        "type": "boolean"
+    },
+    "multiple_invoice_ids": {
+        "relation": "multiple.invoice",
+        "required": false,
+        "string": "Multiple Invoice",
+        "type": "one2many"
+    },
+    "multiple_invoice_type": {
+        "required": true,
+        "string": "Display Type",
+        "type": "selection"
+    },
+    "text_position": {
+        "required": true,
+        "string": "Text Position",
+        "type": "selection"
+    },
+    "body_text_position": {
+        "required": false,
+        "string": "Body Text Position",
+        "type": "selection"
+    },
+    "text_align": {
+        "required": false,
+        "string": "Center Align Text Position",
+        "type": "selection"
+    },
+    "layout": {
+        "required": false,
+        "string": "Layout",
+        "type": "char"
+    }
+}

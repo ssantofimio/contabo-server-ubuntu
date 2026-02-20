@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inheritance for Individual POS Form -->
+    <record id="pos_config_view_form_inherit_self_order_custom" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.self.order.custom</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[contains(@class, 'o_settings_container')]" position="inside">
+                <setting string="Custom Identification Flow" help="Enable custom NIF/Customer identification flow for self-ordering.">
+                    <field name="self_order_custom_identification"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inheritance for Global POS Settings -->
+    <record id="res_config_settings_view_form_inherit_self_order_custom" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.self.order.custom</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <block id="self_ordering_section" position="inside">
+                <setting string="Custom Identification Flow" help="Enable custom NIF/Customer identification flow for this Point of Sale." invisible="not pos_config_id">
+                    <field name="pos_self_order_custom_identification"/>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

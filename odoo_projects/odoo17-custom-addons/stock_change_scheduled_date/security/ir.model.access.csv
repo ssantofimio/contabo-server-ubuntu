@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_change_scheduled_date_wizard,access.change.scheduled.date.wizard,model_change_scheduled_date_wizard,,1,1,1,1

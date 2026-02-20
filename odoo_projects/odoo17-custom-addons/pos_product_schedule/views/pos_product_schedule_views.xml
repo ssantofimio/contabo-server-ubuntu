@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_product_schedule_tree" model="ir.ui.view">
+        <field name="name">pos.product.schedule.tree</field>
+        <field name="model">pos.product.schedule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="bit"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_product_schedule_form" model="ir.ui.view">
+        <field name="name">pos.product.schedule.form</field>
+        <field name="model">pos.product.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="bit"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_product_schedule" model="ir.actions.act_window">
+        <field name="name">Días de Programación POS</field>
+        <field name="res_model">pos.product.schedule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea el primer día de programación
+            </p>
+            <p>
+                Los días de programación POS permiten configurar qué productos están disponibles en cada día.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_pos_product_schedule"
+              name="Días de Programación POS"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_pos_product_schedule"
+              sequence="10"/>
+</odoo>

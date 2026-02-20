@@ -1,0 +1,408 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* i8_knowledge_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-08 22:45+0000\n"
+"PO-Revision-Date: 2024-01-08 22:45+0000\n"
+"Last-Translator: Antigravity\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: i8_knowledge_management
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_article
+msgid "Knowledge Article"
+msgstr "Artículo de conocimiento"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__name
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article_version__display_name
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_category__name
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_tag__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__content
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article_version__content
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_version_compare_wizard__current_content
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_version_compare_wizard__old_content
+msgid "Content"
+msgstr "Contenido"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__category_id
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_category
+msgid "Category"
+msgstr "Categoría"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__tag_ids
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_tag
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__attachment_ids
+msgid "Attachments"
+msgstr "Adjuntos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__version
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article_version__version_number
+msgid "Version"
+msgstr "Versión"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__is_published
+msgid "Is Published"
+msgstr "Está publicado"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__author_id
+msgid "Author"
+msgstr "Autor"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__is_locked
+msgid "Is Locked"
+msgstr "Está bloqueado"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__parent_id
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_category__parent_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__child_ids
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_category__child_ids
+msgid "Children"
+msgstr "Hijos"
+
+#. module: i8_knowledge_management
+#: model:ir.ui.menu,name:i8_knowledge_management.menu_knowledge_root
+#: model:ir.ui.menu,name:i8_knowledge_management.menu_knowledge_workspace
+msgid "Knowledge"
+msgstr "Conocimiento"
+
+#. module: i8_knowledge_management
+#: model:ir.actions.client,name:i8_knowledge_management.action_knowledge_split
+msgid "Knowledge Workspace"
+msgstr "Espacio de trabajo"
+
+#. module: i8_knowledge_management
+#: model:ir.ui.menu,name:i8_knowledge_management.menu_knowledge_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: i8_knowledge_management
+#: model:ir.ui.menu,name:i8_knowledge_management.menu_knowledge_articles
+#: model:ir.actions.act_window,name:i8_knowledge_management.action_article_tree_readonly
+#: model:ir.actions.act_window,name:i8_knowledge_management.action_knowledge_article_full
+msgid "Articles"
+msgstr "Artículos"
+
+#. module: i8_knowledge_management
+#: model:ir.ui.menu,name:i8_knowledge_management.menu_knowledge_tags
+#: model:ir.actions.act_window,name:i8_knowledge_management.action_knowledge_tags
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__view_everyone
+msgid "View: Everyone"
+msgstr "Ver: Todos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__edit_everyone
+msgid "Edit: Everyone"
+msgstr "Editar: Todos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__view_user_ids
+msgid "View: Specific Users"
+msgstr "Ver: Usuarios específicos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__edit_user_ids
+msgid "Edit: Specific Users"
+msgstr "Editar: Usuarios específicos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__view_department_ids
+msgid "View: Specific Departments"
+msgstr "Ver: Departamentos específicos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__edit_department_ids
+msgid "Edit: Specific Departments"
+msgstr "Editar: Departamentos específicos"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__likes_count
+msgid "Likes"
+msgstr "Me gusta"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_article__views_count
+msgid "Views"
+msgstr "Vistas"
+
+#. module: i8_knowledge_management
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_article_version
+msgid "Knowledge Article Version"
+msgstr "Versión del artículo"
+
+#. module: i8_knowledge_management
+#: model:ir.actions.act_window,name:i8_knowledge_management.action_view_versions
+msgid "Version History"
+msgstr "Historial de versiones"
+
+#. module: i8_knowledge_management
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_version_compare_wizard
+msgid "Compare Article Versions"
+msgstr "Comparar versiones"
+
+#. module: i8_knowledge_management
+#: model:ir.actions.server,name:i8_knowledge_management.action_compare_selected_versions
+msgid "Compare Selected Versions"
+msgstr "Comparar versiones seleccionadas"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_version_compare_wizard__diff_html
+msgid "Difference"
+msgstr "Diferencia"
+
+#. module: i8_knowledge_management
+#: model:ir.model,name:i8_knowledge_management.model_knowledge_tag
+msgid "Knowledge Tag"
+msgstr "Etiqueta de conocimiento"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_tag__color
+msgid "Color Index"
+msgstr "Índice de color"
+
+#. module: i8_knowledge_management
+#: model:ir.model.fields,field_description:i8_knowledge_management.field_knowledge_tag__description
+msgid "Description"
+msgstr "Descripción"
+
+# Frontend / OWL Strings
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "New Article"
+msgstr "Nuevo artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Expand All"
+msgstr "Expandir todo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Collapse All"
+msgstr "Contraer todo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Sort by"
+msgstr "Ordenar por"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Oldest First"
+msgstr "Más antiguos primero"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Newest First"
+msgstr "Más recientes primero"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Last Updated"
+msgstr "Última actualización"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Most Liked"
+msgstr "Más populares"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Most Viewed"
+msgstr "Más vistos"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Filter"
+msgstr "Filtrar"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Clear filters"
+msgstr "Limpiar filtros"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Filters"
+msgstr "Filtros"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Show Favorites Only"
+msgstr "Solo favoritos"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Show Archived Articles"
+msgstr "Mostrar archivados"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Search tags..."
+msgstr "Buscar etiquetas..."
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Expand sidebar"
+msgstr "Expandir barra lateral"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Collapse sidebar"
+msgstr "Contraer barra lateral"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Article Management"
+msgstr "Gestión de artículos"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Rename"
+msgstr "Renombrar"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Move To"
+msgstr "Mover a"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Add Tags"
+msgstr "Añadir etiquetas"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Archive"
+msgstr "Archivar"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Unarchive"
+msgstr "Desarchivar"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Collaboration"
+msgstr "Colaboración"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Share"
+msgstr "Compartir"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Copied!"
+msgstr "¡Copiado!"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Create a Copy"
+msgstr "Crear una copia"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Utilities"
+msgstr "Utilidades"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Export"
+msgstr "Exportar"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Created"
+msgstr "Creado"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Last edited"
+msgstr "Última edición"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Search Articles"
+msgstr "Buscar artículos"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Type to search..."
+msgstr "Escriba para buscar..."
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Search inside article content"
+msgstr "Buscar dentro del contenido"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Rename Article"
+msgstr "Renombrar artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Move Article"
+msgstr "Mover artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Archive Article"
+msgstr "Archivar artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Unarchive Article"
+msgstr "Desarchivar artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Create New Article"
+msgstr "Crear nuevo artículo"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Title"
+msgstr "Título"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: i8_knowledge_management
+#: code:i8_knowledge_management/static/src/xml/knowledge_split_template.xml:0
+msgid "Edit Tags"
+msgstr "Editar etiquetas"

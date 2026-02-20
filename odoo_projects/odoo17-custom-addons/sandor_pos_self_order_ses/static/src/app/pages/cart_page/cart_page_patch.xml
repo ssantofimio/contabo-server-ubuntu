@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="pos_self_order.CartPage" t-inherit-mode="extension">
+        <!-- Safeguard product name access -->
+        <xpath expr="//strong[@t-esc='selfOrder.productByIds[line.product_id].name']" position="replace">
+            <strong t-if="selfOrder.productByIds[line.product_id]" t-esc="selfOrder.productByIds[line.product_id].name"/>
+            <strong t-else="">Producto no disponible</strong>
+        </xpath>
+        
+        <!-- Safeguard child lines -->
+        <xpath expr="//span[@t-esc='selfOrder.productByIds[cline.product_id].name']" position="replace">
+            <span t-if="selfOrder.productByIds[cline.product_id]" t-esc="selfOrder.productByIds[cline.product_id].name" />
+            <span t-else="">Producto no disponible</span>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sandor_spreadsheet_dashboard_custom_menu_view_tree" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.custom.menu.view.tree</field>
+        <field name="model">sandor.spreadsheet.dashboard.custom.menu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="parent_menu_id"/>
+                <field name="menu_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sandor_spreadsheet_dashboard_custom_menu_view_form" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.custom.menu.view.form</field>
+        <field name="model">sandor.spreadsheet.dashboard.custom.menu</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_menu" type="object" string="Create/Update Menu" class="btn-primary"/>
+                    <button name="action_remove_menu" type="object" string="Remove Menu" class="btn-secondary" invisible="not menu_id" confirm="Are you sure you want to remove the menu integration?"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Sales Dashboards"/></h1>
+                    </div>
+                    <group>
+                        <group string="Menu Location">
+                            <field name="parent_menu_id" options="{'no_create': True}"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group string="System Info">
+                            <field name="menu_id"/>
+                            <field name="action_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dashboard Content" name="content">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="dashboard_id"/>
+                                    <field name="display_name" string="Name in Sidebar" placeholder="e.g. Ventas"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sandor_spreadsheet_dashboard_custom_menu_action" model="ir.actions.act_window">
+        <field name="name">External Menu Configurations</field>
+        <field name="res_model">sandor.spreadsheet.dashboard.custom.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="sandor_custom_reports_menu_configuration_custom_menus"
+        name="External Menus"
+        parent="sandor_custom_reports_menu_configuration"
+        action="sandor_spreadsheet_dashboard_custom_menu_action"
+        sequence="50"/>
+</odoo>

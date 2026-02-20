@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_edit_picking_date" model="res.groups">
+        <field name="name">Edit Picking Date</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="comment">Allows users to change the scheduled date of a finished picking.</field>
+    </record>
+</odoo>

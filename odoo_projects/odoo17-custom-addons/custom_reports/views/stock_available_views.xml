@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_report_available_tree" model="ir.ui.view">
+        <field name="name">stock.report.available.tree</field>
+        <field name="model">stock.report.available</field>
+        <field name="arch" type="xml">
+            <tree string="Existencias" create="false" edit="false" delete="false">
+                <field name="company_id" column_invisible="True"/>
+                <field name="warehouse_id" optional="show"/>
+                <field name="location_id" optional="hide"/>
+                <field name="product_categ_id" optional="show"/>
+                <field name="product_id" optional="show"/>
+                <field name="quantity" string="A Mano" sum="Total A Mano"/>
+                <field name="reserved_quantity" string="Reservado" sum="Total Reservado"/>
+                <field name="available_quantity" string="Disponible" sum="Total Disponible"/>
+                <field name="product_uom_id" string="UdM" groups="uom.group_uom"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_report_available_pivot" model="ir.ui.view">
+        <field name="name">stock.report.available.pivot</field>
+        <field name="model">stock.report.available</field>
+        <field name="arch" type="xml">
+            <pivot string="Existencias" sample="1">
+                <field name="warehouse_id" type="row"/>
+                <field name="product_categ_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="quantity" type="measure" string="A Mano"/>
+                <field name="reserved_quantity" type="measure" string="Reservado"/>
+                <field name="available_quantity" type="measure" string="Disponible"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_stock_report_available_search" model="ir.ui.view">
+        <field name="name">stock.report.available.search</field>
+        <field name="model">stock.report.available</field>
+        <field name="arch" type="xml">
+            <search string="Existencias">
+                <field name="product_id"/>
+                <field name="product_categ_id" string="Categoría"/>
+                <field name="warehouse_id" string="Almacén"/>
+                <field name="location_id"/>
+                
+                <separator/>
+                <filter string="Con Stock" name="has_stock" domain="[('quantity', '>', 0)]"/>
+                <filter string="Disponible" name="is_available" domain="[('available_quantity', '>', 0)]"/>
+                
+                <group expand="1" string="Agrupar Por">
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'warehouse_id', 'search_default_group_category': 1, 'search_default_group_product': 1}"/>
+                    <filter string="Categoría" name="group_category" context="{'group_by': 'product_categ_id', 'search_default_group_product': 1}"/>
+                    <filter string="Producto" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <separator/>
+                    <filter string="Ubicación" name="group_location" context="{'group_by': 'location_id'}"/>
+                    <filter string="Compañía" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_report_available" model="ir.actions.act_window">
+        <field name="name">Existencias</field>
+        <field name="res_model">stock.report.available</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="search_view_id" ref="view_stock_report_available_search"/>
+        <field name="context">{'search_default_has_stock': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay stock disponible registrado.
+            </p><p>
+                Este reporte muestra la cantidad de productos a mano, reservados y disponibles por almacén.
+            </p>
+        </field>
+    </record>
+
+</odoo>

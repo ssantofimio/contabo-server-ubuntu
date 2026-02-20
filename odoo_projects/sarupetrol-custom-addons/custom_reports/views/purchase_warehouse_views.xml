@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View: List (Tree) -->
+    <record id="view_purchase_report_warehouse_tree" model="ir.ui.view">
+        <field name="name">purchase.report.warehouse.tree</field>
+        <field name="model">purchase.report.warehouse</field>
+        <field name="arch" type="xml">
+            <list string="Compras por Producto" create="0" edit="0" delete="0">
+                <header>
+                    <button name="%(custom_reports.action_purchase_warehouse_wizard)d" 
+                            string="Filtros" 
+                            type="action" 
+                            class="btn-primary" 
+                            context="{'is_adjustment': True}"
+                            display="always"/>
+                </header>
+                <field name="warehouse_id" optional="show" options="{'no_open': True}"/>
+                <field name="location_id" optional="hide" options="{'no_open': True}"/>
+                <field name="date_order" string="Fecha o.c." optional="show"/>
+                <field name="purchase_name" string="Orden de compra" optional="show"/>
+                <field name="partner_ref" optional="hide"/>
+                <field name="default_code" optional="hide"/>
+                <field name="product_id" optional="show" options="{'no_open': True}"/>
+                <field name="product_uom_id" string="UdM" groups="uom.group_uom" optional="show" options="{'no_open': True}"/>
+                <field name="partner_id" optional="show" options="{'no_open': True}"/>
+                <field name="product_qty" string="Cantidad" sum="Total cantidad"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price_unit" string="Precio unitario" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="price_subtotal" string="Total" sum="Total compras" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="state" string="Estado o.c." optional="hide" widget="badge" 
+                       decoration-info="state in ('draft', 'sent')" 
+                       decoration-success="state == 'purchase'" 
+                       decoration-warning="state == 'to approve'" 
+                       decoration-muted="state == 'done'"
+                       decoration-danger="state == 'cancel'"/>
+                <field name="receipt_status" string="Estado de entrega" optional="hide" widget="badge"
+                       decoration-danger="receipt_status == 'No recibido'"
+                       decoration-warning="receipt_status == 'Recibido parcialmente'"
+                       decoration-success="receipt_status == 'Recibido totalmente'"/>
+                <field name="invoice_status" string="Estado de facturación" optional="hide" widget="badge"
+                       decoration-muted="invoice_status == 'no'"
+                       decoration-info="invoice_status == 'to invoice'"
+                       decoration-success="invoice_status == 'invoiced'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View: Pivot -->
+    <record id="view_purchase_report_warehouse_pivot" model="ir.ui.view">
+        <field name="name">purchase.report.warehouse.pivot</field>
+        <field name="model">purchase.report.warehouse</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis de Compras por Producto" sample="1">
+                <field name="warehouse_id" type="row"/>
+                <field name="date_order" interval="month" type="col"/>
+                <field name="price_subtotal" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- View: Search -->
+    <record id="view_purchase_report_warehouse_search" model="ir.ui.view">
+        <field name="name">purchase.report.warehouse.search</field>
+        <field name="model">purchase.report.warehouse</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Compras">
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="warehouse_id"/>
+                <field name="purchase_id"/>
+                <field name="purchase_name"/>
+                <separator/>
+                <filter string="Hoy" name="today" domain="[('date_order', '=', context_today().strftime('%%Y-%%m-%%d'))]"/>
+                <filter string="Este Mes" name="this_month" domain="[('date_order', '&gt;=', context_today().strftime('%%Y-%%m-01'))]"/>
+                <filter string="Este Año" name="this_year" domain="[('date_order', '&gt;=', context_today().strftime('%%Y-01-01'))]"/>
+                <filter string="Año Pasado" name="last_year" domain="[('date_order', '&gt;=', (context_today() - relativedelta(years=1)).strftime('%%Y-01-01')), ('date_order', '&lt;', context_today().strftime('%%Y-01-01'))]"/>
+                <separator/>
+                <filter string="Orden de Compra" name="purchase_orders" domain="[('state', '=', 'purchase')]"/>
+                <filter string="Solicitud de Cotización" name="draft_orders" domain="[('state', '=', 'draft')]"/>
+                <filter string="Bloqueado" name="done_orders" domain="[('state', '=', 'done')]"/>
+                <filter string="Cancelado" name="cancel_orders" domain="[('state', '=', 'cancel')]"/>
+                <separator/>
+                <filter string="Recibido totalmente" name="recibido" domain="[('receipt_status', '=', 'Recibido totalmente')]"/>
+                <filter string="Recibido parcialmente" name="parcial" domain="[('receipt_status', '=', 'Recibido parcialmente')]"/>
+                <filter string="No recibido" name="sin_recibir" domain="[('receipt_status', '=', 'No recibido')]"/>
+                <separator/>
+                <filter string="Nada por facturar" name="inv_no" domain="[('invoice_status', '=', 'no')]"/>
+                <filter string="Facturas en espera" name="inv_to" domain="[('invoice_status', '=', 'to invoice')]"/>
+                <filter string="Totalmente facturado" name="inv_done" domain="[('invoice_status', '=', 'invoiced')]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                    <filter string="Producto" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Proveedor" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Estado O.C" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Estado de Entrega" name="group_receipt_status" context="{'group_by': 'receipt_status'}"/>
+                    <filter string="Estado de facturación" name="group_invoice_status" context="{'group_by': 'invoice_status'}"/>
+                    <filter string="Fecha" name="group_date" context="{'group_by': 'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción vinculada al menú "Acción" (Engranaje) del reporte -->
+    <record id="action_purchase_warehouse_adjust_filters" model="ir.actions.act_window">
+        <field name="name">Filtros</field>
+        <field name="res_model">purchase.warehouse.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'is_adjustment': True}</field>
+        <field name="binding_model_id" ref="model_purchase_report_warehouse"/>
+        <field name="binding_view_types">list,pivot</field>
+    </record>
+</odoo>
+

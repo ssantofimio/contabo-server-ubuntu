@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sandor_pos_self_order_ses
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-02 14:55+0000\n"
+"PO-Revision-Date: 2024-02-02 14:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sandor_pos_self_order_ses
+#: model:ir.model,name:sandor_pos_self_order_ses.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuración del Punto de Venta"
+
+#. module: sandor_pos_self_order_ses
+#: model:ir.model.fields,field_description:sandor_pos_self_order_ses.field_pos_config__self_order_custom_identification
+#: model:ir.model.fields,field_description:sandor_pos_self_order_ses.field_res_config_settings__pos_self_order_custom_identification
+#: model:ir.ui.view,arch_db:sandor_pos_self_order_ses.pos_config_view_form_inherit_self_order_custom
+#: model:ir.ui.view,arch_db:sandor_pos_self_order_ses.res_config_settings_view_form_inherit_self_order_custom
+msgid "Custom Identification Flow"
+msgstr "Flujo de Identificación de Cliente (CC/NIT)"
+
+#. module: sandor_pos_self_order_ses
+#: model:ir.model.fields,help:sandor_pos_self_order_ses.field_pos_config__self_order_custom_identification
+msgid "Enable custom NIF/Customer identification flow for self-ordering."
+msgstr "Habilitar flujo personalizado de identificación de cliente (CC/NIT) para autopedido."
+
+#. module: sandor_pos_self_order_ses
+#: model:ir.model.fields,help:sandor_pos_self_order_ses.field_res_config_settings__pos_self_order_custom_identification
+msgid "Enable custom NIF/Customer identification flow for this Point of Sale."
+msgstr "Habilitar flujo personalizado de identificación de cliente (CC/NIT) para este Punto de Venta."

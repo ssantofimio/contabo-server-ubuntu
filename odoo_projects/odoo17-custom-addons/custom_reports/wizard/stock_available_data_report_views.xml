@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_available_data_report_view_tree_v3" model="ir.ui.view">
+        <field name="name">stock.available.data.report.view.tree.v3</field>
+        <field name="model">stock.available.data.report</field>
+        <field name="arch" type="xml">
+            <tree string="Datos de Existencias" create="false" edit="false">
+                <header>
+                    <button name="%(custom_reports.action_stock_available_report_wizard)d" 
+                            string="Filtros" 
+                            type="action" 
+                            class="btn-primary" 
+                            context="{'is_adjustment': True}"
+                            display="always"/>
+                </header>
+                <field name="warehouse_id" optional="show"/>
+                <field name="location_id" optional="hide"/>
+                <field name="category_id" optional="show"/>
+                <field name="default_code" optional="hide"/>
+                <field name="product_id" optional="show"/>
+                <field name="uom_name" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="quantity" sum="Total Stock" optional="show" string="Cantidad a Mano"/>
+                <field name="available_quantity" sum="Total Disponible" optional="hide" string="Disponible"/>
+                <field name="cost" widget="monetary" optional="show" string="Costo Unitario"/>
+                <field name="total_value" sum="Total Valorizado" widget="monetary" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_available_data_report_view_pivot" model="ir.ui.view">
+        <field name="name">stock.available.data.report.view.pivot</field>
+        <field name="model">stock.available.data.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis de Existencias">
+                <field name="warehouse_id" type="row"/>
+                <field name="category_id" type="row"/>
+                <field name="quantity" type="measure"/>
+                <field name="total_value" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="stock_available_data_report_view_search" model="ir.ui.view">
+        <field name="name">stock.available.data.report.view.search</field>
+        <field name="model">stock.available.data.report</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Existencias">
+                <field name="product_id"/>
+                <field name="default_code"/>
+                <field name="category_id"/>
+                <field name="warehouse_id"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Almacén" name="group_by_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                    <filter string="Categoría" name="group_by_category" context="{'group_by': 'category_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="action_stock_available_data_report" model="ir.actions.act_window">
+        <field name="name">Análisis de Existencias</field>
+        <field name="res_model">stock.available.data.report</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="target">main</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No se encontraron datos para los filtros seleccionados.
+            </p>
+        </field>
+    </record>
+</odoo>

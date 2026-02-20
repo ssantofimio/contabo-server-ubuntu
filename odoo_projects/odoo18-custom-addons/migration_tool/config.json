@@ -1,0 +1,18 @@
+{
+    "source": {
+        "url": "https://odoo17.edfpinar.xyz",
+        "db": "edfpinar",
+        "username": "stivensantofimio@gmail.com",
+        "api_key": "42c5061937919fdd229ee8b7a96b0174e085e2d9"
+    },
+    "destination": {
+        "url": "https://edu-sarupetrol.odoo.com",
+        "db": "edu-sarupetrol",
+        "username": "coordinadordatos@sarupetrol.com",
+        "api_key": "3a1a9278942f34a2b6779b08a525500563c20f95"
+    },
+    "settings": {
+        "batch_size": 100,
+        "mapping_db": "/opt/odoo/odoo18/custom-addons/migration_tool/mappings.db"
+    }
+}

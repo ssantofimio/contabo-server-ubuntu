@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Formato de Papel Personalizado (Márgenes Mínimos) -->
+    <record id="paperformat_purchase_report_compact" model="report.paperformat">
+        <field name="name">Formato Compacto (Reportes)</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Reporte PDF Tabla de Órdenes de Compra -->
+    <record id="action_report_purchase_order" model="ir.actions.report">
+        <field name="name">Reporte Órdenes de Compra</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.report_purchase_order_table</field>
+        <field name="report_file">custom_reports.report_purchase_order_table</field>
+        <field name="print_report_name">'Reporte Compras por Estado'</field>
+        <field name="paperformat_id" ref="paperformat_purchase_report_compact"/>
+    </record>
+
+    <!-- Acción para abrir el Wizard (Reporte Estándar) -->
+    <record id="action_server_print_purchase_report" model="ir.actions.server">
+        <field name="name">Reporte Órdenes de Compra</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+        <field name="state">code</field>
+        <field name="code">
+# Abrir wizard con las órdenes seleccionadas
+action = {
+    'name': 'Seleccionar Columnas del Reporte',
+    'type': 'ir.actions.act_window',
+    'res_model': 'purchase.report.wizard',
+    'view_mode': 'form',
+    'target': 'new',
+    'context': {'default_purchase_order_ids': records.ids}
+}
+        </field>
+    </record>
+
+    <!-- Acción para Informe de Blancos (Filtrado Automático) - ELIMINADA (Movida al Wizard/Acciones) -->
+    <!-- 
+    <record id="action_server_print_purchase_report_blancos" model="ir.actions.server">
+        ...
+    </record> 
+    -->
+
+
+    <!-- Plantilla del Reporte Tipo Tabla -->
+    <template id="report_purchase_order_table">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Arial Narrow', 'Arial', sans-serif;">
+                    
+                    <!-- Encabezado Personalizado Compacto -->
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 45px;" alt="Logo"/>
+                        </div>
+                        <div class="col-8 text-end">
+                            <h4 class="m-0" style="font-weight: bold; text-transform: uppercase;">
+                                <t t-if="report_title">
+                                    <t t-esc="report_title"/>
+                                </t>
+                                <t t-else="">
+                                    Reporte: Compras por Estado
+                                </t>
+                            </h4>
+                            <div style="font-size: 10px;">
+                                <span t-field="res_company.name" style="font-weight: bold;"/> | 
+                                Generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-1">
+                         <div class="col-12 text-center" style="font-size: 10px; border-bottom: 1px solid #ccc;">
+                            <strong>Total registros:</strong> <t t-esc="len(docs)"/>
+                         </div>
+                    </div>
+
+                    <table class="table table-sm table-bordered" style="font-size: 10px; font-family: 'Arial Narrow', sans-serif;">
+                        <thead style="background-color: #f0f0f0;">
+                            <tr>
+                                <th t-if="columns.get('warehouse', True)">Almacén</th>
+                                <th t-if="columns.get('number', True)">Número</th>
+                                <th t-if="columns.get('date', True)">Fecha</th>
+                                <th t-if="columns.get('partner', True)">Proveedor</th>
+                                <th t-if="columns.get('partner_ref', False)">Ref. Prov.</th>
+                                <th t-if="columns.get('buyer', True)">Comprador</th>
+                                <th t-if="columns.get('state', True)">Estado</th>
+                                <th t-if="columns.get('subtotal', True)" class="text-end">Subtotal</th>
+                                <th t-if="columns.get('tax', False)" class="text-end">Impuesto</th>
+                                <th t-if="columns.get('total', True)" class="text-end">Total</th>
+                                <th t-if="columns.get('planned_date', False)">Entrega</th>
+                                <th t-if="columns.get('receipt_status', True)">Est. Entrega</th>
+                                <th t-if="columns.get('invoice_status', True)">Est. Factura</th>
+                                <th t-if="columns.get('invoice_state', False)">Estado Fact.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_subtotal" t-value="0"/>
+                            <t t-set="total_tax" t-value="0"/>
+                            <t t-set="total_amount" t-value="0"/>
+                            
+                            <tr t-foreach="docs" t-as="o">
+                                <td t-if="columns.get('warehouse', True)"><t t-esc="o.warehouse_name or ''"/></td>
+                                <td t-if="columns.get('number', True)"><t t-esc="o.name"/></td>
+                                <td t-if="columns.get('date', True)" style="white-space: nowrap;"><t t-esc="o.date_order_local or ''"/></td>
+                                <td t-if="columns.get('partner', True)">
+                                    <t t-esc="o.partner_id.name + ((' &#8210; ' + o.partner_id.vat) if o.partner_id.vat else '')"/>
+                                </td>
+                                <td t-if="columns.get('partner_ref', False)"><t t-esc="o.partner_ref or ''"/></td>
+                                <td t-if="columns.get('buyer', True)"><t t-esc="o.user_id.name or ''"/></td>
+                                <td t-if="columns.get('state', True)"><t t-esc="o.state_display_es or ''"/></td>
+                                <td t-if="columns.get('subtotal', True)" class="text-end">
+                                    <t t-esc="'{:,.2f}'.format(o.amount_untaxed)"/>
+                                    <t t-set="total_subtotal" t-value="total_subtotal + o.amount_untaxed"/>
+                                </td>
+                                <td t-if="columns.get('tax', False)" class="text-end">
+                                    <t t-esc="'{:,.2f}'.format(o.amount_tax)"/>
+                                    <t t-set="total_tax" t-value="total_tax + o.amount_tax"/>
+                                </td>
+                                <td t-if="columns.get('total', True)" class="text-end">
+                                    <t t-esc="'{:,.2f}'.format(o.amount_total)"/>
+                                    <t t-set="total_amount" t-value="total_amount + o.amount_total"/>
+                                </td>
+                                <td t-if="columns.get('planned_date', False)"><t t-esc="o.date_planned_local or ''"/></td>
+                                <td t-if="columns.get('receipt_status', True)"><t t-esc="o.receipt_status_display_es or ''"/></td>
+                                <td t-if="columns.get('invoice_status', True)"><t t-esc="o.invoice_status_display_es or ''"/></td>
+                                <td t-if="columns.get('invoice_state', False)"><t t-esc="o.invoice_state_summary or ''"/></td>
+                            </tr>
+                        </tbody>
+                        <tfoot style="background-color: #f0f0f0; font-weight: bold;">
+                            <tr>
+                                <t t-set="col_count" t-value="0"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('warehouse', True) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('number', True) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('date', True) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('partner', True) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('partner_ref', False) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('buyer', True) else 0)"/>
+                                <t t-set="col_count" t-value="col_count + (1 if columns.get('state', True) else 0)"/>
+                                
+                                <td t-attf-colspan="{{col_count}}" class="text-end">TOTALES:</td>
+                                <td t-if="columns.get('subtotal', True)" class="text-end"><t t-esc="'{:,.2f}'.format(total_subtotal)"/></td>
+                                <td t-if="columns.get('tax', False)" class="text-end"><t t-esc="'{:,.2f}'.format(total_tax)"/></td>
+                                <td t-if="columns.get('total', True)" class="text-end"><t t-esc="'{:,.2f}'.format(total_amount)"/></td>
+                                
+                                <t t-set="remaining_cols" t-value="0"/>
+                                <t t-set="remaining_cols" t-value="remaining_cols + (1 if columns.get('planned_date', False) else 0)"/>
+                                <t t-set="remaining_cols" t-value="remaining_cols + (1 if columns.get('receipt_status', True) else 0)"/>
+                                <t t-set="remaining_cols" t-value="remaining_cols + (1 if columns.get('invoice_status', True) else 0)"/>
+                                <t t-set="remaining_cols" t-value="remaining_cols + (1 if columns.get('invoice_state', False) else 0)"/>
+                                
+                                <td t-if="remaining_cols > 0" t-attf-colspan="{{remaining_cols}}"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+
+                <!-- Pie de Página con Paginación -->
+                <div class="footer text-center" style="font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px;">
+                    Página <span class="page"/> de <span class="topage"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
+

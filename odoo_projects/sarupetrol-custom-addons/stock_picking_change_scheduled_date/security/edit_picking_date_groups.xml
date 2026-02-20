@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_edit_picking_date" model="res.groups">
+        <field name="name">Editar fecha programada movimientos de inventario</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="comment">Permite modificar la fecha programada de movimientos de inventario ya validados</field>
+    </record>
+</odoo>

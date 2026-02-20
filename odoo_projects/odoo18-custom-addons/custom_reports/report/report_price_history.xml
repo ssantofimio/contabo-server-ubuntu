@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_price_history" model="ir.actions.report">
+        <field name="name">Reporte Histórico de Precios (Resumido)</field>
+        <field name="model">purchase.report.price.history</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.report_price_history_document</field>
+        <field name="report_file">custom_reports.report_price_history_document</field>
+        <field name="print_report_name">'Historico de Precios'</field>
+        <field name="paperformat_id" ref="custom_reports.paperformat_purchase_report_compact"/>
+    </record>
+
+    <template id="report_price_history_document">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Arial Narrow', 'Arial', sans-serif;">
+                    <!-- Encabezado -->
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 50px;" alt="Logo"/>
+                        </div>
+                        <div class="col-8 text-end">
+                            <h4 class="m-0" style="font-weight: bold; text-transform: uppercase; color: #333;">
+                                HISTÓRICO DE PRECIOS
+                            </h4>
+                            <div style="font-size: 14px; color: #333; margin-bottom: 5px;">
+                                Precio Promedio - Facturas de Proveedor
+                            </div>
+                            <div style="font-size: 10px; color: #555;">
+                                <span t-field="res_company.name" style="font-weight: bold;"/> | 
+                                Generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen del Informe (Formal) -->
+                    <div class="row mb-3" style="font-size: 11px;">
+                        <div class="col-12 text-start">
+                            <table class="table table-sm table-borderless m-0" style="width: auto;">
+                                <tr>
+                                    <td style="font-weight: bold; border: none; padding: 1px; padding-right: 15px;">ALMACÉN:</td>
+                                    <td style="border: none; padding: 1px;"><t t-esc="summary['warehouses']"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none; padding: 1px; padding-right: 15px;">FECHA:</td>
+                                    <td style="border: none; padding: 1px;">
+                                        <t t-if="summary['date_from']">Desde: <t t-esc="summary['date_from']"/></t>
+                                        <t t-if="summary['date_to']"> Hasta: <t t-esc="summary['date_to']"/></t>
+                                        <t t-if="not summary['date_from'] and not summary['date_to']">Todas las fechas</t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none; padding: 1px; padding-right: 15px;">VALOR TOTAL:</td>
+                                    <td style="border: none; padding: 1px;">
+                                        <span t-esc="grand_total" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de Datos -->
+                    <style>
+                        .clean-report-table {
+                            width: 100%;
+                            table-layout: fixed;
+                            border-collapse: separate !important;
+                            border-spacing: 0 !important;
+                            border: none !important;
+                        }
+                        .clean-report-table tr, 
+                        .clean-report-table td, 
+                        .clean-report-table th {
+                            border: none !important;
+                            border-top: none !important;
+                            border-bottom: none !important;
+                            padding: 4px 8px !important;
+                        }
+                        .clean-report-table thead th {
+                            border-bottom: 2px solid #666 !important;
+                            font-weight: bold;
+                            text-align: left;
+                        }
+                        .category-row {
+                            background-color: #f2f2f2 !important;
+                            font-weight: bold;
+                            font-size: 11px;
+                        }
+                        .product-row {
+                            background-color: #fafafa !important;
+                            font-weight: bold;
+                            font-size: 10px;
+                            color: #333;
+                        }
+                        .data-row td {
+                            color: #555;
+                        }
+                        .spacer-row td {
+                            height: 3px !important;
+                            padding: 0 !important;
+                            background-color: #ffffff !important;
+                        }
+                    </style>
+
+                    <table class="clean-report-table" style="font-size: 10px; font-family: 'Arial Narrow', sans-serif;">
+                        <thead>
+                            <tr>
+                                <th style="width: 14%;">Mes</th>
+                                <th style="width: 20%;">Almacén</th>
+                                <th style="width: 15%;">Ubicación</th>
+                                <th t-if="not is_multi_month" style="width: 20%;">Producto</th>
+                                <th class="text-center" style="width: 7%;">UdM</th>
+                                <th class="text-end" style="width: 10%;">Cant.</th>
+                                <th class="text-end" style="width: 12%;">Prec. Unit</th>
+                                <th class="text-end" style="width: 15%;">Total</th>
+                                <th class="text-center" style="width: 7%;">Fact.</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="grouped_data" t-as="group">
+                            <!-- Categoría -->
+                            <tbody style="page-break-inside: avoid !important;">
+                                <tr class="category-row">
+                                    <td t-att-colspan="is_multi_month and 6 or 7">
+                                        <t t-esc="group['category']"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="group['total']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+
+                            <t t-foreach="group['products']" t-as="product">
+                                <tbody style="page-break-inside: avoid !important;">
+                                    <!-- Espaciador opcional para separar entre productos -->
+                                    <tr class="spacer-row"><td t-att-colspan="is_multi_month and 8 or 9"></td></tr>
+                                    <!-- Producto -->
+                                    <tr t-if="is_multi_month" class="product-row">
+                                        <td t-att-colspan="is_multi_month and 8 or 9" style="padding-left: 12px !important;">
+                                            <t t-esc="product['product']"/>
+                                        </td>
+                                    </tr>
+                                    <!-- Líneas -->
+                                    <t t-foreach="product['lines']" t-as="line">
+                                        <tr class="data-row">
+                                            <td style="padding-left: 15px !important;"><t t-esc="line['month']"/></td>
+                                            <td><t t-esc="line['warehouse']"/></td>
+                                            <td><t t-esc="line['location']"/></td>
+                                            <td t-if="not is_multi_month"><t t-esc="product['product']"/></td>
+                                            <td class="text-center"><t t-esc="line['uom']"/></td>
+                                            <td class="text-end"><t t-esc="'{:,.2f}'.format(line['quantity'])"/></td>
+                                            <td class="text-end">
+                                                <span t-esc="line['price_unit']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td class="text-end" style="font-weight: bold; color: #333;">
+                                                <span t-esc="line['total']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td class="text-center"><t t-esc="line['invoice_count']"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </t>
+                        </t>
+                    </table>
+
+                    <!-- Filtros adicionales al final -->
+                    <div t-if="other_filters" style="font-size: 8px; margin-top: 20px; color: #777; border-top: 1px solid #eee; padding-top: 5px;">
+                        <strong>Filtros adicionales aplicados en la consulta:</strong>
+                        <t t-foreach="other_filters" t-as="f">
+                            <span class="ms-2"><t t-esc="f"/>;</span>
+                        </t>
+                    </div>
+                </div>
+                <!-- Pie de Página -->
+                <div class="footer text-center" style="font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px;">
+                    Página <span class="page"/> de <span class="topage"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

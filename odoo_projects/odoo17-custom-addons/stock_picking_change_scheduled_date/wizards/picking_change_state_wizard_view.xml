@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_change_state_wizard_form" model="ir.ui.view">
+        <field name="name">picking.change.state.wizard.form</field>
+        <field name="model">picking.change.state.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Change Picking State and Date">
+                <p>Seleccione una nueva fecha de operación para este movimiento de inventario y se actualizará.</p>
+                <group>
+                    <field name="scheduled_date"/>
+                </group>
+                <footer>
+                    <button name="action_change_state_and_date" string="Actualizar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_picking_change_state_wizard" model="ir.actions.act_window">
+        <field name="name">Cambiar Fecha de Operación</field>
+        <field name="res_model">picking.change.state.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

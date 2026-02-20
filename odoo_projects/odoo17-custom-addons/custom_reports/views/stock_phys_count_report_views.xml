@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_report_phys_count_tree" model="ir.ui.view">
+        <field name="name">stock.report.phys.count.tree</field>
+        <field name="model">stock.report.phys.count</field>
+        <field name="arch" type="xml">
+            <tree string="Conteos Físicos" create="0" edit="0" delete="0">
+                <header>
+                    <button name="%(custom_reports.action_stock_phys_count_wizard)d" 
+                            string="Filtros" 
+                            type="action" 
+                            class="btn-primary" 
+                            context="{'is_adjustment': True}"
+                            display="always"/>
+                </header>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="warehouse_id" string="Almacén" optional="show"/>
+                <field name="location_id" string="Ubicación" optional="hide"/>
+                <field name="product_categ_id" string="Categoría" optional="show"/>
+                <field name="product_id" string="Producto"/>
+                <field name="product_uom_id" string="UdM" optional="show"/>
+                <field name="unit_cost" string="Costo Unitario" widget="monetary"/>
+                
+                <field name="expected_qty" string="Stock" sum="Total stock"/>
+                <field name="stock_value" string="Total Stock" sum="Total Valor Stock" widget="monetary"/>
+                <field name="counted_qty" string="Cant. Contada" sum="Total contado"/>
+                <field name="total_value" string="Total Contado" sum="Total Valorizado" widget="monetary"/>
+                <field name="difference" string="Diferencia" sum="Total diferencia" decoration-danger="difference &lt; 0" decoration-success="difference &gt; 0" decoration-bf="difference != 0"/>
+                <field name="diff_value" string="Valor Diferencia" sum="Total Valor Dif." widget="monetary" decoration-danger="diff_value &lt; 0" decoration-success="diff_value &gt; 0" decoration-bf="diff_value != 0"/>
+                
+                <field name="last_po_id" string="OC Referencia" optional="hide"/>
+                <field name="last_po_date" string="Fecha OC" optional="hide"/>
+                <field name="last_picking_id" string="Movimiento" optional="hide"/>
+                
+                <field name="scheduled_date" string="Fecha conteo" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_stock_report_phys_count_pivot" model="ir.ui.view">
+        <field name="name">stock.report.phys.count.pivot</field>
+        <field name="model">stock.report.phys.count</field>
+        <field name="arch" type="xml">
+            <pivot string="Conteos Físicos" display_quantity="1">
+                <field name="warehouse_id" type="row"/>
+                <field name="product_categ_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="total_value" string="Total Seleccionado" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_stock_report_phys_count_search" model="ir.ui.view">
+        <field name="name">stock.report.phys.count.search</field>
+        <field name="model">stock.report.phys.count</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Conteos">
+                <field name="product_id"/>
+                <field name="product_categ_id"/>
+                <field name="warehouse_id"/>
+                <field name="location_id"/>
+                <separator/>
+                <filter string="Con Diferencia" name="with_diff" domain="[('difference', '!=', 0)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                    <filter string="Categoría" name="group_category" context="{'group_by': 'product_categ_id'}"/>
+                    <filter string="Ubicación" name="group_location" context="{'group_by': 'location_id'}"/>
+                    <filter string="Fecha conteo" name="group_date" context="{'group_by': 'scheduled_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_report_phys_count" model="ir.actions.act_window">
+        <field name="name">Conteos Físicos</field>
+        <field name="res_model">stock.report.phys.count</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="context">{'valuation_method': 'last'}</field>
+        <field name="search_view_id" ref="view_stock_report_phys_count_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay conteos físicos registrados.
+            </p>
+        </field>
+    </record>
+</odoo>

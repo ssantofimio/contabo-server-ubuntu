@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_it_assignment_tree" model="ir.ui.view">
+        <field name="name">it.assignment.tree</field>
+        <field name="model">it.assignment</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state == 'draft'" decoration-warning="state == 'confirmed'" decoration-success="state == 'signed'" decoration-danger="state == 'returned'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id" optional="hide"/>
+                <field name="assignment_date"/>
+                <field name="state" widget="badge" decoration-success="state == 'signed'" decoration-warning="state == 'confirmed'" decoration-muted="state == 'draft'" decoration-danger="state == 'returned'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_it_assignment_form" model="ir.ui.view">
+        <field name="name">it.assignment.form</field>
+        <field name="model">it.assignment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,signed,returning,returned"/>
+                    <button name="action_confirm" string="Confirmar" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_send_email" string="Enviar por Correo" type="object" invisible="state not in ('confirmed', 'signed', 'returning')"/>
+                    <button name="action_return" string="Registrar Devolución" type="object" invisible="state not in ('confirmed', 'signed')"/>
+                    <button name="action_draft" string="Cambiar a Borrador" type="object" invisible="state != 'cancelled'"/>
+                    <button name="action_cancel" string="Cancelar" type="object" invisible="state not in ('draft', 'confirmed')"/>
+                    <button name="%(sandor_it_inventory.action_report_it_return)d" string="Imprimir Documento de Devolución" type="action" invisible="not return_signature"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning text-center o_form_header" role="alert" 
+                         invisible="state != 'confirmed' or signature">
+                        <strong>Firma Pendiente:</strong> Puede copiar el siguiente enlace para que el empleado firme el acta de forma remota: 
+                        <field name="portal_sign_url" widget="CopyClipboardChar" class="oe_inline ml-2"/>
+                    </div>
+                    <div class="alert alert-info text-center o_form_header" role="alert" 
+                         invisible="state != 'returning' or return_signature">
+                        <strong>Retorno en Proceso:</strong> El empleado puede formalizar la devolución en este enlace: 
+                        <field name="portal_return_url" widget="CopyClipboardChar" class="oe_inline ml-2"/>
+                    </div>
+                    <div class="oe_title">
+                        <span class="o_form_label">Asignación TIC</span>
+                        <h1>
+                            <field name="name" readonly="1" invisible="name == 'Nuevo' and state == 'draft'"/>
+                            <span invisible="name != 'Nuevo' or state != 'draft'">Borrador</span>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'draft'"/>
+                            <field name="employee_id_type_id" string="ID Type" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="employee_id_number" string="Identificación"/>
+                            <field name="employee_email"/>
+                            <field name="assignment_date" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="job_id"/>
+                            <field name="department_id"/>
+                            <field name="work_location_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Productos TIC" name="it_products">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <tree editable="bottom">
+                                    <field name="it_unique_assignment" column_invisible="True"/>
+                                    <field name="product_id" options="{'no_create': True}"/>
+                                    <field name="default_code"/>
+                                    <field name="it_brand_id"/>
+                                    <field name="it_asset_type_id"/>
+                                    <field name="it_serial_number" invisible="not it_unique_assignment"/>
+                                    <field name="standard_price"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notas" name="notes">
+                            <field name="notes" placeholder="Observaciones adicionales..."/>
+                        </page>
+                        <page string="Descuentos" name="discounts">
+                            <field name="discount_ids" readonly="state != 'draft'">
+                                <tree editable="bottom">
+                                    <field name="assignment_line_id" 
+                                           options="{'no_create': True}" 
+                                           string="Equipo Asignado"
+                                           domain="[('assignment_id', '=', parent.id), ('it_asset_type_id.is_discountable', '=', True)]"/>
+                                    <field name="it_serial_number" string="Serie" readonly="1"/>
+                                    <field name="default_code" string="Placa" readonly="1"/>
+                                    <field name="discount_value" string="Valor Base"/>
+                                    <field name="assignment_id" column_invisible="True"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </tree>
+                            </field>
+                            <p class="text-muted mt-2">
+                                <i class="fa fa-info-circle mr-1"/>
+                                Configure los productos y sus valores base para el cálculo de la tabla de descuentos en el reporte PDF.<br/>
+                                <strong>Nota:</strong> Solo se permiten productos cuyo Tipo de Activo esté marcado como 'Descontable'.
+                            </p>
+                        </page>
+                        <page string="Asignación" name="signature">
+                            <group>
+                                <label for="signature" string="Firma del Empleado"/>
+                                <div class="col-12">
+                                    <field name="signature" widget="signature" 
+                                           options="{'size': [500, 200]}"
+                                           readonly="state == 'signed'"/>
+                                </div>
+                            </group>
+                            <group invisible="not signature">
+                                <field name="signed_by" readonly="1"/>
+                                <field name="signed_on" readonly="1"/>
+                            </group>
+                            <group string="Detalles de Auditoría (Firma Electrónica)" invisible="not signature">
+                                <field name="signer_ip" readonly="1"/>
+                                <field name="signer_user_agent" readonly="1"/>
+                                <field name="document_hash" string="Hash del Documento (SHA256)" readonly="1"/>
+                                <field name="access_token" string="Security Token" readonly="1" groups="base.group_no_one"/>
+                            </group>
+                        </page>
+                        <page string="Devolución" name="return" invisible="state not in ('returning', 'returned')">
+                            <group>
+                                <label for="return_signature" string="Firma de Devolución / Paz y Salvo"/>
+                                <div class="col-12">
+                                    <field name="return_signature" widget="signature" 
+                                           options="{'size': [500, 200]}"
+                                           readonly="state == 'returned'"/>
+                                </div>
+                            </group>
+                            <group invisible="not return_signature">
+                                <field name="return_signed_by" readonly="1"/>
+                                <field name="return_signed_on" readonly="1"/>
+                            </group>
+                            <group string="Auditoría de Devolución" invisible="not return_signature">
+                                <field name="return_signer_ip" readonly="1"/>
+                                <field name="return_signer_user_agent" readonly="1"/>
+                                <field name="return_document_hash" string="Hash del Documento (SHA256)" readonly="1"/>
+                                <field name="access_token" string="Security Token" readonly="1" groups="base.group_no_one"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_assignment" model="ir.actions.act_window">
+        <field name="name">IT Assignment</field>
+        <field name="res_model">it.assignment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea tu primera asignación IT
+            </p>
+        </field>
+    </record>
+</odoo>

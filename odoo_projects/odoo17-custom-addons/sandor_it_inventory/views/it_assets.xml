@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_it_assets_tree" model="ir.ui.view">
+        <field name="name">it.assets.tree</field>
+        <field name="model">it.assets</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="item_code"/>
+                <field name="name"/>
+                <field name="item_user"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_it_assets_kanban" model="ir.ui.view">
+        <field name="name">it.assets.kanban</field>
+        <field name="model">it.assets</field>
+        <field name="arch" type="xml">
+            <kanban records_draggable="0" class="o_kanban_example">
+                <field name="id" invisible="1"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="d-flex" style="height: 150px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                                <!-- Left side: Image (50%) -->
+                                <div style="flex: 1; min-width: 50%; max-width: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+                                    <img t-att-src="kanban_image('it.assets', 'image', record.id.raw_value)" alt="Component Image" style="max-height: 140px; max-width: 100%; object-fit: contain;"/>
+                                </div>
+                                <!-- Right side: Details (50%) -->
+                                <div style="flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: center;">
+                                    <h4 class="o_kanban_record_title" style="margin-bottom: 8px; font-weight: 600; font-size: 1.2em;">
+                                        <field name="name"/>
+                                    </h4>
+                                    <div>
+                                        <strong>Asset Code:</strong>
+                                        <field name="item_code"/>
+                                    </div>
+                                    <div>
+                                        <strong>Assignee:</strong>
+                                        <field name="item_user"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_it_assets_form" model="ir.ui.view">
+        <field name="name">it.assets.form</field>
+        <field name="model">it.assets</field>
+        <field name="arch" type="xml">
+            <form string="IT Asset">
+                <sheet>
+                    <div style="display:flex;justify-content: space-between; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <group>
+                                <field name="item_code" required="1"/>
+                                <field name="name" required="1"/>
+                                <field name="asset_type"/>
+                                <field name="item_user"/>
+                                <field name="system_id"/>
+                                <field name="asset_repaired"/>
+                            </group>
+                        </div>
+                        <div >
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar" nolabel="1" style="margin-right: -48px;"/>
+                            </group>
+                        </div>
+                    </div>
+                    <notebook>
+                        <page string="Components">
+                            <field name="all_components">
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'post_refresh': True}"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_it_assets" model="ir.actions.act_window">
+        <field name="name">Assets</field>
+        <field name="res_model">it.assets</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first asset
+            </p>
+        </field>
+    </record>
+
+    <!-- Product Search View Inheritance -->
+    <record id="product_template_search_view_it_inventory" model="ir.ui.view">
+        <field name="name">product.template.search.it.inventory</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="filter_to_sell" position="before">
+                <!-- Main filter for IT Items -->
+                <filter name="filter_available_in_it_inventory" string="Available in IT Inventory" domain="[('available_in_it_inventory', '=', True)]"/>
+                
+                <!-- Separator ensures AND logic between these two updates -->
+                <separator/>
+
+                <!-- NEW: Filter for Unassigned IT Items (Available + No Employee) -->
+                <filter name="filter_it_unassigned" string="Unassigned IT Products" domain="[('available_in_it_inventory', '=', True), ('it_current_employee_id', '=', False)]"/>
+
+                <!-- Separator ensures visual separation from standard 'to_sell' filters -->
+                <separator/>
+            </filter>
+            <field name="name" position="after">
+                <field name="it_current_employee_id" string="Assigned Employee"/>
+                <field name="it_brand_id" string="IT Brand"/>
+                <field name="it_asset_type_id" string="Asset Type"/>
+                <field name="it_serial_number" string="IT Serial Number"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Product Form View Inheritance -->
+    <record id="product_template_form_view_it_inventory" model="ir.ui.view">
+        <field name="name">product.template.form.it.inventory</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Inventario TI" name="it_inventory_tab">
+                    <group>
+                        <group name="it_inventory_data" string="Datos del Activo">
+                            <field name="available_in_it_inventory"/>
+                            <field name="it_unique_assignment" invisible="not available_in_it_inventory"/>
+                            <field name="it_serial_number" invisible="not available_in_it_inventory or not it_unique_assignment"/>
+                            <field name="it_brand_id" invisible="not available_in_it_inventory"/>
+                            <field name="it_asset_type_id" invisible="not available_in_it_inventory"/>
+                        </group>
+                        
+                        <!-- Single Assignment Info (Only for Unique Items) -->
+                        <group name="it_assignment_info" string="Estado de Asignación" invisible="not available_in_it_inventory or not it_unique_assignment">
+                            <field name="it_current_employee_id" readonly="1" />
+                            <field name="it_assignment_date" readonly="1" />
+                        </group>
+                    </group>
+
+                    <!-- List of All Assignments (Only for Non-Unique/Generic Items) -->
+                    <group string="Asignaciones Activas" invisible="not available_in_it_inventory or it_unique_assignment">
+                        <field name="it_active_assignments" readonly="1">
+                            <tree create="0" delete="0" edit="0" limit="80">
+                                <field name="employee_id"/>
+                                <field name="department_id"/>
+                                <field name="assignment_date"/>
+                                <field name="name" string="Referencia"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <!-- NEW: Complete Assignment History (For All IT Products) -->
+                    <group string="Historial de Asignaciones" invisible="not available_in_it_inventory">
+                        <field name="it_assignment_history_ids" readonly="1">
+                            <tree create="0" delete="0" edit="0" limit="10" decoration-success="state == 'signed'" decoration-info="state == 'returned'">
+                                <field name="assignment_id" string="Acta/Referencia"/>
+                                <field name="employee_id"/>
+                                <field name="assignment_date"/>
+                                <field name="state" string="Estado Acta" widget="badge" 
+                                       decoration-success="state == 'signed'" 
+                                       decoration-warning="state == 'confirmed'" 
+                                       decoration-info="state == 'returned'"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for IT Inventory Products -->
+    <record id="action_it_inventory_products" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model" >product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{'search_default_filter_available_in_it_inventory': 1, 'default_available_in_it_inventory': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new product for IT inventory
+            </p>
+        </field>
+    </record>
+    <!-- NEW: Product Kanban View Inheritance to add 'ASIGNADO' label -->
+    <record id="product_template_kanban_view_it_inventory" model="ir.ui.view">
+        <field name="name">product.template.kanban.it.inventory</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="available_in_it_inventory" invisible="1"/>
+                <field name="it_unique_assignment" invisible="1"/>
+                <field name="it_current_employee_id" invisible="1"/>
+            </field>
+            <xpath expr="//div[hasclass('oe_kanban_details')]" position="inside">
+                <div t-if="record.available_in_it_inventory.raw_value and record.it_unique_assignment.raw_value and record.it_current_employee_id.raw_value"
+                     style="margin-top: 5px;">
+                    <span class="badge rounded-pill bg-danger text-white px-2 py-1" style="font-size: 10px; font-weight: bold;">
+                        <i class="fa fa-lock mr-1"></i> ASIGNADO
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

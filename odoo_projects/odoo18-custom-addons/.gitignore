@@ -1,0 +1,30 @@
+# Archivos de Python
+*.py[cod]
+*$py.class
+__pycache__/
+
+# Logs de Odoo
+*.log
+
+# Archivos de configuración de Odoo
+*.conf
+
+# Archivos de datos de Odoo
+*.pdf
+*.zip
+*.tar.gz
+
+# Archivos de entorno virtual
+venv/
+odoo-venv/
+
+# Archivos de editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Archivos temporales de Odoo
+data/
+sessions/
+filestore/

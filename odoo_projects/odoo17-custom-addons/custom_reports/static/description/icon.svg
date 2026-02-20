@@ -1,0 +1,14 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gráfico de torta completo y perfectamente redondo -->
+  
+  <g transform="translate(60, 60)">
+    <!-- Segmento 1 - Turquesa (33.33% - arriba) -->
+    <path d="M 0,0 L 0,-50 A 50,50 0 0,1 43.3,25 Z" fill="#4ECDC4"/>
+    
+    <!-- Segmento 2 - Azul oscuro (33.33% - derecha abajo) -->
+    <path d="M 0,0 L 43.3,25 A 50,50 0 0,1 -43.3,25 Z" fill="#44546A"/>
+    
+    <!-- Segmento 3 - Morado (33.33% - izquierda) -->
+    <path d="M 0,0 L -43.3,25 A 50,50 0 0,1 0,-50 Z" fill="#A4508B"/>
+  </g>
+</svg>

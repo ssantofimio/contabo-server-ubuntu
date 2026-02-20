@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="pos_self_order.selfOrderIndex" t-inherit-mode="extension">
+        <xpath expr="//Router" position="inside">
+            <t t-set-slot="customer_info" route="`/pos-self/${selfOrder.config.id}/customer-info`" t-slot-scope="url">
+                <CustomerInfoPage />
+            </t>
+        </xpath>
+    </t>
+</templates>

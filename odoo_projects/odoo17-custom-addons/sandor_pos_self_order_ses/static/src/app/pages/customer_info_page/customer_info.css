@@ -1,0 +1,151 @@
+.customer-info-content {
+    background-color: #f8f9fa;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* TOP BAR */
+.pos-top-bar {
+    z-index: 1000;
+    background: white;
+}
+
+.pos-top-bar .btn {
+    font-size: 1.1rem;
+    height: 44px;
+}
+
+.letter-spacing-1 {
+    letter-spacing: 0.05rem;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background-color: #714B67 !important;
+    border-color: #714B67 !important;
+    color: white !important;
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #5a3c52 !important;
+    border-color: #5a3c52 !important;
+}
+
+.btn-primary:disabled {
+    background-color: #d1b8c9 !important;
+    border-color: #d1b8c9 !important;
+    color: #ffffff !important;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: white !important;
+    border-color: #ced4da !important;
+    color: #495057 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa !important;
+}
+
+/* SEARCH FIELD */
+.btn-search {
+    background-color: #714B67 !important;
+    color: white !important;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+.btn-search-sm {
+    background-color: #714B67 !important;
+    color: white !important;
+    padding: 0 1rem;
+    border: none;
+}
+
+.input-group-lg .form-control {
+    border-radius: 8px 0 0 8px !important;
+    font-size: 1.25rem;
+}
+
+/* FORM STYLING */
+.pos-form-container {
+    border-radius: 12px !important;
+    border: 1px solid #dee2e6 !important;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+.form-label {
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.02rem;
+}
+
+.form-control,
+.form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 8px !important;
+    border: 1px solid #ced4da !important;
+    background-color: #fcfcfc !important;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #714B67 !important;
+    box-shadow: 0 0 0 0.25rem rgba(113, 75, 103, 0.15) !important;
+    background-color: white !important;
+}
+
+/* ALERTS */
+.partner-found {
+    border-radius: 10px;
+    border-left: 5px solid #198754;
+}
+
+/* TRANSITIONS */
+.transition-basic {
+    transition: all 0.2s ease;
+}
+
+/* MICRO-ANIMATIONS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-step,
+.pos-form-container {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .pos-top-bar {
+        padding: 0.5rem !important;
+    }
+
+    .pos-top-bar .btn {
+        padding: 0 1rem !important;
+        font-size: 1rem;
+    }
+
+    .search-step h2 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_purchase_status_report_tree" model="ir.ui.view">
+        <field name="name">purchase.status.report.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <tree string="Compras por Estado" create="false" delete="false" edit="false">
+                <field name="picking_type_id" column_invisible="1"/>
+                <field name="company_id" string="Empresa" optional="hide" groups="base.group_multi_company"/>
+                <field name="warehouse_name" string="Almacén" optional="show"/>
+                <field name="name" string="Número" optional="show"/>
+                <field name="date_order_local" string="Fecha" optional="show"/>
+                <field name="partner_id" string="Proveedor" optional="show"/>
+                <field name="partner_ref" string="Ref. Proveedor" optional="show"/>
+                <field name="user_id" string="Comprador" optional="show"/>
+                <field name="state" column_invisible="1"/>
+                <field name="state_display_es" string="Estado" optional="show"/>
+                <field name="amount_untaxed" string="Subtotal Base" optional="show" sum="Total Subtotal"/>
+                <field name="amount_tax" string="Impuesto" optional="hide" sum="Total Impuesto"/>
+                <field name="amount_total" string="Total" optional="show" sum="Total General"/>
+                <field name="date_planned_local" string="Entrega Esperada" optional="hide"/>
+                <field name="receipt_status" column_invisible="1"/>
+                <field name="receipt_status_display_es" string="Estado de entrega" optional="show"/>
+                <field name="invoice_status" column_invisible="1"/>
+                <field name="invoice_status_display_es" string="Estado de facturación" optional="show"/>
+                <field name="invoice_state_summary" string="Estado Factura" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_purchase_status_report_form" model="ir.ui.view">
+        <field name="name">purchase.status.report.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Compras por Estado" create="false" delete="false">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" 
+                                invisible="invoice_count == 0">
+                            <field name="invoice_count" widget="statinfo" string="Facturas"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="orden_info">
+                            <field name="name" string="Número" readonly="1"/>
+                            <field name="partner_id" string="Proveedor" readonly="1"/>
+                            <field name="user_id" string="Comprador" readonly="1"/>
+                            <field name="company_id" string="Empresa" readonly="1" groups="base.group_multi_company"/>
+                            <field name="warehouse_name" string="Almacén"/>
+                        </group>
+                        <group name="fecha_estado">
+                            <field name="date_order_local" string="Fecha"/>
+                            <field name="date_planned_local" string="Entrega Esperada"/>
+                            <field name="state" invisible="1"/>
+                            <field name="state_display_es" string="Estado"/>
+                            <field name="receipt_status" invisible="1"/>
+                            <field name="receipt_status_display_es" string="Estado de entrega"/>
+                            <field name="invoice_status" invisible="1"/>
+                            <field name="invoice_status_display_es" string="Estado de facturación"/>
+                            <field name="invoice_state_summary" string="Estado Factura"/>
+                        </group>
+                    </group>
+                    <group name="montos">
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount_untaxed" string="Subtotal Base"/>
+                            <field name="amount_tax" string="Impuesto"/>
+                            <field name="amount_total" string="Total"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Líneas de Orden" name="order_lines">
+                            <field name="order_line" readonly="1">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Facturas" name="invoices" invisible="invoice_count == 0">
+                            <field name="invoice_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="invoice_date"/>
+                                    <field name="state"/>
+                                    <field name="amount_total"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_purchase_status_report_search" model="ir.ui.view">
+        <field name="name">purchase.status.report.search</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Compras">
+                <field name="name" string="Número" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="partner_id" string="Proveedor" filter_domain="[('partner_id', 'ilike', self)]"/>
+                <field name="partner_ref" string="Ref. Proveedor" filter_domain="[('partner_ref', 'ilike', self)]"/>
+                <field name="user_id" string="Comprador"/>
+                <field name="warehouse_name" string="Almacén"/>
+                
+                <separator/>
+                
+                <!-- Filters -->
+                <filter string="Cotización" name="filter_rfq" domain="[('state', 'in', ['draft', 'sent'])]"/>
+                <filter string="Por Aprobar" name="filter_to_approve" domain="[('state', '=', 'to approve')]"/>
+                <filter string="Orden de Compra" name="filter_purchase" domain="[('state', '=', 'purchase')]"/>
+                <filter string="Bloqueado" name="filter_done" domain="[('state', '=', 'done')]"/>
+                <filter string="Cancelado" name="filter_cancel" domain="[('state', '=', 'cancel')]"/>
+                
+                <separator/>
+                
+                <filter string="Sin Recibir" name="filter_receipt_pending" domain="[('receipt_status', '=', 'pending')]"/>
+                <filter string="Parcialmente Recibido" name="filter_receipt_partial" domain="[('receipt_status', '=', 'partial')]"/>
+                <filter string="Totalmente Recibido" name="filter_receipt_full" domain="[('receipt_status', '=', 'full')]"/>
+                
+                <separator/>
+                
+                <filter string="Por Facturar" name="filter_to_invoice" domain="[('invoice_status', '=', 'to invoice')]"/>
+                <filter string="Facturado" name="filter_invoiced" domain="[('invoice_status', '=', 'invoiced')]"/>
+                <filter string="Nada por Facturar" name="filter_no_invoice" domain="[('invoice_status', '=', 'no')]"/>
+                
+                <separator/>
+                
+                <filter string="Este Mes" name="filter_this_month" 
+                    domain="[('date_order', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')),
+                             ('date_order', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Este Año" name="filter_this_year" 
+                    domain="[('date_order', '&gt;=', (context_today() - relativedelta(month=1, day=1)).strftime('%Y-%m-%d')),
+                             ('date_order', '&lt;', (context_today() + relativedelta(years=1, month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                
+                <!-- Group By -->
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Proveedor" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Comprador" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'warehouse_name'}"/>
+                    <filter string="Empresa" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    <filter string="Fecha de Orden" name="group_date_order" context="{'group_by': 'date_order_local'}"/>
+                    <filter string="Estado de Facturación" name="group_invoice_status" context="{'group_by': 'invoice_status'}"/>
+                    <filter string="Estado de Entrega" name="group_receipt_status" context="{'group_by': 'receipt_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_purchase_status_report" model="ir.actions.act_window">
+        <field name="name">Compras por Estado</field>
+        <field name="res_model">purchase.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_purchase_status_report_tree"/>
+        <field name="search_view_id" ref="view_purchase_status_report_search"/>
+        <field name="context">{'search_default_filter_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No hay órdenes de compra
+            </p>
+            <p>
+                Este reporte muestra todas las órdenes de compra con información detallada de estados, entregas y facturación.
+            </p>
+        </field>
+    </record>
+
+</odoo>

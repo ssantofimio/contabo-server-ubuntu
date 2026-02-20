@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_it_return" model="ir.actions.report">
+        <field name="name">Documento de Devolución</field>
+        <field name="model">it.assignment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sandor_it_inventory.report_it_return_template</field>
+        <field name="report_file">sandor_it_inventory.report_it_return_template</field>
+        <field name="print_report_name">'Documento de Devolución - %s' % (object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="sandor_it_inventory.paperformat_it_assignment"/>
+    </record>
+
+    <template id="report_it_return_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <!-- REPEATING HEADER -->
+                    <div class="header" style="background-color: transparent !important; border: 0 !important;">
+                        <table style="width: 100%; border: 0 !important; border-collapse: separate !important; background-color: transparent !important; margin: 0 !important;">
+                            <tr style="border: 0 !important;">
+                                <td style="width: 30%; border: 0 !important; text-align: left; vertical-align: middle; padding: 0;">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 80px;" alt="Logo"/>
+                                </td>
+                                <td style="width: 70%; border: 0 !important; text-align: right; vertical-align: middle; padding: 0;">
+                                    <div style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-bottom: 2px; color: #000;" t-field="o.company_id.name"/>
+                                    <div style="font-size: 14px; font-weight: bold; color: #000;">
+                                        NIT: <span t-field="o.company_id.vat"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="text-align: right; font-size: 14px; color: #000; margin-top: 30px;">
+                            <strong>DOCUMENTO DE DEVOLUCIÓN N° - <span t-field="o.name"/></strong>
+                        </div>
+                    </div>
+
+                    <div class="page" style="color: #000 !important; padding: 0 !important; border: 0 !important;">
+                        <div style="text-align: center; font-weight: bold; font-size: 22px; margin-bottom: 5px; text-transform: uppercase; color: #000; margin-top: 15px; border-bottom: 2px solid #000;">
+                            ACTA DE DEVOLUCIÓN DE EQUIPOS Y ELEMENTOS
+                        </div>
+
+                        <div style="font-size: 14px; margin-top: 25px; line-height: 1.5; text-align: justify;">
+                            <p>En la ciudad de Bogotá D.C., el día <span t-esc="time.strftime('%d/%m/%Y')"/>, se procede a formalizar el reintegro de los activos tecnológicos relacionados en el Documento de Entrega original <strong><span t-field="o.name"/></strong> (Token de Custodia: <span t-field="o.access_token"/>), culminando el periodo de responsabilidad del trabajador detallado a continuación:</p>
+                        </div>
+
+                        <!-- Employee Data Table -->
+                        <table style="width: 100%; border-collapse: collapse !important; margin-top: 20px; margin-bottom: 25px; border: 1px solid #000 !important;">
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; width: 30%; background-color: #f2f2f2; font-weight: bold; font-size: 14px;">Empleado:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; width: 70%; font-size: 14px;"><span t-field="o.employee_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px;">Identificación:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px;"><span t-field="o.employee_id_number"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px;">Cargo:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px;"><span t-field="o.job_id.name"/></td>
+                            </tr>
+                        </table>
+
+                        <div style="text-align: center; font-weight: bold; font-size: 18px; margin-top: 30px; margin-bottom: 20px; text-transform: uppercase;">
+                            EQUIPOS Y ELEMENTOS RECIBIDOS
+                        </div>
+
+                        <table style="width: 100%; border-collapse: collapse !important; border: 1px solid #000 !important;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #000 !important; padding: 8px; text-align: left; font-size: 13px;">DESCRIPCIÓN</th>
+                                    <th style="border: 1px solid #000 !important; padding: 8px; text-align: left; font-size: 13px;">MARCA</th>
+                                    <th style="border: 1px solid #000 !important; padding: 8px; text-align: left; font-size: 13px;">SERIAL / IMEI / PLACA</th>
+                                    <th style="border: 1px solid #000 !important; padding: 8px; text-align: center; font-size: 13px;">ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td style="border: 1px solid #000 !important; padding: 8px; font-size: 12px;"><span t-field="line.product_id.name"/></td>
+                                        <td style="border: 1px solid #000 !important; padding: 8px; font-size: 12px;"><span t-field="line.it_brand_id.name"/></td>
+                                        <td style="border: 1px solid #000 !important; padding: 8px; font-size: 12px;">
+                                            <t t-esc="line.it_serial_number or line.default_code or 'N/A'"/>
+                                        </td>
+                                        <td style="border: 1px solid #000 !important; padding: 8px; font-size: 12px; text-align: center;">Recibido conforme</td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <div style="font-size: 14px; text-align: justify; margin-top: 30px; line-height: 1.5;">
+                            <p><strong>DECLARACIÓN DE RECIBIDO:</strong> Se certifica que los elementos tecnológicos y accesorios relacionados anteriormente han sido reintegrados al departamento de TIC. Se ha evaluado el estado de los mismos, concluyendo que se reciben conforme a lo estipulado en la cláusula de "Cuidados y condiciones" de la asignación original, validando que el deterioro corresponde al uso normal y no se presentan daños malintencionados ni faltantes.</p>
+                        </div>
+
+                        <!-- CERTIFICADO DE PAZ Y SALVO -->
+                        <div style="margin-top: 50px; padding: 20px; border: 2px solid #28a745; background-color: #f9fff9; page-break-inside: avoid !important;">
+                            <div style="text-align: center; font-weight: bold; font-size: 20px; color: #28a745; text-transform: uppercase; margin-bottom: 15px;">
+                                CERTIFICADO DE PAZ Y SALVO DE ACTIVOS
+                            </div>
+                            <p style="font-size: 14px; line-height: 1.6; text-align: justify;">
+                                Por medio de la presente, <strong><span t-field="o.company_id.name"/></strong> hace constar que el trabajador <strong><span t-field="o.employee_id.name"/></strong> identificado con C.C. <strong><span t-field="o.employee_id_number"/></strong> ha reintegrado satisfactoriamente la totalidad de los elementos tecnológicos a su cargo vinculados al presente documento.
+                                <br/><br/>
+                                En consecuencia, <strong>se declara al trabajador a PAZ Y SALVO</strong> por concepto de custodia de herramientas TIC correspondientes a esta asignación. Se informa al área de Nómina y Talento Humano que <strong>NO se aplicarán los descuentos</strong> autorizados en el acta original, toda vez que no hubo pérdida, hurto o daño comprobado al momento de la entrega.
+                            </p>
+                            <div style="text-align: right; margin-top: 15px; font-size: 12px; font-style: italic;">
+                                Certificado emitido automáticamente mediante Token.
+                            </div>
+                        </div>
+
+                        <!-- FINAL SIGNATURES -->
+                        <table style="width: 100%; margin-top: 80px; font-size: 14px;">
+                            <tr>
+                                <td style="width: 45%; vertical-align: top;">
+                                    <strong style="display: block; margin-bottom: 60px;">Recibido por (TIC):</strong>
+                                    <div style="border-top: 1px solid #000; width: 90%;"></div>
+                                    <span>Firma Autorizada</span>
+                                </td>
+                                <td style="width: 10%;"></td>
+                                <td style="width: 45%; vertical-align: top;">
+                                    <strong style="display: block; margin-bottom: 5px;">Entregado por (Trabajador):</strong>
+                                    <div style="min-height: 100px; position: relative;">
+                                        <img t-if="o.return_signature" t-att-src="image_data_uri(o.return_signature)" style="max-height: 100px; max-width: 90%;"/>
+                                    </div>
+                                    <div style="border-top: 1px solid #000; width: 90%;"></div>
+                                    <span><span t-field="o.employee_id.name"/></span><br/>
+                                    <span>C.C. <span t-field="o.employee_id_number"/></span>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- RETURN AUDIT REPORT (Only after signature) -->
+                        <div t-if="o.return_signature" style="page-break-before: always; font-family: 'Helvetica', 'Arial', sans-serif;">
+                            <style>
+                                .header, .footer, .page {
+                                    background-color: transparent !important;
+                                    border: 0 none transparent !important;
+                                    box-shadow: none !important;
+                                    outline: none !important;
+                                }
+                            </style>
+
+                            <div style="padding: 10px 20px;">
+                                <h3 style="border-bottom: 2px solid #000; padding-bottom: 5px; margin-top: 0; margin-bottom: 5px;">Informe de Firma de Devolución</h3>
+                                <p style="font-size: 12px; color: #555; margin-top: 5px;">
+                                    Fechas y horas en UTC-0500 (America/Bogota)<br/>
+                                    Última actualización en <span t-field="o.write_date" t-options='{"widget": "datetime"}'/>
+                                </p>
+
+                                <div style="margin-top: 35px; overflow: hidden;">
+                                    <div style="width: 68%; float: left;">
+                                        <p style="margin-bottom: 5px;"><strong>Estado:</strong> Devolución Completada</p>
+                                        <p style="margin-bottom: 5px;"><strong>Documento:</strong> Acta de Devolución - <span t-field="o.name"/></p>
+                                        <p style="margin-bottom: 5px;"><strong>Security Token:</strong> <span t-field="o.access_token"/></p>
+                                        <p style="margin-bottom: 5px;"><strong>Fecha de creación:</strong> <span t-field="o.create_date" t-options='{"widget": "datetime"}'/></p>
+                                        <p style="margin-bottom: 5px; word-break: break-all;"><strong>Hash del Documento (SHA256):</strong> <span t-field="o.return_document_hash"/></p>
+                                    </div>
+                                    <div style="width: 30%; float: right; text-align: center; position: relative;">
+                                        <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=' + (o.portal_verify_url or '') + '&amp;width=120&amp;height=120'" 
+                                             style="width: 120px; height: 120px; display: block; margin: 0 auto;"/>
+                                        <a t-att-href="o.portal_verify_url" target="_blank" 
+                                           style="position: absolute; top: 0; left: 50%; margin-left: -60px; width: 120px; height: 120px; display: block; text-decoration: none; border: 0 !important; outline: none; background: transparent;"></a>
+                                        <p style="font-size: 10px; color: #777; margin-top: 5px;">
+                                            <a t-att-href="o.portal_verify_url" target="_blank" style="color: #777; text-decoration: none;">Escanee o haga clic para verificar</a>
+                                        </p>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+
+                                <h4 style="margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px;">Firmas de Reintegro</h4>
+                                
+                                <!-- Bloque 1: Firma de Devolución -->
+                                <div style="margin-top: 5px; border: none !important; border-left: 6px solid #28a745 !important; padding: 15px; background-color: #fcfcfc; overflow: hidden;">
+                                    <div style="width: 70%; float: left; text-align: left !important;">
+                                        <div style="margin-bottom: 10px;">
+                                            <strong style="color: #28a745; font-size: 16px; display: inline-block; vertical-align: baseline;">FIRMADO (REINTEGRO)</strong>
+                                            <span style="font-size: 11px; color: #888; margin-left: 10px; vertical-align: baseline;">via Token</span>
+                                        </div>
+                                        <div style="font-size: 13px; margin-bottom: 4px;"><strong><span t-field="o.employee_id.name"/></strong> - <span t-field="o.employee_id_number"/></div>
+                                        <div style="font-size: 12px; margin-bottom: 4px; color: #444;">Fecha y hora de reintegro: <span t-field="o.return_signed_on" t-options='{"widget": "datetime"}'/></div>
+                                        <div style="font-size: 11px; color: #666;">ID Transacción: <span t-field="o.return_document_hash"/></div>
+                                    </div>
+                                    <div style="width: 28%; float: right; text-align: left; border-left: 1px solid #eee; padding-left: 10px;">
+                                        <p style="font-size: 11px; color: #888; margin-bottom: 3px;">Firma:</p>
+                                        <div style="min-height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+                                            <img t-if="o.return_signature" t-att-src="image_data_uri(o.return_signature)" style="max-height: 60px; max-width: 100%; border: 0 !important;"/>
+                                        </div>
+                                        <p style="font-size: 10px; color: #666; margin-bottom: 0; line-height: 1.2;">
+                                            <span t-field="o.employee_id.name"/><br/>
+                                            <span t-field="o.employee_id_number"/>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div style="clear: both; height: 15px;"></div>
+
+                                <!-- Puntos de Autenticación de Retorno -->
+                                <div style="overflow: hidden; padding: 0 5px;">
+                                    <div style="width: 48%; float: left;">
+                                        <p style="margin-bottom: 5px; font-weight: bold; font-size: 13px;">Puntos de autenticación:</p>
+                                        <p style="font-size: 11px; margin-bottom: 0; color: #444;">Correo electrónico: <span t-field="o.employee_email"/></p>
+                                    </div>
+                                    <div style="width: 48%; float: right; padding-top: 18px;">
+                                        <p style="font-size: 11px; margin-bottom: 3px; color: #444;"><strong>IP de Retorno:</strong> <span t-field="o.return_signer_ip"/></p>
+                                        <p style="font-size: 11px; margin-bottom: 0; color: #444; word-break: break-all;"><strong>Dispositivo:</strong> <span t-field="o.return_signer_user_agent"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <div class="footer" style="border-top: 1px solid #ccc !important; padding-top: 8px; background-color: transparent !important;">
+                        <div style="font-size: 11px; text-align: center; color: #555;">
+                            <span t-if="o.company_id.phone">Tel: <span t-field="o.company_id.phone"/> | </span>
+                            <span t-if="o.company_id.email">Email: <span t-field="o.company_id.email"/> | </span>
+                            <span t-if="o.company_id.website">Web: <span t-field="o.company_id.website"/></span>
+                        </div>
+                        <div class="col-8 text-left" style="font-size: 10px; color: #777;">
+                            Token <span t-field="o.access_token"/>
+                        </div>
+                        <div style="text-align: right; font-size: 11px; color: #555; margin-top: 2px;">
+                            Página: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

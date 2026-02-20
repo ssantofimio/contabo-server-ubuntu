@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_reports.PriceHistoryCogMenu">
+        <DropdownItem class="o_price_history_print" onSelected="() => this.onClick()">
+            <i class="fa fa-print me-2"/>
+            Imprimir Reporte Precio Promedio
+        </DropdownItem>
+    </t>
+</templates>

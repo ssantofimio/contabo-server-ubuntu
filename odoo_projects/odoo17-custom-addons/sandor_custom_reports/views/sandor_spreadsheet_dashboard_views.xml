@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sandor_spreadsheet_dashboard_view_list" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.view.list</field>
+        <field name="model">sandor.spreadsheet.dashboard</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not active">
+                <field name="sequence" widget="handle" groups="base.group_system"/>
+                <field name="name"/>
+                <field name="group_ids" widget="many2many_tags" required="1"/>
+                <field name="dashboard_group_id" optional="hidden"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="is_published" widget="boolean_toggle"/>
+                <field name="has_spreadsheet_oca" column_invisible="True"/>
+                <button name="action_open_spreadsheet" type="object" string="Edit" icon="fa-pencil" groups="base.group_system" invisible="not has_spreadsheet_oca"/>
+                <button name="copy" type="object" string="Copy" icon="fa-copy" groups="base.group_system"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sandor_spreadsheet_dashboard_group_view_list" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.group.view.list</field>
+        <field name="model">sandor.spreadsheet.dashboard.group</field>
+        <field name="arch" type="xml">
+            <tree string="Dashboards">
+                <field name="sequence" widget="handle" groups="base.group_system"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sandor_spreadsheet_dashboard_group_view_form" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.group.view.form</field>
+        <field name="model">sandor.spreadsheet.dashboard.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Spreadsheets" name="spreadsheets">
+                            <field name="dashboard_ids" context="{'tree_view_ref': 'sandor_custom_reports.sandor_spreadsheet_dashboard_view_list'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sandor_spreadsheet_dashboard_view_form" model="ir.ui.view">
+        <field name="name">sandor.spreadsheet.dashboard.view.form</field>
+        <field name="model">sandor.spreadsheet.dashboard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="has_spreadsheet_oca" invisible="1"/>
+                        <button name="action_open_spreadsheet" type="object" class="oe_stat_button" icon="fa-file-text-o" string="Edit Spreadsheet" invisible="not has_spreadsheet_oca"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="dashboard_group_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="is_published"/>
+                            <field name="group_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Data" name="data">
+                            <group>
+                                <field name="spreadsheet_binary_data"/>
+                                <field name="thumbnail"/>
+                            </group>
+                        </page>
+                        <page string="Menu Configuration" name="menu_config">
+                            <group>
+                                <group string="Menu Location">
+                                    <field name="parent_menu_id" string="Select Module (e.g. Sales)" options="{'no_create': True}"/>
+                                    <field name="menu_name" placeholder="Default: Spreadsheet name"/>
+                                    <field name="menu_target_sheet" placeholder="e.g. Sales"/>
+                                    <field name="menu_sequence"/>
+                                    <field name="menu_id" readonly="1" invisible="not menu_id"/>
+                                    <field name="action_id" readonly="1" invisible="not action_id"/>
+                                </group>
+                                <group string="Actions">
+                                    <button name="action_create_menu" type="object" string="Create/Update Menu" class="btn-primary" invisible="not parent_menu_id"/>
+                                    <button name="action_remove_menu" type="object" string="Remove Menu" class="btn-secondary" invisible="not menu_id" confirm="Are you sure you want to remove the menu integration?"/>
+                                </group>
+                                <group string="Aggregated Menus (Multi-Dashboard)" colspan="2">
+                                    <p class="text-muted">
+                                        <i class="fa fa-info-circle mr-1"/>
+                                        This dashboard also appears in the following aggregated menus. You can manage them in 
+                                        <strong>Configuration > External Menus</strong>.
+                                    </p>
+                                    <field name="custom_menu_line_ids" nolabel="1">
+                                        <tree create="false" edit="false" delete="false">
+                                            <field name="menu_config_id" string="Aggregated Menu"/>
+                                            <field name="display_name" string="Name in Sidebar"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<templates id="pos_product_bundle_pack_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+	<t t-name="bi_pos_combo.SelectComboProductPopupWidget" owl="1">
+		<Dialog title.translate="POS Combo Products" contentClass="'h-80'">
+		    <main class="body modal-body" style="text-align: center">
+                <span class="required-products">Productos Obligatorios</span>
+				<div class="product-div">
+					<t t-if="props.required_products">
+						<t t-foreach="req_product" t-as="product" t-key="product.id">
+							<div class='required-product' t-att-data-product-id="product.id" tabindex="0" t-attf-aria-labelledby="article_product_#{product.id}">
+								<div class="product-img">
+									<img t-att-src='product.product_image_url' alt="Product image"/>
+								</div>
+								<div class="product-name" t-attf-id="article_product_#{product.id}">
+									<t t-esc="product.display_name"/>
+								</div>
+							</div>
+						</t>
+					</t>
+				</div>
+
+				<span class="optional-products">Productos Opcionales</span>
+				<div class="optional-div">
+					<t t-if="props.optional_products">
+						<t t-foreach="optional_product" t-as="product" t-key="product.id">
+							<div class='optional-product' t-att-data-product-id="product.id" tabindex="0" t-attf-aria-labelledby="article_product_#{product.id}" t-on-click="renderElement" t-att-id="product.id" >
+								
+								<div class="optional-product-img" >
+									<img t-att-src='product.product_image_url' alt="Product image" t-att-data-product-id="product.id"/>
+									<span class="remove-product" t-att-data-product-id="product.id" t-on-click.stop="RemoveProd">
+				                       <i class="fa fa-times" t-att-data-product-id="product.id"/>
+				                    </span>
+								</div>
+								<div class="combo-product-name table-danger" t-attf-id="article_product_#{product.id}">
+									<t t-esc="product.display_name"/>
+									<div>
+							            <a t-attf-href="#" class="minus-product" t-att-data-product-id="product.id" t-on-click.stop="MinusQty">
+							                <i class="fa fa-minus" t-att-data-product-id="product.id"></i>
+							            </a>
+							            <t t-if="product.combo_qty">
+							            	<span class="qty-label" t-att-fixed-qty="product.combo_qty" t-att-value="product.combo_qty" t-att-product-id="product.id" t-esc="product.combo_qty"  t-attf-id="optional_product_#{product.id}"/>
+							            </t>
+							            <t t-else="">
+											<span class="qty-label" t-att-fixed-qty="product.combo_qty" t-att-value="t-att-product-id" t-att-product-id="product.id" >0</span>
+										</t>
+							            <a t-attf-href="#" class="plus-product" t-att-data-product-id="product.id" t-on-click.stop="AddQty">
+							                <i class="fa fa-plus" t-att-data-product-id="product.id"></i>
+							            </a>
+        							</div>
+								</div>
+							</div>
+						</t>
+					</t>
+				</div>
+            </main>
+            <t t-set-slot="footer">
+	            <button class="btn btn-primary btn-lg lh-lg o-default-button" t-on-click="go_back_screen">Cancel</button>
+	            <button class="btn btn-primary btn-lg lh-lg o-default-button" t-on-click="add_confirm">Apply</button>
+	        </t>
+        </Dialog>
+	</t>
+
+   
+	 
+   	 <t t-extend="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-name')]" position="inside">
+        	<t t-if="env.services.pos.mainScreen.component.name == 'ProductScreen'">
+	   			<t t-if="props.line.is_pack">
+					<t t-if="props.line.combo_products">
+						<span class="fa fa-edit edit-combo" style="font-size: 19px;color: green; margin-left: 10px;" 
+							t-on-click.stop="on_click"
+							/>
+					</t>
+				</t>
+			</t>
+   		</xpath>
+		<xpath expr="//li[hasclass('price-per-unit')]" position="after">
+			<t t-if="env.services.pos.mainScreen.component.name == 'ProductScreen'">
+				<t t-if="props.line.is_pack">
+					<t t-if="props.line.combo_products">
+						<ul class="info-list">
+							<t t-foreach="props.line.combo_products" t-as="products"  t-key="products_index">
+								<t t-if="products != null">
+									<span class="product-name" style="font-size: 15px;font-weight: 500;">
+										<t t-esc='products[0].display_name' /> <t t-esc="products[0].qty"/>
+									</span>
+								</t>
+								
+					  		</t>
+						</ul>
+					</t>
+				</t>
+			</t>
+			<t t-else="">
+				<t t-if="props.line.is_pack">
+					<t t-if="env.services.pos.config.combo_pack_price=='all_product'">
+						<t t-if="props.line.combo_products">
+							<ul class="info-list">
+								<t t-foreach="props.line.combo_products" t-as="products"  t-key="products_index">
+									<t t-if="products != null">
+										<span class="product-name" style="font-size: 15px;font-weight: 500;">
+											<t t-esc='products[0].display_name' /> [<t t-esc="products[0].qty"/> qty ] 
+										</span>
+									</t>
+									
+						  		</t>
+							</ul>
+						</t>
+					</t>
+				</t>
+			</t>
+		</xpath> 
+	</t>  
+</templates>
+	
+	

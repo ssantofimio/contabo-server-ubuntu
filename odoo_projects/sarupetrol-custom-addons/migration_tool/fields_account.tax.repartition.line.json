@@ -1,0 +1,100 @@
+{
+    "factor_percent": {
+        "help": "Factor to apply on the account move lines generated from this distribution line, in percents",
+        "required": true,
+        "string": "%",
+        "type": "float"
+    },
+    "factor": {
+        "help": "Factor to apply on the account move lines generated from this distribution line",
+        "required": false,
+        "string": "Factor Ratio",
+        "type": "float"
+    },
+    "repartition_type": {
+        "help": "Base on which the factor will be applied.",
+        "required": true,
+        "string": "Based On",
+        "type": "selection"
+    },
+    "document_type": {
+        "required": true,
+        "string": "Related to",
+        "type": "selection"
+    },
+    "account_id": {
+        "help": "Account on which to post the tax amount",
+        "relation": "account.account",
+        "required": false,
+        "string": "Account",
+        "type": "many2one"
+    },
+    "tag_ids": {
+        "relation": "account.account.tag",
+        "required": false,
+        "string": "Tax Grids",
+        "type": "many2many"
+    },
+    "tax_id": {
+        "relation": "account.tax",
+        "required": false,
+        "string": "Tax",
+        "type": "many2one"
+    },
+    "company_id": {
+        "help": "The company this distribution line belongs to.",
+        "relation": "res.company",
+        "required": false,
+        "string": "Company",
+        "type": "many2one"
+    },
+    "sequence": {
+        "help": "The order in which distribution lines are displayed and matched. For refunds to work properly, invoice distribution lines should be arranged in the same order as the credit note distribution lines they correspond to.",
+        "required": false,
+        "string": "Sequence",
+        "type": "integer"
+    },
+    "use_in_tax_closing": {
+        "required": false,
+        "string": "Tax Closing Entry",
+        "type": "boolean"
+    },
+    "tag_ids_domain": {
+        "help": "Dynamic domain used for the tag that can be set on tax",
+        "required": false,
+        "string": "tag domain",
+        "type": "binary"
+    },
+    "id": {
+        "required": false,
+        "string": "ID",
+        "type": "integer"
+    },
+    "display_name": {
+        "required": false,
+        "string": "Display Name",
+        "type": "char"
+    },
+    "create_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Created by",
+        "type": "many2one"
+    },
+    "create_date": {
+        "required": false,
+        "string": "Created on",
+        "type": "datetime"
+    },
+    "write_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Last Updated by",
+        "type": "many2one"
+    },
+    "write_date": {
+        "required": false,
+        "string": "Last Updated on",
+        "type": "datetime"
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_account_pnl_custom"
+              name="Estado de Resultados (PDF)"
+              parent="account.menu_finance_reports"
+              action="action_account_pnl_wizard"
+              sequence="10"/>
+
+    <menuitem id="menu_account_pnl_interactive"
+              name="Estado de Resultados (Interactivo)"
+              parent="account.menu_finance_reports"
+              action="action_pnl_interactive"
+              sequence="11"/>
+</odoo>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_pnl_report.PnLReport">
+        <div class="o_pnl_report_container h-100 o_view_controller d-flex flex-column">
+            <!-- Enterprise-style Header Bar -->
+            <div class="o_control_panel d-flex flex-column gap-3 px-3 py-2 border-bottom bg-view">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary btn-sm fw-bold px-3 py-1" t-on-click="printPdf">PDF</button>
+                        <button class="btn btn-outline-secondary btn-sm fw-bold px-3 py-1 disabled">XLSX</button>
+                        <h4 class="mb-0 ms-3 d-flex align-items-center gap-2">
+                            Estado de resultados <i class="fa fa-cog text-muted small cursor-pointer"/>
+                        </h4>
+                    </div>
+
+                    <div class="d-flex gap-1 flex-wrap justify-content-end">
+                        <!-- Date Filter Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm border dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                                <i class="fa fa-calendar-o text-muted"/>
+                                <span t-esc="state.date_label"/>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm">
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setDatePreset('today')">Hoy</a></li>
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setDatePreset('this_month')">Fin del mes</a></li>
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setDatePreset('this_quarter')">Fin del trimestre</a></li>
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setDatePreset('this_year')">Fin del año</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li class="px-3 py-2">
+                                    <label class="small text-muted mb-1">Fecha específica:</label>
+                                    <div class="d-flex gap-1">
+                                        <input type="date" t-model="state.date_from" t-on-change="onDateChange" class="form-control form-control-sm"/>
+                                        <input type="date" t-model="state.date_to" t-on-change="onDateChange" class="form-control form-control-sm"/>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Comparison Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm border dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                                <i class="fa fa-percent text-muted"/>
+                                <span>% Comparación</span>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm">
+                                <li><a class="dropdown-item d-flex justify-content-between" href="#" t-on-click="() => this.setComparison('none')">
+                                    Sin comparación <i t-if="state.comparison === 'none'" class="fa fa-check text-primary ms-2"/>
+                                </a></li>
+                                <li><a class="dropdown-item d-flex justify-content-between" href="#" t-on-click="() => this.setComparison('previous_period')">
+                                    Periodo anterior <i t-if="state.comparison === 'previous_period'" class="fa fa-check text-primary ms-2"/>
+                                </a></li>
+                                <li><a class="dropdown-item d-flex justify-content-between" href="#" t-on-click="() => this.setComparison('previous_year')">
+                                    Mismo periodo el año anterior <i t-if="state.comparison === 'previous_year'" class="fa fa-check text-primary ms-2"/>
+                                </a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Journals Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm border dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                                <i class="fa fa-book text-muted"/>
+                                <span>Diarios</span>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2" style="min-width: 200px;">
+                                <t t-foreach="state.master_data.journals" t-as="j" t-key="j.id">
+                                    <div class="form-check small py-1">
+                                        <input class="form-check-input" type="checkbox" t-att-id="'j_' + j.id" 
+                                               t-att-checked="state.selected_journals.includes(j.id)"
+                                               t-on-change="() => this.toggleJournal(j.id)"/>
+                                        <label class="form-check-label text-truncate w-100" t-att-for="'j_' + j.id" t-esc="j.name"/>
+                                    </div>
+                                </t>
+                            </ul>
+                        </div>
+
+                        <!-- Analytic Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm border dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                                <i class="fa fa-graduation-cap text-muted"/>
+                                <span>Analítico</span>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm p-2" style="min-width: 200px;">
+                                <t t-foreach="state.master_data.analytics" t-as="a" t-key="a.id">
+                                    <div class="form-check small py-1">
+                                        <input class="form-check-input" type="checkbox" t-att-id="'a_' + a.id" 
+                                               t-att-checked="state.selected_analytics.includes(a.id)"
+                                               t-on-change="() => this.toggleAnalytic(a.id)"/>
+                                        <label class="form-check-label text-truncate w-100" t-att-for="'a_' + a.id" t-esc="a.name"/>
+                                    </div>
+                                </t>
+                            </ul>
+                        </div>
+
+                        <!-- Posted State Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm border dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+                                <i class="fa fa-sliders text-muted"/>
+                                <span t-esc="state.target_move === 'posted' ? 'Asientos publicados' : 'Todos los asientos'"/>
+                            </button>
+                            <ul class="dropdown-menu shadow-sm">
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setTargetMove('posted')">Asientos publicados</a></li>
+                                <li><a class="dropdown-item" href="#" t-on-click="() => this.setTargetMove('all')">Todos los asientos</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2 bg-light px-2 rounded border small ms-2">
+                             En $<span t-esc="state.data?.currency_symbol" class="fw-bold"/>
+                             <i class="fa fa-share-alt-square text-muted cursor-pointer ms-1"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <!-- Report Content Area -->
+            <div class="o_pnl_report_content p-4 bg-view-subtle flex-grow-1 overflow-auto">
+                <div t-if="state.data" class="o_report_paper shadow-sm mx-auto bg-white p-5 border" style="max-width: 1000px; min-height: 100%;">
+                    <div class="text-center mb-5 pb-3">
+                        <h2 class="fw-bold text-uppercase text-spacing-2" style="color: #2c3e50;">Estado de Resultados</h2>
+                        <h5 t-esc="state.data.company_name" class="text-secondary fw-normal"/>
+                        <p class="small text-muted mt-1">
+                            Desde el <span class="fw-bold" t-esc="state.data.date_from"/> al <span class="fw-bold" t-esc="state.data.date_to"/>
+                        </p>
+                    </div>
+
+                    <table class="table table-sm align-middle">
+                        <thead class="text-uppercase small text-muted border-bottom-2">
+                            <tr>
+                                <th class="ps-3 py-3 w-50">Concepto</th>
+                                <th class="text-end pe-3 py-3">Saldo Inicial</th>
+                                <th t-if="state.comparison === 'none'" class="text-end pe-3 py-3">Débitos</th>
+                                <th t-if="state.comparison === 'none'" class="text-end pe-3 py-3">Créditos</th>
+                                <th class="text-end pe-3 py-3 fw-bold text-dark">Saldo Final</th>
+                                <th t-if="state.comparison !== 'none'" class="text-end pe-3 py-3 fw-bold text-primary">Comparación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="state.data.categories" t-as="cat" t-key="cat_index">
+                                <!-- Category Header -->
+                                <tr class="o_report_header_row fw-bold cursor-pointer" t-on-click="() => this.toggleCategory(cat_index)">
+                                    <td class="ps-3 py-2 bg-light">
+                                        <i t-attf-class="fa fa-caret-{{ state.expanded[cat_index] ? 'down' : 'right' }} me-2 text-muted"/>
+                                        <span t-esc="cat.name"/>
+                                    </td>
+                                    <td class="text-end pe-3 py-2 bg-light" t-esc="cat.totals.initial.toLocaleString()"/>
+                                    <td t-if="state.comparison === 'none'" class="text-end pe-3 py-2 bg-light" t-esc="cat.totals.debit.toLocaleString()"/>
+                                    <td t-if="state.comparison === 'none'" class="text-end pe-3 py-2 bg-light" t-esc="cat.totals.credit.toLocaleString()"/>
+                                    <td class="text-end pe-3 py-2 bg-light" t-esc="cat.totals.final.toLocaleString()"/>
+                                    <td t-if="state.comparison !== 'none'" class="text-end pe-3 py-2 bg-light text-primary" t-esc="cat.totals.comp_final.toLocaleString()"/>
+                                </tr>
+                                
+                                <!-- Category Detail Lines -->
+                                <t t-if="state.expanded[cat_index]">
+                                    <t t-foreach="cat.lines" t-as="line" t-key="line.code">
+                                        <tr class="o_report_detail_row border-0">
+                                            <td class="ps-5 py-1 text-muted">
+                                                <span class="text-dark" t-esc="line.code"/> - <span t-esc="line.name"/>
+                                            </td>
+                                            <td class="text-end pe-3 py-1 opacity-75" t-esc="line.initial.toLocaleString()"/>
+                                            <td t-if="state.comparison === 'none'" class="text-end pe-3 py-1 opacity-75" t-esc="line.debit.toLocaleString()"/>
+                                            <td t-if="state.comparison === 'none'" class="text-end pe-3 py-1 opacity-75" t-esc="line.credit.toLocaleString()"/>
+                                            <td class="text-end pe-3 py-1" t-esc="line.final.toLocaleString()"/>
+                                            <td t-if="state.comparison !== 'none'" class="text-end pe-3 py-1 text-primary-emphasis" t-esc="line.comp_final.toLocaleString()"/>
+                                        </tr>
+                                    </t>
+                                </t>
+                                
+                                <!-- Category Subtotal Footer (Odoo Enterprise Style) -->
+                                <tr class="fw-bold border-bottom">
+                                    <td class="ps-3 py-2 text-uppercase">Total <t t-esc="cat.name"/></td>
+                                    <td class="text-end pe-3 py-2" t-esc="cat.totals.initial.toLocaleString()"/>
+                                    <td t-if="state.comparison === 'none'" class="text-end pe-3 py-2" t-esc="cat.totals.debit.toLocaleString()"/>
+                                    <td t-if="state.comparison === 'none'" class="text-end pe-3 py-2" t-esc="cat.totals.credit.toLocaleString()"/>
+                                    <td class="text-end pe-3 py-2" t-esc="cat.totals.final.toLocaleString()"/>
+                                    <td t-if="state.comparison !== 'none'" class="text-end pe-3 py-2 text-primary" t-esc="cat.totals.comp_final.toLocaleString()"/>
+                                </tr>
+                            </t>
+                            
+                            <!-- Grand Total -->
+                            <tr class="table-dark fw-bold border-0" style="background-color: #2c3e50 !important;">
+                                <td class="ps-3 py-3 border-0 rounded-start">GANANCIA (PÉRDIDA) NETA</td>
+                                <td class="text-end pe-3 py-3 border-0" t-esc="state.data.grand_totals.initial.toLocaleString()"/>
+                                <td t-if="state.comparison === 'none'" class="text-end pe-3 py-3 border-0" t-esc="state.data.grand_totals.debit.toLocaleString()"/>
+                                <td t-if="state.comparison === 'none'" class="text-end pe-3 py-3 border-0" t-esc="state.data.grand_totals.credit.toLocaleString()"/>
+                                <td class="text-end pe-3 py-3 border-0" t-esc="state.data.grand_totals.final.toLocaleString()"/>
+                                <td t-if="state.comparison !== 'none'" class="text-end pe-3 py-3 border-0 rounded-end text-primary-light" t-esc="state.data.grand_totals.comp_final.toLocaleString()"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

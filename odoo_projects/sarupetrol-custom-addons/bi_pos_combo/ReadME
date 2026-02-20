@@ -1,0 +1,9 @@
+Version : 18.0.0.1 (25/04/2025)
+	- Fixed issue for picking state.
+
+
+Version : 18.0.0.2 (30/04/2025)
+	- Fixed issue for product lines in picking and show combo products in receipt. 
+
+Version : 18.0.0.3 (04/07/2025)
+	- Fixed issue for missing record related issue.

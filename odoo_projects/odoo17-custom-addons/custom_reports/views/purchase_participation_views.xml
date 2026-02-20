@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_participation_tree_v2" model="ir.ui.view">
+        <field name="name">purchase.report.participation.tree.v2</field>
+        <field name="model">purchase.report.participation</field>
+        <field name="arch" type="xml">
+            <tree string="Participación de Compras" create="false">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="date_order" string="Fecha" widget="date" optional="show"/>
+                <field name="picking_type_id" optional="show"/>
+                <field name="category_id" optional="show"/>
+                <field name="product_id" optional="show"/>
+                <field name="price_total" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total"/>
+                <field name="participation_percent" widget="percentage" options="{'precision': 4}" sum="Total %"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_purchase_participation_pivot_v2" model="ir.ui.view">
+        <field name="name">purchase.report.participation.pivot.v2</field>
+        <field name="model">purchase.report.participation</field>
+        <field name="arch" type="xml">
+            <pivot string="Participación de Compras" display_quantity="1" sample="1">
+                <field name="category_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="price_total" type="measure"/>
+                <field name="participation_percent" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Usamos un nuevo ID para evitar el ParseError por herencia sucia en la DB -->
+    <record id="view_purchase_participation_search_v2" model="ir.ui.view">
+        <field name="name">purchase.report.participation.search.v2</field>
+        <field name="model">purchase.report.participation</field>
+        <field name="arch" type="xml">
+            <search string="Participación de Compras">
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="category_id"/>
+                <field name="picking_type_id" string="Almacén"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                
+                <filter string="Órdenes de Compra" name="orders" domain="[('state', 'in', ('purchase', 'done'))]"/>
+                
+                <separator/>
+                <!-- Sincronizado con date_order como en el reporte de Compras por Estado -->
+                <filter string="Este Mes" name="filter_this_month" 
+                    domain="[('date_order', '&gt;=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')),
+                             ('date_order', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Este Año" name="filter_this_year" 
+                    domain="[('date_order', '&gt;=', (context_today() - relativedelta(month=1, day=1)).strftime('%Y-%m-%d')),
+                             ('date_order', '&lt;', (context_today() + relativedelta(years=1, month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="1" string="Agrupar Por">
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'picking_type_id', 'search_default_group_category': 1, 'search_default_group_product': 1}"/>
+                    <filter string="Categoría" name="group_category" context="{'group_by': 'category_id', 'search_default_group_product': 1}"/>
+                    <filter string="Producto" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Compañía" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_purchase_participation_report" model="ir.actions.act_window">
+        <field name="name">Participación por Categoría</field>
+        <field name="res_model">purchase.report.participation</field>
+        <field name="view_mode">tree,pivot,graph</field>
+        <field name="view_id" ref="view_purchase_participation_tree_v2"/>
+        <field name="search_view_id" ref="view_purchase_participation_search_v2"/>
+        <field name="context">{'search_default_orders': 1, 'search_default_filter_this_month': 1, 'group_by': ['category_id', 'product_id']}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay datos para el análisis de participación.
+            </p><p>
+                Este informe le permite analizar el porcentaje de participación de cada categoría y producto en el total de sus compras.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_custom_reports_purchase_participation"
+              name="Participación por Categoría"
+              parent="menu_custom_reports_purchase"
+              sequence="30"
+              action="action_purchase_participation_report"/>
+</odoo>

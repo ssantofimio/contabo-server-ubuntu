@@ -1,0 +1,45 @@
+{
+    "name": "Inventario TIC",
+    "version": "18.0.1.0.2",
+    "depends": [
+        "base",
+        "contacts",
+        "product",
+        "hr",
+        "mail",
+        "portal",
+        "l10n_latam_base",
+    ],
+    "author": "Author Name",
+    "category": "Category",
+    "description": """
+    Description text
+    """,
+    "data": [
+        "security/sandor_it_inventory_security.xml",
+        "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
+        "report/it_assignment_report.xml",
+        "report/it_return_report.xml",
+        "data/it_assignment_data.xml",
+        "views/asset_type.xml",
+        "views/asset_brand.xml",
+        "views/asset_model.xml",
+        "views/system_system.xml",
+        "views/it_components.xml",
+        "views/it_assets.xml",
+        "views/it_assignment_views.xml",
+        "views/it_assignment_confirm_wizard_views.xml",
+        "views/hr_employee_views.xml",
+        "views/portal_templates.xml",
+        "views/menus.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "sandor_it_inventory/static/src/css/custom_styles.css",
+        ],
+    },
+    "auto_install": False,
+    "application": True,
+    "license": "LGPL-3",
+}

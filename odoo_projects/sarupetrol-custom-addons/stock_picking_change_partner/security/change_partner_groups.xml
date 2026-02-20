@@ -1,0 +1,7 @@
+<odoo>
+    <record id="group_change_picking_partner" model="res.groups">
+        <field name="name">Cambiar contacto en Picking</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="comment">Permite mostrar el botón para cambiar el contacto en pickings y documentos asociados.</field>
+    </record>
+</odoo>

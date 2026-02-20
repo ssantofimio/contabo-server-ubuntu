@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_reports.StockPhysCountCogMenu">
+        <DropdownItem class="o_stock_phys_count_print" onSelected="() => this.onClick()">
+            <i class="fa fa-print me-2"/>
+            Imprimir Reporte (Detallado)
+        </DropdownItem>
+        <DropdownItem class="o_stock_phys_summary_print" onSelected="() => this.onSummaryClick()">
+            <i class="fa fa-list me-2"/>
+            Imprimir por Categoría (Resumen)
+        </DropdownItem>
+        <DropdownItem class="o_stock_phys_excel_export" onSelected="() => this.onExcelClick()">
+            <i class="fa fa-file-excel-o me-2"/>
+            Exportar Excel (por Almacén)
+        </DropdownItem>
+    </t>
+</templates>

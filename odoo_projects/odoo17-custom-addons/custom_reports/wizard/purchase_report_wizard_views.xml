@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista del Wizard -->
+    <record id="view_purchase_report_wizard_form" model="ir.ui.view">
+        <field name="name">purchase.report.wizard.form</field>
+        <field name="model">purchase.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Seleccionar Columnas para Reporte">
+                <group>
+                    <group string="Información General">
+                        <field name="col_warehouse"/>
+                        <field name="col_number"/>
+                        <field name="col_date"/>
+                        <field name="col_partner"/>
+                        <field name="col_partner_ref"/>
+                        <field name="col_buyer"/>
+                        <field name="col_state"/>
+                    </group>
+                    <group string="Información Financiera">
+                        <field name="col_subtotal"/>
+                        <field name="col_tax"/>
+                        <field name="col_total"/>
+                    </group>
+                </group>
+                <group string="Estados y Fechas">
+                    <group>
+                        <field name="col_planned_date"/>
+                        <field name="col_receipt_status"/>
+                    </group>
+                    <group>
+                        <field name="col_invoice_status"/>
+                        <field name="col_invoice_state"/>
+                    </group>
+                </group>
+                
+                <field name="purchase_order_ids" invisible="1"/>
+                
+                <footer>
+                    <button name="action_print_report" string="Generar Reporte" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir el Wizard -->
+    <record id="action_purchase_report_wizard" model="ir.actions.act_window">
+        <field name="name">Seleccionar Columnas del Reporte</field>
+        <field name="res_model">purchase.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Inherit hr.employee form view to add IT Assignment smart button -->
+    <record id="view_employee_form_it_assignment" model="ir.ui.view">
+        <field name="name">hr.employee.form.it.assignment</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add smart button in the button box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_it_assignments" 
+                        type="object" 
+                        class="oe_stat_button" 
+                        icon="fa-laptop"
+                        invisible="it_assignment_count == 0">
+                    <field name="it_assignment_count" widget="statinfo" string="Equipos TIC"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

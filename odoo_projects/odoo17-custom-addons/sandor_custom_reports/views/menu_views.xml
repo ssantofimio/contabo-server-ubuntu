@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_actions_dashboard_action" model="ir.actions.client">
+        <field name="name">Dashboards</field>
+        <field name="tag">action_sandor_custom_reports</field>
+    </record>
+
+    <menuitem
+        id="sandor_custom_reports_menu_root"
+        name="Dashboards"
+        action="ir_actions_dashboard_action"
+        web_icon="sandor_custom_reports,static/description/icon.png"
+        sequence="37"/>
+
+    <menuitem
+        id="sandor_custom_reports_menu_dashboard"
+        name="Dashboards"
+        action="ir_actions_dashboard_action"
+        parent="sandor_custom_reports_menu_root"
+        sequence="1"/>
+
+    <menuitem
+        id="sandor_custom_reports_menu_configuration"
+        name="Configuration"
+        parent="sandor_custom_reports_menu_root"
+        sequence="150"/>
+
+    <record id="sandor_custom_reports_action_configuration_dashboards" model="ir.actions.act_window">
+        <field name="name">Dashboard Groups</field>
+        <field name="res_model">sandor.spreadsheet.dashboard.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="sandor_custom_reports_action_configuration_dashboards_individual" model="ir.actions.act_window">
+        <field name="name">Dashboards</field>
+        <field name="res_model">sandor.spreadsheet.dashboard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="sandor_custom_reports_menu_configuration_dashboards"
+        name="Dashboard Groups"
+        parent="sandor_custom_reports_menu_configuration"
+        action="sandor_custom_reports_action_configuration_dashboards"
+        sequence="10"/>
+
+    <menuitem
+        id="sandor_custom_reports_menu_configuration_dashboards_individual"
+        name="Individual Dashboards"
+        parent="sandor_custom_reports_menu_configuration"
+        action="sandor_custom_reports_action_configuration_dashboards_individual"
+        sequence="20"/>
+</odoo>

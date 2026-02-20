@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_phys_count_wizard_form" model="ir.ui.view">
+        <field name="name">stock.phys.count.wizard.form</field>
+        <field name="model">stock.phys.count.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Opciones de Reporte">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="valuation_method" widget="radio"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="warehouse_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="category_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_generate_report" string="Ver Reporte" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_phys_count_wizard" model="ir.actions.act_window">
+        <field name="name">Opciones de Reporte</field>
+        <field name="res_model">stock.phys.count.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

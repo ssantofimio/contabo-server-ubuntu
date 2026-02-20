@@ -1,0 +1,9 @@
+<templates id="template" xml:space="preserve">
+  <t t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+    <xpath expr="//div[@class='product-content d-flex flex-row px-2 justify-content-between rounded-bottom rounded-3 flex-shrink-1']" position="after">
+      <div class="price-tag text-primary py-1 fw-bolder" style="margin: 0.1rem 0 0 0.5rem !important;">
+        <t t-esc="env.utils.formatCurrency(props.displayedPrice || props.product.lst_price)"/>
+      </div>
+    </xpath>
+  </t>
+</templates>

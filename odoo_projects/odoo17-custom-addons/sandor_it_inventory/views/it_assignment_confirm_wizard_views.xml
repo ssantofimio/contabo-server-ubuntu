@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_it_assignment_confirm_wizard_form" model="ir.ui.view">
+        <field name="name">it.assignment.confirm.wizard.form</field>
+        <field name="model">it.assignment.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Advertencia de Descuentos">
+                <div class="alert alert-warning mb-3" role="alert">
+                    <field name="message" no_label="1"/>
+                </div>
+                <group string="Equipos sin configurar">
+                    <field name="product_ids" no_label="1">
+                        <tree>
+                            <field name="name" string="Producto"/>
+                            <field name="it_serial_number" string="Serie"/>
+                            <field name="default_code" string="Placa"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_confirm_anyway" string="Confirmar de todas formas" type="object" class="btn-primary"/>
+                    <button string="Regresar y Corregir" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

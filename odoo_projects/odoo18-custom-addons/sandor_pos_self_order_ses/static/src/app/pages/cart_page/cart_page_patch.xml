@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="pos_self_order.CartPage" t-inherit-mode="extension">
+        <!-- Safeguard product name access -->
+        <xpath expr="//strong[@t-esc='line.product_id.display_name']" position="replace">
+            <strong t-if="line.product_id" t-esc="line.product_id.display_name"/>
+            <strong t-else="">Producto no disponible</strong>
+        </xpath>
+        
+        <!-- Hide Cancel button if order is confirmed -->
+        <xpath expr="//button[@t-if='showCancelButton']" position="attributes">
+            <attribute name="t-if">showCancelButton and !selfOrder.currentOrder.partner_id</attribute>
+        </xpath>
+
+        <!-- Hide quantity controls if order is confirmed -->
+        <xpath expr="//div[hasclass('product-controllers')]//div[hasclass('btn-group')]" position="attributes">
+            <attribute name="t-if">Object.keys(selfOrder.currentOrder.changes).length > 0 and !selfOrder.currentOrder.partner_id</attribute>
+        </xpath>
+        
+        <!-- Safeguard child lines -->
+        <xpath expr="//span[@t-esc='cline.product_id.display_name']" position="replace">
+            <span t-if="cline.product_id" t-esc="cline.product_id.display_name" />
+            <span t-else="">Producto no disponible</span>
+        </xpath>
+    </t>
+</templates>

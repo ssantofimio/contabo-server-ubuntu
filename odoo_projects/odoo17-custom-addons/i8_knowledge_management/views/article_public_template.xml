@@ -1,0 +1,340 @@
+<odoo>
+    <!-- Template Recursivo para Sidebar (Tree) - Native Internal Look -->
+    <template id="public_sidebar_recursive" name="Public Recursive Sidebar">
+         <t t-foreach="articles" t-as="item">
+             <li t-if="item.is_published" 
+                 t-attf-class="o_article position-relative {{ 'o_article_has_children' if item.child_ids.filtered('is_published') else '' }}" 
+                 t-att-data-article-id="item.id">
+                 
+                 <div class="o_article_handle d-flex align-items-center"
+                      t-attf-class="{{ 'o_article_active' if item.id == active_article_id else 'text-muted' }}"
+                      style="display: flex !important; align-items: center !important;">
+                     
+                     <div class="o_article_caret o_toggle_fold d-flex align-items-center justify-content-center flex-shrink-0"
+                          t-attf-data-target="#tree_{{ item.id }}">
+                         <t t-if="item.child_ids.filtered('is_published')">
+                             <i class="fa fa-caret-right" style="transition: transform 0.2s;"></i>
+                         </t>
+                         <t t-else="">
+                             <i class="fa fa-fw"></i>
+                         </t>
+                     </div>
+                     
+                     <a t-att-href="'/knowledge/article/' + (item.share_token or '')" 
+                        class="o_article_name flex-grow-1 text-truncate d-flex align-items-center"
+                        style="text-decoration: none !important; color: inherit !important;">
+                         
+                         <span class="o_article_emoji me-2 d-flex align-items-center justify-content-center flex-shrink-0">
+                             <t t-if="item.icon" t-out="item.icon"/>
+                             <t t-else="">
+                                 <i t-if="item.child_ids.filtered('is_published')" class="fa fa-folder text-warning"></i>
+                                 <i t-else="" class="fa fa-file-text-o opacity-50"></i>
+                             </t>
+                         </span>
+                         
+                         <span class="text-truncate">
+                             <t t-esc="item.name"/>
+                         </span>
+                     </a>
+                 </div>
+                 
+                 <ul t-if="item.child_ids.filtered('is_published')" 
+                     t-attf-id="tree_{{ item.id }}" 
+                     class="o_tree_children d-none">
+                     <t t-call="i8_knowledge_management.public_sidebar_recursive">
+                         <t t-set="articles" t-value="item.child_ids.filtered('is_published')"/>
+                         <t t-set="active_article_id" t-value="active_article_id"/>
+                     </t>
+                 </ul>
+             </li>
+         </t>
+    </template>
+
+    <template id="article_public_template" name="Public Article View">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <t t-call-assets="web.assets_frontend" t-css="false"/>
+                
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <style>
+                    :root {
+                        --o-knowledge-primary: #017e84;
+                        --o-knowledge-active-bg: #dcedf9;
+                        --o-knowledge-active-text: #01417a;
+                        --o-knowledge-border: #e9ecef;
+                    }
+                    body { 
+                        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                        background-color: #ffffff; overflow: hidden; color: #495057;
+                    }
+                    .o_knowledge_public_view { display: flex; width: 100%; height: 100vh; }
+                    
+                    /* Sidebar */
+                    .o_knowledge_sidebar { 
+                        background-color: #ffffff; border-right: 1px solid var(--o-knowledge-border); width: 300px; min-width: 250px; 
+                        display: flex; flex-direction: column; z-index: 100;
+                    }
+                    .o_search_container { padding: 12px 16px; }
+                    .o_sidebar_search { border: 1px solid var(--o-knowledge-border); border-radius: 6px; padding: 6px 12px; font-size: 13px; width: 100%; bg: #f8f9fa; }
+
+                    /* Tree Structure */
+                    .o_article_handle { height: 32px; padding: 0 8px; margin: 1px 8px; border-radius: 6px; transition: background 0.1s; cursor: pointer; white-space: nowrap; }
+                    .o_article_handle:hover { background-color: rgba(0, 0, 0, 0.05); }
+                    .o_article_active { background-color: var(--o-knowledge-active-bg) !important; color: var(--o-knowledge-active-text) !important; font-weight: 700 !important; }
+
+                    .o_article_caret { width: 24px; height: 32px; color: #adb5bd; }
+                    .o_article_emoji { font-size: 16px; min-width: 24px; }
+                    .o_article_name { font-size: 14px; padding: 0 4px; }
+
+                    /* Connectors */
+                    .o_tree_children { list-style: none; padding-left: 18px; border-left: 1px solid #dee2e6; margin-left: 20px; position: relative; }
+                    .o_article::before { content: ""; position: absolute; left: -18px; top: 16px; width: 16px; border-top: 1px solid #dee2e6; }
+
+                    /* Resizer */
+                    .o_knowledge_resizer { width: 1px; cursor: col-resize; background-color: var(--o-knowledge-border); z-index: 101; }
+                    .o_knowledge_resizer:hover { background-color: #00A09D; width: 2px; }
+                    
+                    /* Top Header (Nav Bar Look) */
+                    .o_knowledge_header { 
+                        background-color: #ffffff; border-bottom: 1px solid var(--o-knowledge-border); 
+                        height: 48px; min-height: 48px; display: flex; align-items: center; padding: 0 20px; 
+                        position: sticky; top: 0; z-index: 90;
+                    }
+                    .o_header_article_title { font-size: 14px; font-weight: 700; color: #111; display: flex; align-items: center; gap: 8px; }
+
+                    /* Content Area */
+                    .o_knowledge_content_area { flex-grow: 1; background-color: #ffffff; overflow-y: auto; display: flex; flex-direction: column; }
+                    .o_article_main_container { max-width: 850px; width: 100%; margin: 0 auto; padding: 40px 40px; }
+                    h1 { font-weight: 700; color: #111; margin-top: 0; font-size: 2.2rem; margin-bottom: 20px; }
+                    .o_article_meta { color: #888; font-size: 13px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; display: flex; align-items: center; gap: 20px; }
+                    .o_knowledge_body { font-size: 16px; line-height: 1.6; color: #111; }
+                    
+                    ::-webkit-scrollbar { width: 6px; height: 6px; }
+                    ::-webkit-scrollbar-thumb { background: #dee2e6; border-radius: 10px; }
+
+                    /* Public Search Modal Styles */
+                    .o_search_modal_backdrop {
+                        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                        background-color: rgba(0, 0, 0, 0.35); backdrop-filter: blur(2px);
+                        z-index: 2050; display: none; opacity: 0; transition: opacity 0.2s;
+                    }
+                    .o_search_modal_backdrop.show { display: block; opacity: 1; }
+
+                    .o_search_panel {
+                        position: fixed; top: 50%; left: 50%; 
+                        transform: translate(-50%, -50%) scale(0.95);
+                        width: 90%; max-width: 600px; max-height: 80vh;
+                        background: #fff; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+                        z-index: 2100; border-radius: 12px; display: none;
+                        flex-direction: column; overflow: hidden;
+                        transition: all 0.15s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    }
+                    .o_search_panel.show { display: flex; transform: translate(-50%, -50%) scale(1); }
+                    
+                    .o_search_modal_results .list-group-item-action:hover { background-color: #f3f4f6 !important; }
+                    .o_search_modal_results .o_article_emoji { background-color: #f8f9fa; border-radius: 6px; color: #6b7280; width: 32px; height: 32px; font-size: 1.25rem; }
+                    .cursor-pointer { cursor: pointer; }
+                    
+                    /* Cover Image */
+                    .o_article_cover_container { background-color: #f8f9fa; border-bottom: 1px solid var(--o-knowledge-border); }
+                    .object-fit-cover { object-fit: cover !important; }
+                </style>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.querySelectorAll('.o_toggle_fold').forEach(el => {
+                            el.addEventListener('click', (e) => {
+                                e.stopPropagation(); e.preventDefault();
+                                const targetId = el.getAttribute('data-target');
+                                const targetEl = document.querySelector(targetId);
+                                const icon = el.querySelector('i');
+                                if(targetEl) {
+                                    if(targetEl.classList.contains('d-none')) {
+                                        targetEl.classList.remove('d-none');
+                                        if(icon) { icon.style.transform = 'rotate(90deg)'; }
+                                    } else {
+                                        targetEl.classList.add('d-none');
+                                        if(icon) { icon.style.transform = 'rotate(0deg)'; }
+                                    }
+                                }
+                            });
+                        });
+                        
+                        const active = document.querySelector('.o_article_active');
+                        if (active) {
+                            let curr = active.parentElement;
+                            while (curr &amp;&amp; !curr.classList.contains('o_knowledge_sidebar')) {
+                                if (curr.classList.contains('o_tree_children')) {
+                                    curr.classList.remove('d-none');
+                                    const trigger = document.querySelector(`[data-target="#${curr.id}"]`);
+                                    if (trigger) {
+                                        const icon = trigger.querySelector('i');
+                                        if(icon) { icon.style.transform = 'rotate(90deg)'; }
+                                    }
+                                }
+                                curr = curr.parentElement;
+                            }
+                        }
+                        
+                        const sidebar = document.querySelector('.o_knowledge_sidebar');
+                        const resizer = document.querySelector('.o_knowledge_resizer');
+                        let isResizing = false;
+                        if(resizer &amp;&amp; sidebar) {
+                            resizer.addEventListener('mousedown', () => { isResizing = true; document.body.style.cursor = 'col-resize'; document.body.style.userSelect = 'none'; });
+                            document.addEventListener('mousemove', (e) => {
+                                if (!isResizing) return;
+                                const newWidth = e.clientX;
+                                if(newWidth &gt; 200 &amp;&amp; newWidth &lt; 700) sidebar.style.width = newWidth + 'px';
+                            });
+                            document.addEventListener('mouseup', () => { isResizing = false; document.body.style.cursor = ''; document.body.style.userSelect = ''; });
+                        }
+
+                        // Public Search Logic
+                        const searchInput = document.querySelector('.o_sidebar_search');
+                        const backdrop = document.querySelector('.o_search_modal_backdrop');
+                        const modal = document.querySelector('.o_search_panel');
+                        const modalInput = document.querySelector('.o_modal_search_input');
+                        const resultsContainer = document.querySelector('.o_search_modal_results');
+
+                        const toggleModal = (show) => {
+                            if(show) {
+                                backdrop.classList.add('show');
+                                modal.classList.add('show');
+                                modalInput.focus();
+                            } else {
+                                backdrop.classList.remove('show');
+                                modal.classList.remove('show');
+                                modalInput.value = '';
+                                resultsContainer.innerHTML = '';
+                            }
+                        };
+
+                        if(searchInput) {
+                            searchInput.parentElement.addEventListener('click', () => toggleModal(true));
+                            searchInput.addEventListener('click', (e) => { e.stopPropagation(); toggleModal(true); });
+                        }
+                        if(backdrop) backdrop.addEventListener('click', () => toggleModal(false));
+                        if(document.querySelector('.o_close_modal')) {
+                            document.querySelector('.o_close_modal').addEventListener('click', () => toggleModal(false));
+                        }
+
+                        let debounceTimer;
+                        if(modalInput) {
+                            modalInput.addEventListener('input', (e) => {
+                                clearTimeout(debounceTimer);
+                                const query = e.target.value.trim();
+                                if(!query) { resultsContainer.innerHTML = ''; return; }
+
+                                debounceTimer = setTimeout(() => {
+                                    fetch('/knowledge/public/search', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            params: {
+                                                token: new URLSearchParams(window.location.search).get('token') || window.location.pathname.replace(/\/$/, '').split('/').pop(),
+                                                query: query
+                                            }
+                                        })
+                                    }).then(res => res.json())
+                                      .then(data => {
+                                          const results = data.result || [];
+                                          if(results.length === 0) {
+                                              resultsContainer.innerHTML = '<div class="text-center p-5 text-muted"><p>No se encontraron artículos</p></div>';
+                                              return;
+                                          }
+                                          let html = '<div class="list-group list-group-flush">';
+                                          results.forEach(res => {
+                                              html += `
+                                                  <a href="/knowledge/article/${res.share_token}" class="list-group-item list-group-item-action border-0 rounded-2 mb-1 p-2 d-flex align-items-center">
+                                                      <div class="o_article_emoji me-3 d-flex align-items-center justify-content-center">
+                                                          ${res.icon || (res.has_children ? '<i class="fa fa-folder text-warning"></i>' : '<i class="fa fa-file-text-o opacity-50"></i>')}
+                                                      </div>
+                                                      <div class="flex-grow-1 text-truncate">
+                                                          <div class="fw-bold text-dark">${res.name}</div>
+                                                      </div>
+                                                  </a>`;
+                                          });
+                                          html += '</div>';
+                                          resultsContainer.innerHTML = html;
+                                      });
+                                }, 300);
+                            });
+                        }
+                    });
+                </script>
+            </t>
+            
+            <div class="o_knowledge_public_view">
+                <aside class="o_knowledge_sidebar">
+                    <div class="o_search_container">
+                        <input type="text" class="form-control o_sidebar_search cursor-pointer" placeholder="Buscar un artículo..." readonly="readonly" style="background-color: #f8f9fa;"/>
+                    </div>
+                    <div class="flex-grow-1 overflow-auto py-2">
+                        <div class="px-4 py-2 font-weight-bold text-uppercase small text-muted" style="letter-spacing: 1px;">Workspace</div>
+                        <ul class="o_tree m-0 p-0">
+                            <t t-if="public_root">
+                                <t t-call="i8_knowledge_management.public_sidebar_recursive">
+                                    <t t-set="articles" t-value="public_root"/>
+                                    <t t-set="active_article_id" t-value="article.id"/>
+                                </t>
+                            </t>
+                        </ul>
+                    </div>
+                </aside>
+                
+                <div class="o_knowledge_resizer"></div>
+
+                <main class="o_knowledge_content_area">
+                    <!-- TOP HEADER: Title + Login -->
+                    <header class="o_knowledge_header d-flex align-items-center justify-content-between">
+                        <div class="o_header_article_title overflow-hidden">
+                            <span class="o_article_emoji flex-shrink-0">
+                                <t t-if="article.icon" t-out="article.icon"/>
+                                <t t-else="">
+                                    <i t-if="article.child_ids.filtered('is_published')" class="fa fa-folder text-warning"></i>
+                                    <i t-else="" class="fa fa-file-text-o opacity-50"></i>
+                                </t>
+                            </span>
+                            <span class="text-truncate" t-out="article.name"/>
+                        </div>
+                        <div class="o_header_actions">
+                            <a href="/web/login" class="btn btn-sm btn-light border bg-white shadow-sm text-muted fw-bold">Iniciar sesión</a>
+                        </div>
+                    </header>
+
+                    <div class="o_article_main_container overflow-auto">
+                        <!-- Cover Image -->
+                        <div t-if="article.cover_image_type and article.cover_image_type != 'none'" class="o_article_cover_container w-100 position-relative overflow-hidden mb-4 rounded shadow-sm" style="height: 250px;">
+                            <img t-if="article.cover_image_type == 'url'"
+                                 t-att-src="article.cover_image_url"
+                                 class="w-100 h-100 object-fit-cover"
+                                 t-attf-style="object-position: 50% {{article.cover_position}}%;"/>
+                            <img t-if="article.cover_image_type == 'binary'"
+                                 t-attf-src="data:image/png;base64,{{article.cover_image_binary}}"
+                                 class="w-100 h-100 object-fit-cover"
+                                 t-attf-style="object-position: 50% {{article.cover_position}}%;"/>
+                        </div>
+
+                        <div class="o_knowledge_body text-break"><div t-field="article.content"/></div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Public Search Modal -->
+            <div class="o_search_modal_backdrop"></div>
+            <div class="o_search_panel shadow-lg">
+                <div class="p-3 border-bottom d-flex align-items-center">
+                    <i class="fa fa-search text-muted me-3 fs-5"/>
+                    <input type="text" class="o_modal_search_input border-0 flex-grow-1" style="font-size: 1.15rem; outline: none;" placeholder="Buscar un artículo..."/>
+                    <i class="fa fa-times text-muted cursor-pointer fs-5 o_close_modal"/>
+                </div>
+                <div class="o_search_modal_results flex-grow-1 overflow-auto p-2" style="min-height: 300px;">
+                    <!-- Results here -->
+                </div>
+                <div class="p-2 px-3 bg-light border-top text-center small text-muted">
+                    Búsqueda limitada a contenido publicado
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

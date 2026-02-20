@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_picking_form_inherit_effective_date" model="ir.ui.view">
+    <field name="name">stock.picking.form.inherit.effective.date</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+          <xpath expr="//form" position="inside">
+        <field name="can_change_effective_date" invisible="1"/>
+      </xpath>
+      <header position="inside">
+            <button name="action_open_effective_date_wizard"
+                    type="object"
+                    string="Change Effective Date"
+                    
+                    invisible="not (state in ['done', 'cancel'] and can_change_effective_date)"
+                   />
+        </header>
+      <!-- Insert after the origin field -->
+      <xpath expr="//field[@name='date_done']" position="after">
+        <field name="x_effective_date"
+               string="Effective Date"
+              invisible = "state in ['cancel', 'done']"
+               placeholder="Set date before validating"/>
+      </xpath>
+
+    </field>
+  </record>
+</odoo>

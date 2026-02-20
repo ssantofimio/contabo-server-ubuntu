@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_it_assignment" model="report.paperformat">
+        <field name="name">Documento de Entrega Paperformat</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">45</field>
+        <field name="margin_bottom">28</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_it_assignment" model="ir.actions.report">
+        <field name="name">Documento de Entrega</field>
+        <field name="model">it.assignment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sandor_it_inventory.report_it_assignment_template</field>
+        <field name="report_file">sandor_it_inventory.report_it_assignment_template</field>
+        <field name="print_report_name">'Documento de Entrega - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_it_assignment"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_it_assignment"/>
+    </record>
+
+    <template id="report_it_assignment_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <style>
+                    /* Global resets to ensure no Odoo defaults interfere */
+                    .header, .footer, .page {
+                        background-color: transparent !important;
+                        border: 0 none transparent !important;
+                        box-shadow: none !important;
+                        outline: none !important;
+                    }
+                </style>
+                <t t-call="web.basic_layout">
+                    <!-- REPEATING HEADER: Strictly borderless -->
+                    <div class="header" style="background-color: transparent !important; border: 0 !important; box-shadow: none !important;">
+                        <table style="width: 100%; border: 0 !important; border-collapse: separate !important; border-spacing: 0 !important; background-color: transparent !important; margin: 0 !important;">
+                            <tr style="border: 0 !important;">
+                                <td style="width: 30%; border: 0 !important; text-align: left; vertical-align: middle; padding: 0;">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 80px;" alt="Logo"/>
+                                </td>
+                                <td style="width: 70%; border: 0 !important; text-align: right; vertical-align: middle; padding: 0;">
+                                    <div style="font-size: 18px; font-weight: bold; text-transform: uppercase; margin-bottom: 2px; color: #000;" t-field="o.company_id.name"/>
+                                    <div style="font-size: 14px; font-weight: bold; color: #000;">
+                                        NIT: <span t-field="o.company_id.vat"/>
+                                    </div>
+                                    <div style="font-size: 12px; color: #333;">
+                                        <span t-field="o.company_id.street"/>, <span t-field="o.company_id.city"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="text-align: right; font-size: 14px; color: #000; margin-top: 30px;">
+                            <strong>Acta N° - <span t-field="o.name"/></strong>
+                        </div>
+                    </div>
+
+                    <!-- MAIN CONTENT: No div.article to prevent duplication bugs in basic_layout -->
+                    <div class="page" style="color: #000 !important; padding: 0 !important; border: 0 !important;">
+                        <div style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 5px; text-transform: uppercase; color: #000; margin-top: 15px;">
+                            ASIGNACIÓN Y ALISTAMIENTO DE EQUIPOS
+                        </div>
+                        <div style="text-align: left; font-size: 14px; margin-bottom: 25px; color: #000; margin-top: 25px;">
+                            <strong>Fecha de Asignación:</strong> <span t-field="o.assignment_date" t-options='{"widget": "date"}'/>
+                        </div>
+
+                        <!-- Data Table -->
+                        <table style="width: 100%; border-collapse: collapse !important; margin-bottom: 25px; border: 1px solid #000 !important;">
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; width: 30%; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Nombre Empleado:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; width: 70%; font-size: 14px; color: #000;"><span t-field="o.employee_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Número de cédula:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px; color: #000;"><span t-field="o.employee_id_number"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Correo electrónico:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px; color: #000;"><span t-field="o.employee_email"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Cargo:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px; color: #000;"><span t-field="o.job_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Sede:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px; color: #000;"><span t-field="o.work_location_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; background-color: #f2f2f2; font-weight: bold; font-size: 14px; color: #000;">Area:</td>
+                                <td style="border: 1px solid #000 !important; padding: 8px !important; font-size: 14px; color: #000;"><span t-field="o.department_id.name"/></td>
+                            </tr>
+                        </table>
+
+                        <t t-if="o.line_ids">
+                            <div style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px; text-transform: uppercase; color: #000; margin-top: 40px;">
+                                RELACION DE EQUIPOS Y ELEMENTOS ASIGNADOS
+                            </div>
+
+                            <p style="margin-top: 15px; margin-bottom: 25px; font-size: 14px; color: #000;">
+                                A continuación se detallan los equipos y elementos asignados al empleado:
+                            </p>
+
+                            <t t-set="asset_types" t-value="o.line_ids.mapped('it_asset_type_id')"/>
+                            <t t-foreach="asset_types" t-as="asset_type">
+                                <t t-set="lines" t-value="o.line_ids.filtered(lambda l: l.it_asset_type_id == asset_type)"/>
+                                <t t-set="has_brand" t-value="any(l.it_brand_id for l in lines)"/>
+                                <t t-set="has_serial" t-value="any(l.it_serial_number for l in lines)"/>
+                                <t t-set="has_placa" t-value="any(l.default_code for l in lines)"/>
+
+                                <t t-set="num_cols" t-value="1 + (1 if has_brand else 0) + (1 if has_serial else 0) + (1 if has_placa else 0)"/>
+                                <t t-set="table_width" t-value="'40%' if num_cols == 1 else '60%' if num_cols == 2 else '80%' if num_cols == 3 else '100%'"/>
+
+                                <div style="page-break-inside: avoid !important;">
+                                    <div style="font-weight: bold; font-size: 14px; text-transform: uppercase; margin-top: 20px; margin-bottom: 5px; color: #000;">
+                                        <span t-field="asset_type.name"/>
+                                    </div>
+
+                                    <table t-attf-style="width: {{ table_width }}; border-collapse: collapse !important; border: 1px solid #000 !important; margin-bottom: 20px; table-layout: fixed;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">DESCRIPCION</th>
+                                                <th t-if="has_brand" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">MARCA</th>
+                                                <th t-if="has_serial" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">SERIAL / IMEI</th>
+                                                <th t-if="has_placa" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">PLACA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="lines" t-as="line">
+                                                <tr>
+                                                    <td style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.product_id.name"/></td>
+                                                    <td t-if="has_brand" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.it_brand_id.name"/></td>
+                                                    <td t-if="has_serial" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.it_serial_number"/></td>
+                                                    <td t-if="has_placa" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.default_code"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <!-- Section for items WITHOUT asset type -->
+                            <t t-set="other_lines" t-value="o.line_ids.filtered(lambda l: not l.it_asset_type_id)"/>
+                            <t t-if="other_lines">
+                                <t t-set="has_brand_other" t-value="any(l.it_brand_id for l in other_lines)"/>
+                                <t t-set="has_serial_other" t-value="any(l.it_serial_number for l in other_lines)"/>
+                                <t t-set="has_placa_other" t-value="any(l.default_code for l in other_lines)"/>
+
+                                <t t-set="num_cols_other" t-value="1 + (1 if has_brand_other else 0) + (1 if has_serial_other else 0) + (1 if has_placa_other else 0)"/>
+                                <t t-set="table_width_other" t-value="'40%' if num_cols_other == 1 else '60%' if num_cols_other == 2 else '80%' if num_cols_other == 3 else '100%'"/>
+
+                                <div style="page-break-inside: avoid !important;">
+                                    <div style="font-weight: bold; font-size: 14px; text-transform: uppercase; margin-top: 20px; margin-bottom: 5px; color: #000;">
+                                        OTROS ELEMENTOS
+                                    </div>
+
+                                    <table t-attf-style="width: {{ table_width_other }}; border-collapse: collapse !important; border: 1px solid #000 !important; margin-bottom: 20px; table-layout: fixed;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">DESCRIPCION</th>
+                                                <th t-if="has_brand_other" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">MARCA</th>
+                                                <th t-if="has_serial_other" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">SERIAL / IMEI</th>
+                                                <th t-if="has_placa_other" style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: left; color: #000;">PLACA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="other_lines" t-as="line">
+                                                <tr>
+                                                    <td style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.product_id.name"/></td>
+                                                    <td t-if="has_brand_other" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.it_brand_id.name"/></td>
+                                                    <td t-if="has_serial_other" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.it_serial_number"/></td>
+                                                    <td t-if="has_placa_other" style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; color: #000; line-height: 1.1;"><span t-field="line.default_code"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+                        </t>
+
+                        <!-- Observations -->
+                        <t t-if="o.notes">
+                            <div style="font-weight: bold; font-size: 14px; text-transform: uppercase; margin-top: 30px; margin-bottom: 5px; color: #000;">
+                                OBSERVACIONES:
+                            </div>
+                            <div style="font-size: 14px; margin-top: 5px; white-space: pre-wrap; color: #000;">
+                                <span t-field="o.notes"/>
+                            </div>
+                        </t>
+
+                        <!-- Legal Provisions -->
+                         <div style="font-size: 14px; text-align: justify; margin-top: 35px; margin-bottom: 40px; line-height: 1.4; color: #000;">
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Con el fin de que el <strong>Trabajador</strong> desarrolle de manera óptima sus funciones, <strong><span t-field="o.company_id.name"/></strong> entregará al <strong>Trabajador</strong> los elementos relacionados en este documento, cuyo uso será exclusivamente corporativo y, por lo tanto, su uso queda sujeto a las restricciones y condiciones que <strong><span t-field="o.company_id.name"/></strong> pueda imponer en cualquier momento.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Los equipos y/o elementos que serán entregados al <strong>Trabajador</strong> para la ejecución de sus funciones. Es claro para las partes que la presente acta hace parte integral del contrato de trabajo y que su contenido es aceptado en su totalidad por el <strong>Trabajador</strong> con la simple firma de este.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;"><strong><span t-field="o.company_id.name"/></strong> hace entrega al <strong>Trabajador</strong> del o los equipos tecnológicos y/o accesorios que se relaciona(n) en el formato asignación y alistamiento de equipos, y el <strong>Trabajador</strong> deberá destinar el uso de éste (tos) única y exclusivamente para el cumplimiento de sus funciones, según lo establecen las Normas Laborales, el contrato de trabajo y el Reglamento Interno de Trabajo.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">En el evento que al <strong>Trabajador</strong> se le haga entrega de algún aparato electrónico y/o accesorios diferente a los acá descritos, se adjuntará un cuadro de relación de estos en el que constará la firma de las partes y que de igual manera formará parte integral del contrato laboral.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">El <strong>Trabajador</strong> reconoce plenamente con la firma de la presente acta, que el único propietario de los elementos tecnológicos y/o de los accesorios entregado(s) para el cumplimiento de sus funciones es (son) de <strong><span t-field="o.company_id.name"/></strong> y/o de los propietarios con los que esta última suscriba convenios comerciales para abastecerse de aparatos electrónicos.</p>
+                        </div>
+
+                        <div style="font-weight: bold; font-size: 14px; margin-top: 20px; margin-bottom: 10px; color: #000;">
+                            Cuidados y condiciones:
+                        </div>
+                        <ul style="font-size: 14px; color: #000; list-style-type: disc; padding-left: 20px; margin-bottom: 40px; line-height: 1.4;">
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Manipular los elementos tecnológicos y/o accesorios con el mayor cuidado, evitando golpes, rayones, presiones y ambientes muy contaminados.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Mantener líquidos y otras sustancias nocivas alejados de los elementos tecnológicos y/o de los accesorios.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Dejar los elementos tecnológicos y/o los accesorios bajo llave or vigilancia, cuando no lo(s) esté(n) utilizando o cuando se encuentre alejado de éste(os).</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Abstenerse de manipular los componentes internos de los elementos tecnológicos, de los accesorios y/o los sellos de garantía de cualquiera de estos.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">En caso de mantenimiento, de los elementos tecnológicos y/o accesorios deberá(n) ser entregado(s) de manera inmediata al área de TIC de <strong><span t-field="o.company_id.name"/></strong> o quien haga sus veces.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Se prohíben las siguientes actividades, sin limitarse a éstas, de los elementos tecnológicos y/o con cualquiera de sus accesorios: jugar, vender, empeñar o de uso personal.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Entregar los elementos tecnológicos y/o accesorios y cada vez que se requiera, única y exclusivamente a la(s) persona(s) autorizada(s) por <strong><span t-field="o.company_id.name"/></strong> y en el(los) sitio(s) que ésta última le indique.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">No variar la destinación, ni el uso propuesto para los elementos tecnológicos y/o para cualquiera de sus accesorios. De igual manera el <strong>Trabajador</strong> deberá supervisar su correcta utilización.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El (los) equipo(s) y/o accesorios es (son) entregados con todos los elementos de seguridad necesarios para uso dentro de las oficinas de <strong><span t-field="o.company_id.name"/></strong>, Una vez el equipo electrónico se encuentre fuera de las oficinas de <strong><span t-field="o.company_id.name"/></strong>, este será responsabilidad de la persona que firma esta acta.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El Software instalado en los equipos está licensed a nombre de <strong><span t-field="o.company_id.name"/></strong> y libre de cualquier virus informático, por lo cual no se autoriza a la persona que firma la presente Acta, a copiarlo, duplicarlo, borrarlo, ni instalar ningún software adicional, sin la previa autorización del área de TIC and se compromete a que su uso será únicamente para labores propias de <strong><span t-field="o.company_id.name"/></strong>.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">En caso de pérdida, robo o daño a los equipos y/o accesorios por mal uso o culpa exclusiva del <strong>trabajador</strong>, los costos de reposición y/o reparación serán asumidos por el responsable de este que firma esta acta.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">En caso de retiro de la empresa, el usuario se compromete a devolver los equipos y/o accesorios en el mismo estado en que los recibió, salvo por el deterioro normal, incluida toda la información procesada, correspondiente a su labor realizada para la empresa.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">En el evento de utilizar la autorización de descuento por presentarse alguna novedad de pérdida o daño, el <strong>Trabajador</strong> deberá suscribir una nueva en caso de recibir otro aparato electrónico y/o accesorios.</li>
+                        </ul>
+
+                         <div style="font-size: 14px; text-align: justify; margin-top: 15px; margin-bottom: 40px; line-height: 1.4; color: #000;">
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Salvo el desgaste natural de los elementos tecnológicos y/o accesorios entregados, el <strong>Trabajador</strong> deberá responder ante <strong><span t-field="o.company_id.name"/></strong> por la(s) pérdida(s), hurto(s) y/o daño(s) que se le ocasione(n) a los mismos por causa del mismo <strong>trabajador</strong>, pues es entendido y aceptado por el <strong>Trabajador</strong> que aquellos son entregados bajo su estricta responsabilidad. El valor por el cual debe responder el <strong>Trabajador</strong> se detalla más adelante.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Los elementos tecnológicos y/o accesorios entregados(s) hace(n) parte de los implementos del <strong>Trabajador</strong>, en consecuencia, deberá responder por aquellos como requisito de Paz y Salvo sin importar si son nuevos o usados, teniendo en cuenta la siguiente tabla de tarifas:</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Desde el mes 25 en caso de pérdida daño o hurto, del celular el <strong>Trabajador</strong> asuma el valor del último rango, esto es, el indicado en el mes 24.</p>
+                        </div>
+
+                        <!-- Multiple Discount Tables -->
+                        <t t-foreach="o.discount_ids" t-as="disc">
+                            <div style="page-break-inside: avoid !important;">
+                                <div style="font-weight: bold; font-size: 14px; text-align: center; text-transform: uppercase; margin-top: 25px; margin-bottom: 5px; color: #000;">
+                                    DEPURACIÓN DE VALORES: <span t-field="disc.product_id.name"/> 
+                                    <t t-if="disc.it_serial_number"> / SERIE: <span t-field="disc.it_serial_number"/></t>
+                                    <t t-if="disc.default_code"> / PLACA: <span t-field="disc.default_code"/></t>
+                                </div>
+                                <table style="width: 75%; margin: 8px auto 30px auto; border-collapse: collapse !important; border: 1px solid #000 !important; table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: center; color: #000; width: 45%;">VALOR A PAGAR EN CASO DE PERDIDA O HURTO</th>
+                                            <th style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: center; color: #000; width: 25%;">MES</th>
+                                            <th style="border: 1px solid #000 !important; padding: 4px !important; background-color: #f2f2f2; font-weight: bold; font-size: 12px; text-align: center; color: #000; width: 30%;">PORCENTAJE A DESCONTAR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="range(1, 25)" t-as="month">
+                                            <t t-set="percentage" t-value="100 - (month - 1) * 4"/>
+                                            <t t-if="month == 24" t-set="percentage" t-value="4"/>
+                                            <tr>
+                                                <td style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; text-align: center; color: #000; line-height: 1.1;">
+                                                    <span t-esc="disc.discount_value * (percentage / 100.0)" t-options='{"widget": "monetary", "display_currency": disc.currency_id}'/>
+                                                </td>
+                                                <td style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; text-align: center; color: #000; line-height: 1.1;">
+                                                    <span t-esc="month"/>
+                                                </td>
+                                                <td style="border: 1px solid #000 !important; padding: 4px !important; font-size: 12px; text-align: center; color: #000; line-height: 1.1;">
+                                                    <span t-esc="percentage"/>%
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+
+                         <div style="font-size: 14px; text-align: justify; margin-top: 20px; margin-bottom: 40px; line-height: 1.4; color: #000;">
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">El valor para pagar por el <strong>Trabajador</strong> no puede en ningún caso superar diez (10) cuotas mensuales de descuento a menos que exista autorización de la Gerencia General de <strong><span t-field="o.company_id.name"/></strong>, con respecto a otro acuerdo de pago.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Con la firma de este documento el <strong>Trabajador</strong> acepta libre y voluntariamente que la autorización de descuento sea diligenciada sin previo aviso.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">En caso de pérdida daño o hurto del portátil y/o computador por responsabilidad del <strong>trabajador</strong>, el <strong>trabajador</strong> asumirá el 100% del valor del activo depreciado que sea reportado por el proveedor de servicios o de la Empresa a la fecha de la perdida, daño o hurto.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Una vez <strong><span t-field="o.company_id.name"/></strong> conozca de la pérdida, hurto, daño y/o cualquier situación que altere el buen estado y/o la existencia de los elementos tecnológicos y/o accesorios, diligenciará la autorización de descuento para hacer exigible la obligación a cargo del <strong>Trabajador</strong>.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">En el diligenciamiento de la autorización de descuento, se describirá la circunstancia que dio origen al cobro siendo estas, pero sin limitarse: hurto, pérdida, venta no autorizada a un tercero, entre otros.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">En el evento de pactar con el <strong>Trabajador</strong> la sustitución o remplazo de los elementos tecnológicos o de cualquiera de sus accesorios, se debe tener en cuenta lo siguiente:</p>
+                        </div>
+
+                         <ul style="font-size: 14px; color: #000; list-style-type: disc; padding-left: 20px; margin-bottom: 40px; line-height: 1.4;">
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Debe constar acuerdo entre las partes por escrito y firmado por aquellas, en caso contrario, no surtirá ningún efecto.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">Se debe entregar a <strong><span t-field="o.company_id.name"/></strong> los elementos tecnológicos y/o accesorios de iguales o mejores características.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El <strong>Trabajador</strong> debe adquirir los elementos tecnológicos y/o accesorios en un lugar autorizado para la venta de aquellos.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El recibo de los elementos tecnológicos y/o accesorios deben ser aprobados previamente por el área de TIC de <strong><span t-field="o.company_id.name"/></strong> o por quien haga sus veces, en caso de rechazo se procederá con el descuento de nómina respectivo.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">En todo caso el <strong>Trabajador</strong> deberá entregar los elementos tecnológicos y/o accesorios en un plazo no superior a tres (3) días hábiles contados a partir de que <strong><span t-field="o.company_id.name"/></strong> tenga conocimiento del hurto, pérdida and/o daño, en caso de incumplir el anterior plazo, <strong><span t-field="o.company_id.name"/></strong> procederá a efectuar el descuento de nómina respectivo, So pena de existir una autorización con fecha de entrega diferente.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El <strong>Trabajador</strong> deberá notificar al área TIC o quien haga sus veces si requiere más días adicionales, en caso contrario, aplicará la regla inicial.</li>
+                            <li style="margin-bottom: 8px; text-align: justify; page-break-inside: avoid !important;">El <strong>Trabajador</strong> deberá tener en cuenta las demás especificaciones que le indique <strong><span t-field="o.company_id.name"/>.</strong></li>
+                        </ul>
+
+                         <div style="font-size: 14px; text-align: justify; margin-top: 20px; margin-bottom: 40px; line-height: 1.4; color: #000;">
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Si en definitiva el <strong>Trabajador</strong> no entrega los elementos tecnológicos, los accesorios y/o las sumas requeridas (de acuerdo con cada caso) <strong><span t-field="o.company_id.name"/></strong> podrá descontar de la liquidación final del <strong>Trabajador</strong> (prestaciones sociales, salario, primas, bonificaciones, liquidaciones, indemnizaciones, seguros y/o cualquiera otra remuneración o prestación legal o extralegal a que tenga derecho) el valor total de lo causado.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Teniendo en cuenta que los elementos tecnológicos entregados son de uso corporativo, el Gerente TIC de <strong><span t-field="o.company_id.name"/></strong> podrá realizar en cualquier tiempo, auditorias aleatorias con el fin de comprobar que el <strong>Trabajador</strong> se encuentre utilizando los elementos tecnológicos y/o los accesorios tal y como <strong><span t-field="o.company_id.name"/></strong> le informa en el presente documento, el <strong>Trabajador</strong> entiende y declara que: (1.) En el evento que guarde información personal en los elementos tecnológicos corporativos entregados, <strong><span t-field="o.company_id.name"/></strong> no responderá por aquella a la que tenga acceso o deba eliminar. (2.) Acepta desde ya y sin restricciones cooperar para que la auditoria se lleve a cabo. (3.) Responder disciplinariamente por todas aquellas actividades que contrarias a la ley, a este documento, al contrato de trabajo o al Reglamento Interno de Trabajo se evidencien en la auditoria.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">En ningún caso, <strong><span t-field="o.company_id.name"/></strong> asumirá el costo de reparaciones que deriven del hecho, culpa o dolo del <strong>Trabajador</strong>, como tampoco su descuido o negligencia.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">Los elementos tecnológicos y/o los accesorios asignados(s) queda(n) bajo la responsabilidad del <strong>Trabajador</strong>, por lo que <strong><span t-field="o.company_id.name"/></strong> en ningún caso eximirá al <strong>Trabajador</strong> de la responsabilidad civil o penal derivada de su participación en un eventual delito cometido con los elementos asignados a este.</p>
+                            <p style="margin-bottom: 15px; page-break-inside: avoid !important;">El <strong>Trabajador</strong> deberá informar de inmediato y por escrito a <strong><span t-field="o.company_id.name"/></strong> sobre cualquier irregularidad, accidente, falla o cualquier situación que afecte o pudiere afectar o involucrar al <strong>Trabajador</strong>, los elementos tecnológicos o sus accesorios o la responsabilidad de <strong><span t-field="o.company_id.name"/></strong>.</p>
+                            <p style="margin-top: 25px; margin-bottom: 15px; page-break-inside: avoid !important;">El presente documento de entiende perfeccionado con la firma de las Partes. Para constancia de lo anterior, se firma en dos ejemplares con el mismo valor probatorio, uno para cada parte interviniente el <span t-field="o.assignment_date" t-options='{"format": "d"}'/> de <span style="text-transform: capitalize;"><span t-field="o.assignment_date" t-options='{"format": "MMMM"}'/></span> de <span t-field="o.assignment_date" t-options='{"format": "yyyy"}'/>.</p>
+                        </div>
+
+                        <!-- SIGNATURES SECTION: Strictly borderless -->
+                        <table style="width: 100%; margin-top: 80px; border: 0 !important; border-collapse: separate !important; border-spacing: 0 !important; background-color: transparent !important; font-size: 14px;">
+                            <tr style="border: 0 !important;">
+                                <td style="width: 45%; vertical-align: top; padding: 0; border: 0 !important;">
+                                    <strong style="color: #000; display: block; margin-bottom: 60px;">Por parte de <strong><span t-field="o.company_id.name"/></strong>,</strong>
+                                    <div style="border-top: 1px solid #000; width: 90%; margin-bottom: 8px;"></div>
+                                    <span style="color: #000; display: block; margin-top: 5px;">Representante Legal:</span>
+                                </td>
+                                <td style="width: 10%; border: 0 !important;"></td>
+                                <td style="width: 45%; vertical-align: top; padding: 0; border: 0 !important;">
+                                    <strong style="color: #000; display: block; margin-bottom: 5px;">Por parte del Trabajador,</strong>
+                                    <div style="min-height: 100px; position: relative; margin-bottom: 5px;">
+                                        <img t-if="o.signature" t-att-src="image_data_uri(o.signature)" style="max-height: 100px; max-width: 90%; display: block; position: absolute; bottom: 0; left: 0;"/>
+                                    </div>
+                                    <div style="border-top: 1px solid #000; width: 90%; margin-bottom: 8px;"></div>
+                                    <span style="color: #000;">Nombre: <span t-field="o.employee_id.name"/></span><br/>
+                                    <span style="color: #000;">C.C.: <span t-field="o.employee_id_number"/></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- NEW PAGE: AUTHORIZATION FOR DEDUCTION -->
+                    <div style="page-break-before: always; background-color: transparent !important; color: #000; font-size: 14px;">
+                        <div style="margin-top: 20px; margin-bottom: 40px;">
+                            Bogotá D. C, ______________________________
+                        </div>
+
+                        <div style="margin-bottom: 35px;">
+                            Señores:<br/>
+                            <strong>ELITE FACILITY MANAGEMENT SAS.</strong>
+                        </div>
+
+                        <p style="text-indent: 0; margin-bottom: 20px; text-align: justify; line-height: 1.5;">
+                            <strong style="text-decoration: underline;"><span t-field="o.employee_id.name"/></strong> mayor de edad identificado(a) con la cédula de ciudadanía No <strong style="text-decoration: underline;"><span t-field="o.employee_id_number"/></strong> expedida en _____________________, en mi calidad de trabajador al servicio de <strong>ELITE FACILITY MANAGEMENT SAS.</strong>, empresa dentro de la cual desempeño el cargo de <strong style="text-decoration: underline;"><span t-field="o.job_id.name"/></strong> por medio del presente escrito manifiesto que autorizo a mi empleador <strong>ELITE FACILITY MANAGEMENT SAS.</strong> para que retenga de mis prestaciones sociales, salario, primas, bonificaciones, liquidaciones, indemnizaciones, seguros y/o cualquiera otra remuneración or prestación legal or extralegal a que tenga derecho, la siguiente suma de dinero con el fin de amortiguar el valor del(la) daño (____) pérdida (____) hurto (____) otro motivo (____), ¿cuál? __________________________________) de los elementos tecnológicos y/o accesorios que a continuación se relacionan:
+                        </p>
+
+                        <table style="width: 100%; border-collapse: collapse !important; border: 1px solid #000 !important; margin-bottom: 30px; background-color: transparent !important;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid #000 !important; padding: 5px; font-weight: bold; font-size: 11px; text-align: center; width: 50%; vertical-align: middle;">DESCRIPCIÓN DE ELEMENTOS TECNOLOGICOS Y/O SUS ACCESORIOS</th>
+                                    <th style="border: 1px solid #000 !important; padding: 5px; font-weight: bold; font-size: 11px; text-align: center; width: 15%; vertical-align: middle;">CANTIDAD DE CUOTAS</th>
+                                    <th style="border: 1px solid #000 !important; padding: 5px; font-weight: bold; font-size: 11px; text-align: center; width: 17.5%; vertical-align: middle;">VALOR UNITARIO</th>
+                                    <th style="border: 1px solid #000 !important; padding: 5px; font-weight: bold; font-size: 11px; text-align: center; width: 17.5%; vertical-align: middle;">VALOR TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                    <td style="border: 1px solid #000 !important;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="text-indent: 0; margin-top: 20px; text-align: justify; line-height: 1.5; page-break-inside: avoid !important;">
+                            De conformidad con lo anterior, acepto y autorizo descontar el valor total de lo causado, correspondiente a la suma de _________________________________________________ ($______________,), a fin de que mi empleador <strong><span t-field="o.company_id.name"/></strong>, proceda a su descuento por nómina en (_____) cuotas mensuales descontables a partir del ______________________________________. En el evento en que mi contrato laboral se termine por cualquier causa justificada o no, autorizo a que con cargo a mi liquidación final se descuente el valor total de la suma pendiente y la misma sea entregada a <strong><span t-field="o.company_id.name"/></strong>. La presente autorización es de carácter irrevocable y no puede modificarse ni suspenderse a menos que exista de por medio una autorización escrita por parte de <strong><span t-field="o.company_id.name"/></strong>. Es claro que, en términos legales que la presente autorización es suficiente y plena prueba para que se generen los descuentos correspondientes. Suscribo la presente autorización con observancia de las disposiciones contenidas en los artículos 1714 a 1716 del Código Civil, y 59 literal 1 y 149 del Código Sustantivo de Trabajo y demás normas concordantes y complementarias.
+                        </p>
+
+                        <div style="margin-top: 40px; margin-bottom: 5px;">
+                            Atentamente,
+                        </div>
+
+                        <table style="width: 100%; border: 0 !important; border-collapse: separate !important; border-spacing: 0 !important; background-color: transparent !important;">
+                            <tr style="border: 0 !important;">
+                                <td style="width: 70%; vertical-align: top; padding: 0; border: 0 !important;">
+                                    <div style="min-height: 100px; position: relative; margin-bottom: 5px;">
+                                        <img t-if="o.signature" t-att-src="image_data_uri(o.signature)" style="max-height: 100px; max-width: 90%; display: block; position: absolute; bottom: 0; left: 0;"/>
+                                    </div>
+                                    <div style="border-top: 1px solid #000; width: 90%; margin-bottom: 8px;"></div>
+                                    <span style="display: block; margin-top: 5px;">Firma:</span>
+                                    <div style="margin-top: 5px;">
+                                        Nombre: <span t-field="o.employee_id.name"/><br/>
+                                        C.C.: <span t-field="o.employee_id_number"/>
+                                    </div>
+                                </td>
+                                <td style="width: 30%; vertical-align: top; border: 0 !important; padding: 0; text-align: right;">
+                                    <div style="display: inline-block; border: 1px solid #000; width: 80px; height: 100px; margin-right: 20px;"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- FOOTER SECTION -->
+                    <div class="footer" style="border-top: 1px solid #ccc !important; padding-top: 8px; background-color: transparent !important;">
+                        <div style="font-size: 11px; text-align: center; color: #555;">
+                            <span t-if="o.company_id.phone">Tel: <span t-field="o.company_id.phone"/> | </span>
+                            <span t-if="o.company_id.email">Email: <span t-field="o.company_id.email"/> | </span>
+                            <span t-if="o.company_id.website">Web: <span t-field="o.company_id.website"/></span>
+                        </div>
+                        <div class="col-8 text-left" style="font-size: 10px; color: #777;">
+                            Token <span t-field="o.access_token"/>
+                        </div>
+                        <div style="text-align: right; font-size: 11px; color: #555; margin-top: 2px;">
+                            Página: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+
+                    <!-- AUDIT REPORT PAGE -->
+                    <div t-if="o.signature" style="page-break-before: always; font-family: 'Helvetica', 'Arial', sans-serif;">
+                        <div style="padding: 10px 20px;">
+                            <h3 style="border-bottom: 2px solid #000; padding-bottom: 5px; margin-top: 0; margin-bottom: 5px;">Informe de Firmas</h3>
+                            <p style="font-size: 12px; color: #555; margin-top: 5px;">
+                                Fechas y horas en UTC-0500 (America/Bogota)<br/>
+                                Última actualización en <span t-field="o.write_date" t-options='{"widget": "datetime"}'/>
+                            </p>
+                            
+                            <div style="margin-top: 35px; overflow: hidden;">
+                                <div style="width: 68%; float: left;">
+                                    <p style="margin-bottom: 5px;"><strong>Estado:</strong> Asignado</p>
+                                    <p style="margin-bottom: 5px;"><strong>Documento:</strong> Documento de Entrega TIC - <span t-field="o.name"/></p>
+                                    <p style="margin-bottom: 5px;"><strong>Security Token:</strong> <span t-field="o.access_token"/></p>
+                                    <p style="margin-bottom: 5px;"><strong>Fecha de creación:</strong> <span t-field="o.create_date" t-options='{"widget": "datetime"}'/></p>
+                                    <p style="margin-bottom: 5px; word-break: break-all;"><strong>Hash del Documento (SHA256):</strong> <span t-field="o.document_hash"/></p>
+                                </div>
+                                <div style="width: 30%; float: right; text-align: center; position: relative;">
+                                    <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=' + (o.portal_verify_url or '') + '&amp;width=120&amp;height=120'" 
+                                         style="width: 120px; height: 120px; display: block; margin: 0 auto;"/>
+                                    <a t-att-href="o.portal_verify_url" target="_blank" 
+                                       style="position: absolute; top: 0; left: 50%; margin-left: -60px; width: 120px; height: 120px; display: block; text-decoration: none; border: 0 !important; outline: none; background: transparent;"></a>
+                                    <p style="font-size: 10px; color: #777; margin-top: 5px;">
+                                        <a t-att-href="o.portal_verify_url" target="_blank" style="color: #777; text-decoration: none;">Escanee o haga clic para verificar</a>
+                                    </p>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+    
+                            <div style="clear: both; height: 5px;"></div>
+    
+                            <h4 style="margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 10px;">Firmas</h4>
+                            
+                            <!-- Bloque 1: Firma Principal -->
+                            <div style="margin-top: 5px; border: none !important; border-left: 6px solid #28a745 !important; padding: 15px; background-color: #fcfcfc; overflow: hidden;">
+                                <div style="width: 70%; float: left; padding: 0 !important; margin: 0 !important; text-align: left !important;">
+                                    <div style="margin-bottom: 10px; padding: 0 !important;">
+                                        <strong style="color: #28a745; font-size: 16px; display: inline-block; vertical-align: baseline;">ASIGNADO</strong>
+                                        <span style="font-size: 11px; color: #888; margin-left: 10px; vertical-align: baseline;">via Token (Powered by Odoo)</span>
+                                    </div>
+                                    <div style="font-size: 13px; margin: 0 0 4px 0 !important; padding: 0 !important;"><strong><span t-field="o.employee_id.name"/></strong>-<span t-field="o.employee_id_number"/></div>
+                                    <div style="font-size: 12px; margin: 0 0 4px 0 !important; padding: 0 !important; color: #444;">Fecha y hora de firma: <span t-field="o.signed_on" t-options='{"widget": "datetime"}'/></div>
+                                    <div style="font-size: 11px; margin: 0 !important; padding: 0 !important; color: #666;">Token: <span t-field="o.access_token"/></div>
+                                </div>
+                                <div style="width: 28%; float: right; text-align: left; border-left: 1px solid #eee; padding-left: 10px;">
+                                    <p style="font-size: 11px; color: #888; margin-bottom: 3px;">Firma:</p>
+                                    <div style="min-height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+                                        <img t-if="o.signature" t-att-src="image_data_uri(o.signature)" style="max-height: 60px; max-width: 100%; border: 0 !important;"/>
+                                    </div>
+                                    <p style="font-size: 10px; color: #666; margin-bottom: 0; line-height: 1.2;">
+                                        <span t-field="o.employee_id.name"/><br/>
+                                        <span t-field="o.employee_id_number"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="clear: both; height: 15px;"></div>
+
+                            <!-- Bloque 2: Puntos de Autenticación -->
+                            <div style="overflow: hidden; padding: 0 5px;">
+                                <div style="width: 48%; float: left;">
+                                    <p style="margin-bottom: 5px; font-weight: bold; font-size: 13px;">Puntos de autenticación:</p>
+                                    <p style="font-size: 11px; margin-bottom: 0; color: #444;">Correo electrónico: <span t-field="o.employee_email"/></p>
+                                </div>
+                                <div style="width: 48%; float: right; padding-top: 18px;">
+                                    <p style="font-size: 11px; margin-bottom: 3px; color: #444;"><strong>IP:</strong> <span t-field="o.signer_ip"/></p>
+                                    <p style="font-size: 11px; margin-bottom: 0; color: #444; word-break: break-all;"><strong>Dispositivo:</strong> <span t-field="o.signer_user_agent"/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

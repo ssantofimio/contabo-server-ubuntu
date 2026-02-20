@@ -1,0 +1,1003 @@
+<odoo>
+    <t t-name="i8_knowledge_management.KnowledgeSplit" owl="1">
+        <div class="o_knowledge_split" t-ref="root-template">
+            <div class="o_knowledge_main_container d-flex flex-grow-1 overflow-hidden">
+                <!-- Left Sidebar -->
+                <div class="o_knowledge_sidebar d-flex flex-column">
+                    <!-- Search Bar at Top (Enterprise Style) -->
+                    <div class="d-flex align-items-center gap-2 px-md-3 px-3 ps-2 py-3">
+                        <div id="knowledge_search_bar" class="d-flex align-items-center border bg-light rounded cursor-pointer flex-grow-1" t-on-click="openSearchPanel">
+                            <div class="flex-grow-1 px-2 py-1 o_article_search_placeholder">Buscar un artículo...</div>
+                            <i class="oi oi-search pe-2" title="buscar"></i>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Tree Sections -->
+                    <div class="o_knowledge_tree_container flex-grow-1 o_scroll_view">
+                        <!-- Favorites Section -->
+                        <section class="o_knowledge_section_ent d-none" data-section="favorites">
+                            <div class="o_section_header d-flex h4 mb-0">
+                                <div class="flex-grow-1 text-truncate">Favoritos</div>
+                            </div>
+                            <ul class="o_tree o_article_list_favorites o_article_list"></ul>
+                        </section>
+
+                        <!-- Workspace Section -->
+                        <section class="o_knowledge_section_ent d-none" data-section="workspace">
+                            <div class="o_section_header d-flex h4 mb-0">
+                                <div class="flex-grow-1 text-truncate">Espacio de trabajo</div>
+                                <button class="o_section_create btn rounded p-0 ms-1" t-on-click="() => this.createQuickArticleInSection(true)" title="Crear artículo público">
+                                    <i class="fa fa-fw fa-plus"></i>
+                                </button>
+                            </div>
+                            <ul class="o_tree o_article_list_workspace o_article_list"></ul>
+                        </section>
+
+                        <!-- Private Section -->
+                        <section class="o_knowledge_section_ent d-none" data-section="private">
+                            <div class="o_section_header d-flex h4 mb-0">
+                                <div class="flex-grow-1 text-truncate">Privado</div>
+                                <button class="o_section_create btn rounded p-0 ms-1" t-on-click="() => this.createQuickArticleInSection(false)" title="Crear artículo privado">
+                                    <i class="fa fa-fw fa-plus"></i>
+                                </button>
+                            </div>
+                            <ul class="o_tree o_article_list_private o_article_list"></ul>
+                        </section>
+                    </div>
+
+                    <div class="o_section o_knowledge_sidebar_trash w-100 py-2 position-sticky bg-view mt-auto border-top">
+                        <a href="#" role="button" class="btn btn-light d-block fw-normal text-black text-start text-truncate mb-1" t-on-click="() => state.showNewArticlePanel = true">
+                            <i class="fa fa-fw fs-6 fa-paint-brush me-1"></i>
+                            <span>Explorar plantillas</span>
+                        </a>
+                        <div role="button" class="btn btn-light d-block fw-normal text-black text-start text-truncate">
+                            <i class="fa fa-fw fa-trash me-1"></i>
+                            <span class="flex-grow-1">Abrir la papelera</span>
+                        </div>
+                    </div>
+                    </div>
+
+
+            <!-- Splitter -->
+            <div class="o_splitter" t-ref="splitter">
+              <div class="o_sidebar_patch"
+                   t-on-click="toggleSidebar"
+                   t-att-title="state.sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+                <i class="fa"
+                   t-att-class="state.sidebarCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"/>
+              </div>
+            </div>
+
+                <div class="o_knowledge_content flex-grow-1 d-flex flex-column overflow-hidden">
+                    <!-- Internal Content Toolbar (Breadcrumbs + Actions) -->
+                    <div class="o_article_header_toolbar d-flex align-items-center justify-content-between px-3 py-2 border-bottom">
+                        <div class="o_article_header_left d-flex align-items-center gap-3">
+                            <div class="o_nav_buttons d-flex gap-2 text-muted">
+                                <i class="fa fa-chevron-left hover-pointer" t-on-click="goBack" t-attf-class="{{ state.historyIndex &lt;= 0 ? 'text-muted opacity-25' : '' }}" title="Atrás"></i>
+                                <i class="fa fa-chevron-right hover-pointer" t-on-click="goForward" t-attf-class="{{ state.historyIndex >= (state.articleHistory.length - 1) ? 'text-muted opacity-25' : '' }}" title="Adelante"></i>
+                            </div>
+                            <div class="o_breadcrumb_path d-flex align-items-center small text-muted fw-bold flex-grow-1" style="min-width: 0;">
+                                <t t-foreach="breadcrumbs" t-as="crumb" t-key="crumb.data ? crumb.data.id : 'ellipsis'">
+                                    <!-- Separator (unless first) -->
+                                    <i t-if="!crumb_first" class="fa fa-angle-right mx-2 opacity-50"/>
+                                    
+                                    <!-- Standard Article -->
+                                    <t t-if="crumb.type === 'article'">
+                                        <!-- Current Article (Editable) -->
+                                        <t t-if="crumb.data.id === state.currentArticle.id">
+                                            <div class="d-flex align-items-center flex-grow-1 min-w-0">
+                                                <div class="o_breadcrumb_icon_container me-2 cursor-pointer" t-on-click="openIconPicker">
+                                                    <t t-if="crumb.data.icon" t-out="crumb.data.icon"/>
+                                                    <i t-else="" class="fa fa-star text-warning" t-if="state.favoriteMap[state.currentArticleId]"></i>
+                                                </div>
+                                                <input type="text" 
+                                                       class="o_article_header_name_input text-dark flex-grow-1" 
+                                                       t-att-value="state.currentArticleName" 
+                                                       t-on-blur="onTitleBlur" 
+                                                       t-on-keydown="onTitleKeydown"
+                                                       t-ref="article_name_input"
+                                                       placeholder="Untitled"/>
+                                            </div>
+                                        </t>
+                                        <!-- Parent Article (Link) -->
+                                        <t t-else="">
+                                            <span class="cursor-pointer hover-text-dark d-flex align-items-center" 
+                                                  style="min-width: 0;"
+                                                  t-on-click="() => this._onBreadcrumbClick(crumb.data.id)"
+                                                  t-att-title="crumb.data.name">
+                                                <t t-if="crumb.data.icon" t-out="crumb.data.icon"/>
+                                                <i t-else="" class="fa fa-file-text-o me-1"></i>
+                                                <span class="text-truncate" style="max-width: 120px;"><t t-esc="crumb.data.name"/></span>
+                                            </span>
+                                        </t>
+                                    </t>
+                                    
+                                    <!-- Ellipsis -->
+                                    <t t-if="crumb.type === 'ellipsis'">
+                                        <div class="dropdown d-inline-block">
+                                             <span class="cursor-pointer px-1 rounded hover-bg-light" 
+                                                   id="breadcrumbDropdown" 
+                                                   data-bs-toggle="dropdown" 
+                                                   aria-expanded="false"
+                                                   t-att-title="crumb.title || 'Mostrar más'">
+                                                 ...
+                                             </span>
+                                             <ul class="dropdown-menu shadow-sm border-0 py-1" aria-labelledby="breadcrumbDropdown" style="max-height: 200px; overflow-y: auto;">
+                                                 <li t-foreach="crumb.items" t-as="hiddenArticle" t-key="hiddenArticle.id">
+                                                     <a class="dropdown-item small d-flex align-items-center gap-2" href="#" t-on-click.prevent="() => this._onBreadcrumbClick(hiddenArticle.id)">
+                                                         <t t-if="hiddenArticle.icon" t-out="hiddenArticle.icon"/>
+                                                         <i t-else="" class="fa fa-file-text-o text-muted"/>
+                                                         <span class="text-truncate" style="max-width: 250px;"><t t-esc="hiddenArticle.name"/></span>
+                                                     </a>
+                                                 </li>
+                                             </ul>
+                                        </div>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="o_article_header_actions d-flex align-items-center gap-2">
+                             <button class="btn btn-dark btn-sm rounded fw-bold px-3 py-1" style="background: #714B67; border: none;" t-on-click="createArticle">Nuevo</button>
+                             <button class="btn btn-outline-secondary btn-sm rounded d-flex align-items-center gap-1 position-relative" t-on-click="toggleSharePanel" t-if="state.currentArticle">
+                                 <i class="fa fa-share-alt"></i> Compartir
+                                 <t t-if="state.showSharePanel">
+                                     <div class="o_knowledge_share_popover position-absolute bg-white border rounded shadow p-3" 
+                                          style="top: 100%; right: 0; width: 400px; z-index: 1000; margin-top: 8px;"
+                                          t-on-click.stop="">
+                                         
+                                         <!-- Header: Published Toggle -->
+                                         <div class="d-flex align-items-center justify-content-between mb-3">
+                                             <div class="d-flex align-items-center gap-2">
+                                                 <i class="fa fa-globe text-muted"></i>
+                                                 <span class="fw-bold">Artículo compartido a la web</span>
+                                             </div>
+                                             <div class="form-check form-switch m-0">
+                                                 <input class="form-check-input cursor-pointer" type="checkbox" 
+                                                        t-att-checked="state.currentArticle.is_published" 
+                                                        t-on-change="togglePublish"/>
+                                             </div>
+                                         </div>
+                                         
+                                         <div class="text-muted small mb-2">
+                                             Todos pueden leer el artículo y los artículos secundarios publicados.
+                                         </div>
+
+                                         <t t-if="state.currentArticle.is_published">
+                                             <div class="d-flex align-items-center gap-2 mb-3">
+                                                <input type="text" class="form-control form-control-sm bg-light text-muted" 
+                                                       readonly="readonly" 
+                                                       t-att-value="'/knowledge/article/' + state.currentArticle.share_token"/>
+                                                <button class="btn btn-link text-primary p-0" t-on-click="shareArticleLink" title="Copiar enlace">
+                                                    <i class="fa fa-copy"></i>
+                                                </button>
+                                             </div>
+                                         </t>
+                                         
+                                         <div class="d-flex align-items-center justify-content-between mb-2 mt-2">
+                                             <div class="d-flex align-items-start gap-2">
+                                                 <i class="fa fa-sitemap text-muted mt-1"></i>
+                                                 <div class="d-flex flex-column text-start">
+                                                 <span class="fw-bold small">Incluir subpáginas</span>
+                                                 <span class="text-muted" style="font-size: 0.75rem;">Hacer públicas también las subpáginas</span>
+                                                 </div>
+                                             </div>
+                                             <div class="form-check form-switch m-0">
+                                                 <input class="form-check-input cursor-pointer" type="checkbox" 
+                                                        t-att-checked="state.recursivePublish" 
+                                                        t-on-change="toggleRecursive"/>
+                                             </div>
+                                         </div>
+
+                                         <hr/>
+                                         
+                                         <!-- Stubbed Permissions (Visual Match) -->
+                                          <div class="d-flex align-items-center justify-content-between mb-2">
+                                             <div class="d-flex align-items-center gap-2">
+                                                 <i class="fa fa-building-o text-muted"></i>
+                                                 <span class="small">Permisos de acceso predeterminados</span>
+                                             </div>
+                                             <select class="form-select form-select-sm w-auto border-0 bg-light">
+                                                 <option>Puede leer</option>
+                                                 <option>Puede editar</option>
+                                                 <option>Sin acceso</option>
+                                             </select>
+                                         </div>
+                                         
+                                          <div class="d-flex align-items-center justify-content-between mb-3">
+                                             <div class="d-flex align-items-center gap-2">
+                                                 <i class="fa fa-eye text-muted"></i>
+                                                 <span class="small">Visibilidad</span>
+                                             </div>
+                                             <select class="form-select form-select-sm w-auto border-0 bg-light">
+                                                 <option>Todos</option>
+                                                 <option>Miembros</option>
+                                             </select>
+                                         </div>
+                                         
+                                         <hr/>
+                                         
+                                         <!-- Invite Section -->
+                                         <div class="d-flex gap-2">
+                                             <div class="d-flex align-items-center justify-content-center bg-success text-white rounded p-2" style="width: 32px; height: 32px;">
+                                                 <span class="small fw-bold">A</span>
+                                             </div>
+                                             <div class="flex-grow-1">
+                                                 <div class="input-group input-group-sm">
+                                                    <input type="text" class="form-control" placeholder="Agregue personas o correos electrónicos..."/>
+                                                    <button class="btn btn-primary" style="background-color: #714B67; border: none;">Invitar</button>
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                          <!-- Member List Item -->
+                                          <div class="d-flex align-items-center mt-3 justify-content-between">
+                                              <div class="d-flex align-items-center gap-2">
+                                                  <div class="bg-success text-white rounded d-flex align-items-center justify-content-center" style="width:32px; height:32px;">
+                                                      <span class="fw-bold">A</span>
+                                                  </div>
+                                                  <div class="d-flex flex-column" style="line-height:1.2;">
+                                                      <span class="small fw-bold d-flex align-items-center">
+                                                          STIVEN SANTOFIMIO 
+                                                          <span class="badge rounded-pill ms-2 fw-normal" style="background-color: #714B67;">Usted</span>
+                                                      </span>
+                                                      <span class="text-muted small" style="font-size:0.75rem;">Admin • coordinadordatos...</span>
+                                                  </div>
+                                              </div>
+                                              <select class="form-select form-select-sm w-auto border-0 bg-light cursor-pointer">
+                                                  <option>Puede editar</option>
+                                              </select>
+                                          </div>
+
+                                     </div>
+                                 </t>
+                             </button>
+                             
+                             <!-- Save Status Indicator (Cloud) -->
+                             <div class="o_save_status ms-2 d-flex align-items-center" t-if="state.currentArticle">
+                                 <t t-if="state.saveStatus === 'saved'">
+                                     <i class="fa fa-cloud text-success" title="Cambios guardados"></i>
+                                 </t>
+                                 <t t-if="state.saveStatus === 'dirty'">
+                                     <i class="fa fa-cloud text-warning" title="Cambios sin guardar..."></i>
+                                 </t>
+                                 <t t-if="state.saveStatus === 'saving'">
+                                     <i class="fa fa-cloud-upload text-primary fa-spin" title="Guardando..."></i>
+                                 </t>
+                             </div>
+
+                             <i class="fa fa-star-o o_header_icon ms-2" t-on-click="toggleFavorite" t-if="state.currentArticle and !state.favoriteMap[state.currentArticleId]"></i>
+                             <i class="fa fa-star text-warning o_header_icon ms-2" t-on-click="toggleFavorite" t-if="state.currentArticle and state.favoriteMap[state.currentArticleId]"></i>
+                             <i class="fa fa-comment-o o_header_icon ms-2" t-on-click="() => state.showChatter = !state.showChatter"></i>
+                             <i class="fa fa-history o_header_icon ms-2" t-on-click="openVersionHistory"></i>
+                             <i class="fa fa-ellipsis-v o_header_icon ms-2" t-on-click="toggleCardPanel" t-ref="cardToggleIcon"></i>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row flex-grow-1 overflow-hidden">
+                        <div class="o_article_body_container flex-grow-1 overflow-auto bg-white">
+                            <!-- Cover Image Section -->
+                <div t-if="state.currentArticle and state.currentArticle.cover_image_type and state.currentArticle.cover_image_type !== 'none'" 
+                     class="o_article_cover_container position-relative overflow-hidden w-100 mb-0"
+                     t-att-class="state.isRepositioning ? 'o_repositioning' : ''"
+                     style="height: 250px; min-height: 250px; flex: 0 0 250px;">
+                    <img t-if="state.currentArticle.cover_image_type === 'url'"
+                         t-att-src="state.currentArticle.cover_image_url"
+                         class="w-100 h-100"
+                         t-attf-style="object-fit: cover; object-position: 50% {{state.currentArticle.cover_position}}%; transition: object-position 0.2s;"/>
+                    <img t-if="state.currentArticle.cover_image_type === 'binary'"
+                         t-attf-src="data:image/png;base64,{{state.currentArticle.cover_image_binary}}"
+                         class="w-100 h-100"
+                         t-attf-style="object-fit: cover; object-position: 50% {{state.currentArticle.cover_position}}%; transition: object-position 0.2s;"/>
+                    
+                    <!-- Cover Controls (Visible on hover) -->
+                    <div class="o_article_cover_controls position-absolute bottom-0 end-0 p-3 d-flex gap-2" t-if="!state.isRepositioning">
+                        <button class="btn btn-light btn-sm shadow-sm border d-flex align-items-center gap-2 px-3 fw-bold" t-on-click="openCoverModal">
+                            <i class="fa fa-picture-o"/> Reemplazar Portada
+                        </button>
+                        <button class="btn btn-light btn-sm shadow-sm border d-flex align-items-center gap-2 px-3 fw-bold" t-on-click="toggleReposition">
+                            <i class="fa fa-arrows-v"/> Reposicionar
+                        </button>
+                        <button class="btn btn-light btn-sm shadow-sm border d-flex align-items-center gap-2 px-3 fw-bold text-danger" t-on-click="removeCover">
+                            <i class="fa fa-trash"/> Eliminar
+                        </button>
+                    </div>
+
+                    <div t-if="state.isRepositioning" 
+                         class="o_reposition_overlay position-absolute top-0 start-0 w-100 h-100" 
+                         t-att-style="state.isDragging ? 'cursor: grabbing;' : 'cursor: grab;'"
+                         t-on-mousedown="startDrag"
+                         t-on-mousemove="onDrag"
+                         t-on-mouseup="stopDrag"
+                         t-on-mouseleave="stopDrag">
+                        
+                        <!-- Instruction Tooltip (Centered) -->
+                        <div class="position-absolute start-50 top-50 translate-middle">
+                             <div class="bg-dark text-white px-3 py-1 rounded small shadow user-select-none" style="opacity: 0.8;">
+                                 Haga clic y mantenga pulsado para reposicionar
+                             </div>
+                        </div>
+
+                        <!-- Action Buttons (Bottom Right) -->
+                         <div class="position-absolute bottom-0 end-0 p-3 d-flex gap-2">
+                            <button class="btn btn-light btn-sm shadow-sm border fw-bold" t-on-click="() => saveCoverPosition(state.currentArticle.cover_position)">
+                                <i class="fa fa-floppy-o me-1"/> Guardar Posición
+                            </button>
+                            <button class="btn btn-light btn-sm shadow-sm border fw-bold" t-on-click="cancelReposition">
+                                <i class="fa fa-undo me-1"/> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div t-att-class="(state.isEditing ? 'o_article_edit_mode ' : 'o_article_view_mode ') + (state.currentArticle and state.currentArticle.cover_image_type and state.currentArticle.cover_image_type !== 'none' ? 'o_article_has_cover' : 'o_article_no_cover')">
+                            <!-- Content Area -->
+                            <div class="o_article_display">
+                            <t t-if="!state.currentArticle">
+                                <t t-if="!state.isLoading">
+                                    <div class='text-muted d-flex align-items-center px-3 py-2'>
+                                        <i class="fa fa-file-alt me-2"></i> No se ha seleccionado ningún artículo o no coincide con los filtros actuales.
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-elif="!state.isActive and !state.showArchived">
+                                <div class='text-muted d-flex align-items-center px-3 py-2'>
+                                    <i class="fa fa-file-alt me-2"></i> Este artículo está archivado.
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <!-- Large Main Icon -->
+                                <div t-att-class="'o_article_main_icon_container px-3 ' + (state.currentArticle.icon ? '' : 'o_collapsed_icon')" t-if="state.currentArticle">
+                                    <div t-att-class="'o_article_main_icon cursor-pointer d-inline-flex align-items-center justify-content-center ' + (state.currentArticle.icon ? '' : 'o_article_icon_empty')"
+                                         t-on-click="openIconPicker"
+                                         t-att-title="state.currentArticle.icon ? 'Cambiar icono' : 'Agregar icono'">
+                                        <t t-if="state.currentArticle.icon" t-out="state.currentArticle.icon"/>
+                                    </div>
+                                </div>
+                                <t t-if="!state.isEditing">
+                                    <div class="o_article_viewer" t-key="state.currentArticle.id" t-out="articleContentMarkup" t-on-click="editArticle" title="Click para editar"/>
+                                </t>
+                                <t t-else="">
+                                    <div t-att-key="'editor-' + state.currentArticle.id">
+                                        <t t-component="Wysiwyg" t-props="wysiwygProps"/>
+                                    </div>
+                                </t>
+                            </t>
+                        </div>
+                        </div>
+                        </div>
+
+                        <!-- Right Sidebar for Chatter (Enterprise Style) -->
+                        <div class="o_knowledge_chatter_sidebar border-start bg-white overflow-auto h-100 d-flex flex-column" t-if="state.showChatter" style="width: 500px; min-width: 400px; flex-shrink: 0;">
+                            <Chatter t-if="state.currentArticle" 
+                                    resModel="'knowledge.article'" 
+                                    resId="state.currentArticle.id"
+                                    hasFollowers="true"
+                                    hasActivities="true"
+                                    hasMessageList="true"/>
+                        </div>
+                    </div>
+                </div> <!-- End o_knowledge_content -->
+            </div> <!-- End o_knowledge_main_container -->
+
+            <!-- Centered Search Modal (Omnisearch Style) -->
+            <t t-if="state.showSearchPanel">
+                <div class="o_search_modal_backdrop show" t-on-click="closeSearchPanel"/>
+                <div class="o_knowledge_search_modal show shadow-lg">
+                    <!-- Search Input Header -->
+                    <div class="p-3 border-bottom d-flex align-items-center">
+                        <i class="fa fa-search text-muted me-3 fs-5"/>
+                        <input type="text"
+                               t-ref="panelSearchInput"
+                               class="border-0 flex-grow-1"
+                               style="font-size: 1.15rem; outline: none;"
+                               placeholder="Buscar un artículo..."
+                               t-on-input="onSearchInput"
+                               t-att-value="state.query"/>
+                        
+                        <div class="d-flex align-items-center gap-2">
+                             <div class="form-check form-switch m-0 d-flex align-items-center me-2" title="Buscar dentro del contenido">
+                                <input class="form-check-input mt-0 cursor-pointer" type="checkbox"
+                                       id="deepSearch"
+                                       t-att-checked="state.searchInContent"
+                                       t-on-click="toggleSearchInContent"/>
+                            </div>
+                            <i class="fa fa-times text-muted cursor-pointer fs-5" t-on-click="closeSearchPanel"/>
+                        </div>
+                    </div>
+
+                    <!-- Filter summary if active -->
+                    <t t-if="state.onlyFavorites || state.selectedTags.length || state.showArchived">
+                        <div class="px-3 py-1 bg-light border-bottom small text-muted d-flex align-items-center gap-2">
+                            <i class="fa fa-filter"/>
+                            <span>Filtros activos:</span>
+                            <t t-if="state.selectedTags.length"><span class="badge bg-secondary">Etiquetas: <t t-esc="state.selectedTags.length"/></span></t>
+                            <t t-if="state.onlyFavorites"><span class="badge bg-warning text-dark"><i class="fa fa-star"/> Favoritos</span></t>
+                            <t t-if="state.showArchived"><span class="badge bg-danger">Archivados</span></t>
+                        </div>
+                    </t>
+
+                    <!-- Scrollable Results -->
+                    <div class="o_search_modal_results flex-grow-1 overflow-auto p-2" style="min-height: 350px;">
+                        <t t-set="displayResults" t-value="state.query ? (state.searchResults || []) : articles"/>
+                        
+                        <t t-if="displayResults.length > 0">
+                             <!-- Header for default view -->
+                             <div t-if="!state.query" class="px-2 py-1 small text-muted text-uppercase fw-bold opacity-75 mb-2">
+                                 Todos los artículos
+                             </div>
+
+                             <div class="list-group list-group-flush">
+                                 <t t-foreach="displayResults" t-as="result" t-key="result.id">
+                                     <a href="#" class="list-group-item list-group-item-action border-0 rounded-2 mb-1 p-2 d-flex align-items-center"
+                                        t-on-click="() => this.renderArticle(result)">
+                                         <div class="o_article_emoji me-3 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 1.25rem;">
+                                             <t t-if="result.icon" t-out="result.icon"/>
+                                             <t t-else="">
+                                                 <i t-if="articles.some(a => a.parent_id === result.id)" class="fa fa-folder text-warning"></i>
+                                                 <i t-else="" class="fa fa-file-text-o text-muted opacity-50"></i>
+                                             </t>
+                                         </div>
+                                         <div class="flex-grow-1 min-w-0">
+                                             <div class="fw-bold text-dark text-truncate"><t t-esc="result.name"/></div>
+                                             <div class="small text-muted text-truncate" t-if="result.snippet or result.display_name" style="max-height: 1.2rem;">
+                                                 <t t-out="result.snippet or result.display_name"/>
+                                             </div>
+                                         </div>
+                                         <div class="text-muted small ms-2 opacity-50 d-none d-md-block">
+                                             <span class="badge bg-light text-muted border py-1 px-2">ENTER</span>
+                                         </div>
+                                     </a>
+                                 </t>
+                             </div>
+                        </t>
+                        
+                        <t t-if="displayResults.length === 0 and state.query">
+                             <div class="text-center p-5 text-muted">
+                                 <i class="fa fa-search-minus fa-3x mb-3 opacity-25"/>
+                                 <p class="fs-5">No se encontraron artículos</p>
+                                 <p class="small">Intenta con otros términos o activa la búsqueda en contenido</p>
+                             </div>
+                        </t>
+
+                        <!-- Shortcut Guide (Always at bottom if results found) -->
+                        <div t-if="displayResults.length > 0" class="d-flex justify-content-center gap-3 mt-4 mb-2 small text-muted opacity-50">
+                             <span><span class="badge bg-light text-muted border">↑↓</span> para navegar</span>
+                             <span><span class="badge bg-light text-muted border">ENTER</span> para abrir</span>
+                             <span><span class="badge bg-light text-muted border">ESC</span> para cerrar</span>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="p-2 px-3 bg-light border-top d-flex justify-content-between align-items-center small text-muted">
+                        <div class="d-flex align-items-center gap-3">
+                            <span><i class="fa fa-bolt me-1"/> Búsqueda avanzada</span>
+                        </div>
+                        <div>
+                             CONSEJO — busca por <span class="fw-bold">@usuarios</span> o <span class="fw-bold">#etiquetas</span>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showRenameModal">
+                <div class="modal fade show d-block" tabindex="-1"
+                     style="background-color: rgba(0,0,0,0.3); z-index: 2000;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Rename Article</h5>
+                                <button type="button" class="btn-close" aria-label="Close"
+                                        t-on-click="cancelRename"/>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" class="form-control"
+                                       t-model="state.renameTitle"
+                                       placeholder="Enter new article title"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" t-on-click="cancelRename">Cancel</button>
+                                <button class="btn btn-primary" t-on-click="confirmRename">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showMoveModal">
+                <div class="modal fade show d-block" tabindex="-1"
+                     style="background-color: rgba(0,0,0,0.3); z-index: 2000;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Move Article</h5>
+                                <button type="button" class="btn-close" aria-label="Close" t-on-click="cancelMove"/>
+                            </div>
+
+                            <div class="mb-2 ms-3">
+                                <span class="small mb-2">Selected location: </span>
+                                <t t-if="state.selectedMoveTarget">
+                                    <t t-set="trail" t-value="this.getBreadcrumbTrail(state.selectedMoveTarget) or []"/>
+                                    <span class="badge bg-light text-dark">
+                                        <t t-esc="trail.map(t => t.name).join(' / ')"/>
+                                    </span>
+                                </t>
+                                <t t-if="!state.selectedMoveTarget">
+                                    📁 Top-level
+                                </t>
+                            </div>
+                            <div class="modal-body" style="max-height: 300px; overflow-y: auto;">
+                                <p class="small">Select new parent for the article.</p>
+
+                                <div class="tree-node px-1 py-1 border rounded mb-2"
+                                     t-att-class="{'tree-node selected': state.selectedMoveTarget === null, 'tree-node': state.selectedMoveTarget !== null}"
+                                     style="cursor: pointer;"
+                                     t-on-click="() => this.selectMoveTarget(null)">
+                                    📁 No Parent (Top-level)
+                                </div>
+
+                                <div class="move-tree">
+                                    <t t-set="rootArticles" t-value="articles.filter(a => !a.parent_id)"/>
+                                    <t t-call="MoveTree">
+                                        <t t-set="nodes" t-value="rootArticles"/>
+                                        <t t-set="toggleCollapse" t-value="(id) => this.toggleCollapse(id)"/>
+                                        <t t-set="collapsedNodes" t-value="state.collapsedNodes"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" t-on-click="cancelMove">Cancel</button>
+                                <button class="btn btn-primary" t-on-click="confirmMove">Move</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showArchiveModal">
+                <div class="modal fade show d-block" tabindex="-1"
+                     style="background-color: rgba(0,0,0,0.3); z-index: 2000;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Archive Article</h5>
+                                <button type="button" class="btn-close" aria-label="Close" t-on-click="cancelArchive"/>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to archive this article?</p>
+                                <p class="small text-muted">You can still view it by enabling “Show Archived” in the
+                                    filters panel.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" t-on-click="cancelArchive">Cancel</button>
+                                <button class="btn btn-danger" t-on-click="confirmArchive">Archive</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showUnarchiveModal">
+                <div class="modal fade show d-block" tabindex="-1"
+                     style="background-color: rgba(0,0,0,0.3); z-index: 2000;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Unarchive Article</h5>
+                                <button type="button" class="btn-close" aria-label="Close"
+                                        t-on-click="cancelUnarchive"/>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to unarchive this article?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" t-on-click="cancelUnarchive">Cancel</button>
+                                <button class="btn btn-success" t-on-click="confirmUnarchive">Unarchive</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Right Slide-In Panel for New Article -->
+            <t t-if="state.showNewArticlePanel">
+                <div class="o_new_article_panel border-start px-3 py-3"
+                     style="position: absolute; right: 0; top: 0; bottom: 0; width: 400px; background: #fff; z-index: 1100; box-shadow: -2px 0 8px rgba(0,0,0,0.1);">
+                    <h5 class="mb-3">Create New Article</h5>
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" t-model="state.newArticleTitle" class="new-article-title-input form-control"
+                               id="new_article_input" placeholder="Enter article title..."/>
+                    </div>
+
+                    <div class="mb-3">
+                        <div>
+                            <div class="form-label">Location</div>
+                            <span class="badge bg-light text-dark">📁
+                                <t t-esc="currentArticle?.display_name || 'Root'"/>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3 small">
+                        <ul class="mb-0 ps-3">
+                            <li>This article will inherit access rights from its parent.</li>
+                            <li>You can change the parent later from the article settings.</li>
+                            <li>To edit the content, use the <strong>Edit</strong> button after creating the article.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-secondary me-2" t-on-click="cancelNewArticle">Cancel</button>
+                        <button class="btn btn-primary" t-on-click="createQuickArticle">Create</button>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showCopyModal">
+                <div class="modal-backdrop fade show"></div>
+                <div class="modal d-block" tabindex="-1" role="dialog" style="z-index:1050">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Rename Copied Article</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input t-model="state.copyTitle" type="text" class="form-control" placeholder="New article name" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" t-on-click="cancelCopy">Cancel</button>
+                                <button class="btn btn-primary" t-on-click="confirmCopy">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showTagModal">
+                <div class="modal d-block" style="background: rgba(0, 0, 0, 0.5); z-index: 1050;">
+                    <div class="modal-dialog">
+                        <div class="modal-content p-3">
+                            <h5 class="mb-2">Edit Tags</h5>
+                            <input type="text" t-model="state.tagSearch" class="form-control mb-2"
+                                   placeholder="Search tags..."/>
+                            <div class="d-flex flex-wrap gap-2 mb-3 flex-grow-1 o_filter_tags_scroller">
+                                <t t-foreach="filteredAvailableTags()" t-as="tag" t-key="tag.id">
+                                    <span
+                                        t-att-class="state.selectedTagIds.includes(tag.id) ? 'badge rounded-pill bg-primary text-white' : 'badge rounded-pill bg-light text-dark border'"
+                                        t-on-click="() => this.toggleTagSelection(tag.id)"
+                                        t-att-data-tag-index="tag.id"
+                                        style="cursor: pointer;">
+                                        <t t-esc="tag.name"/>
+                                    </span>
+                                </t>
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-secondary me-2" t-on-click="cancelTagModal">Cancel</button>
+                                <button class="btn btn-primary" t-on-click="confirmTagsUpdate">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showVersionHistoryPanel">
+                <div class="modal d-block o_history_modal" style="background: rgba(0, 0, 0, 0.5); z-index: 2000;">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Historial</h5>
+                                <button type="button" class="btn-close" t-on-click="() => state.showVersionHistoryPanel = false"/>
+                            </div>
+                            <div class="o_history_main">
+                                <!-- Sidebar: Lista de Versiones -->
+                                <div class="o_history_sidebar">
+                                    <div class="o_history_list">
+                                        <t t-foreach="state.versionHistory" t-as="ver" t-key="ver.id">
+                                            <div t-attf-class="o_history_item #{state.selectedVersionId === ver.id ? 'active' : ''}"
+                                                 t-on-click="() => this.selectHistoryVersion(ver.id)">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <strong><t t-esc="ver.create_date"/></strong>
+                                                    <i class="fa fa-chevron-right ms-2"/>
+                                                </div>
+                                                <div class="small opacity-75 mt-1">
+                                                    <t t-esc="ver.user_id[1]"/>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-light text-dark">Versión <t t-esc="ver.version_number"/></span>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                    <div class="p-3 border-top bg-light">
+                                        <button class="btn btn-primary w-100 mb-2" t-on-click="restoreSelectedVersion" t-if="state.selectedVersionId !== 'current'">
+                                            Reestablece historial
+                                        </button>
+                                        <button class="btn btn-outline-secondary w-100" t-on-click="() => state.showVersionHistoryPanel = false">
+                                            Descartar
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Main Content: Tabs and Content -->
+                                <div class="o_history_content_area">
+                                    <ul class="nav nav-tabs o_version_tabs px-3">
+                                        <li class="nav-item">
+                                            <a t-attf-class="nav-link #{state.historyTab === 'content' ? 'active' : ''}" 
+                                               href="#" t-on-click.prevent="() => this.setHistoryTab('content')">
+                                                Contenido
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a t-attf-class="nav-link #{state.historyTab === 'diff' ? 'active' : ''}" 
+                                               href="#" t-on-click.prevent="() => this.setHistoryTab('diff')">
+                                                Comparación
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="o_version_body shadow-sm p-0">
+                                        <div class="o_article_history_viewer h-100 overflow-auto position-relative">
+                                            <!-- Cover in History (Shared for both tabs) -->
+                                            <div t-if="state.selectedVersionMetadata and state.selectedVersionMetadata.cover_image_type and state.selectedVersionMetadata.cover_image_type !== 'none'" 
+                                                 class="o_article_cover_container position-relative overflow-hidden w-100 mb-0"
+                                                 style="height: 200px; min-height: 200px;">
+                                                <img t-if="state.selectedVersionMetadata.cover_image_type === 'url'"
+                                                     t-att-src="state.selectedVersionMetadata.cover_image_url"
+                                                     class="w-100 h-100"
+                                                     t-attf-style="object-fit: cover; object-position: 50% {{state.selectedVersionMetadata.cover_position}}%;"/>
+                                                <img t-if="state.selectedVersionMetadata.cover_image_type === 'binary'"
+                                                     t-attf-src="data:image/png;base64,{{state.selectedVersionMetadata.cover_image_binary}}"
+                                                     class="w-100 h-100"
+                                                     t-attf-style="object-fit: cover; object-position: 50% {{state.selectedVersionMetadata.cover_position}}%;"/>
+                                            </div>
+                                            
+                                            <div class="o_article_history_content_wrapper px-5 py-4"
+                                                 t-att-style="state.selectedVersionMetadata and state.selectedVersionMetadata.cover_image_type and state.selectedVersionMetadata.cover_image_type !== 'none' ? 'margin-top: -85px;' : ''">
+                                                
+                                                <!-- Icon in History (Shared) -->
+                                                <div class="o_article_history_icon mb-0 d-flex align-items-center justify-content-center" 
+                                                     style="width: 100px; height: 100px; font-size: 78px; position: relative; z-index: 10; user-select: none;"
+                                                     t-if="state.selectedVersionMetadata and state.selectedVersionMetadata.icon">
+                                                    <t t-out="state.selectedVersionMetadata.icon"/>
+                                                </div>
+                                                
+                                                <div class="o_article_dynamic_content pt-2">
+                                                    <!-- Tab Content -->
+                                                    <t t-if="state.historyTab === 'content'">
+                                                        <div class="o_article_content_snapshot">
+                                                            <t t-out="this.markup(state.selectedVersionContent || '')"/>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="state.historyTab === 'diff'">
+                                                        <div class="o_diff_container">
+                                                            <t t-if="state.diffHtml" t-out="this.markup(state.diffHtml)"/>
+                                                            <div t-if="!state.diffHtml" class="text-center p-5 text-muted">
+                                                                <i class="fa fa-spinner fa-spin fa-2x mb-3"/>
+                                                                <p>Cargando comparación visual...</p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showDiffPanel">
+                <div class="o_diff_panel position-absolute end-0 p-3 bg-white border shadow"
+                     style="width: calc(100vw - 100px); height: 100%; top: 0; z-index: 1050;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">Version Comparison</h5>
+                        <i class="fa fa-times text-muted" style="cursor:pointer;" t-on-click="closeDiffPanel"/>
+                    </div>
+                    <div class="mb-2 small text-muted">
+                        <t t-set="oldVer" t-value="state.versionHistory.find(v => v.id === state.oldVersionId)"/>
+                        <t t-set="newVer" t-value="state.versionHistory.find(v => v.id === state.currentVersionId)"/>
+                        Comparing: <t t-esc="'v' + (oldVer?.version_number || state.oldVersionId)"/> ←
+                                   <t t-esc="'v' + (newVer?.version_number || state.currentVersionId)"/>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary" t-on-click="() => this.openDiffPanel(state.currentVersionId, state.oldVersionId)">
+                        Swap Comparison
+                    </button>
+                    <div class="overflow-auto" style="max-height: calc(100% - 40px);">
+                        <t t-if="state.diffHtml" t-out="this.markup(state.diffHtml)"/>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.showCardPanel">
+                <div class="o_card_panel show position-absolute end-0 p-3 shadow bg-white border"
+                     t-ref="cardPanel"
+                     style="width: 280px; z-index: 1100;">
+                    
+                    <div class="o_card_options mb-3">
+                        <div class="o_card_action mb-1 p-2 border-bottom" t-on-click="() => this._closeCardPanel()">
+                            <i class="fa fa-times me-2"></i> Cerrar menú
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="(ev) => { this._closeCardPanel(); this.openIconPicker(ev); }">
+                            <i class="fa fa-smile-o me-2"></i> <t t-esc="state.currentArticle.icon ? 'Cambiar icono' : 'Agregar icono'"/>
+                        </div>
+                        <div class="o_card_action p-2 text-danger" t-if="state.currentArticle.icon" t-on-click="() => { this._closeCardPanel(); this.removeIcon(); }">
+                            <i class="fa fa-trash me-2"></i> Eliminar icono
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="() => { this._closeCardPanel(); this.openRenameModal(); }">
+                            <i class="fa fa-font me-2"></i> Renombrar
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="() => { this._closeCardPanel(); (!state.currentArticle.cover_image_type || state.currentArticle.cover_image_type === 'none') ? this.addCover() : this.openCoverModal(); }">
+                            <i class="fa fa-picture-o me-2"></i> <span t-esc="(!state.currentArticle.cover_image_type || state.currentArticle.cover_image_type === 'none') ? 'Agregar portada' : 'Cambiar portada'"/>
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="() => this._closeCardPanel()">
+                            <i class="fa fa-cog me-2"></i> Agregar propiedades
+                        </div>
+                        <div class="o_card_action p-2 d-flex justify-content-between align-items-center">
+                            <span><i class="fa fa-arrows-h me-2"></i> Ancho completo</span>
+                            <div class="form-check form-switch m-0">
+                                <input class="form-check-input" type="checkbox"/>
+                            </div>
+                        </div>
+                        <hr class="my-2"/>
+                        <div class="o_card_action p-2" t-on-click="moveToFolder">
+                            <i class="fa fa-arrows me-2"></i> Mover a
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="() => this._closeCardPanel()">
+                            <i class="fa fa-lock me-2"></i> Bloquear contenido
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="createCopy">
+                            <i class="fa fa-copy me-2"></i> Crear una copia
+                        </div>
+                        <div class="o_card_action p-2" t-on-click="exportArticle">
+                            <i class="fa fa-download me-2"></i> Exportar
+                        </div>
+                        <div class="o_card_action p-2 text-danger" t-on-click="archiveArticle">
+                            <i class="fa fa-trash me-2"></i> Enviar a la papelera
+                        </div>
+                    </div>
+
+                    <!-- Metadata / Owners -->
+                    <div class="o_card_meta border-top pt-3 mt-2">
+                        <div class="d-flex align-items-center mb-3">
+                            <img t-att-src="state.modifiedByAvatar" class="rounded-pill me-2" style="width: 32px; height: 32px;"/>
+                            <div class="flex-grow-1 overflow-hidden" style="line-height: 1.2;">
+                                <div class="small text-muted">Última edición · <t t-esc="state.modifiedAgo"/></div>
+                                <div class="text-truncate fw-bold small"><t t-esc="state.modifiedBy"/></div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <img t-att-src="state.createdByAvatar" class="rounded-pill me-2" style="width: 32px; height: 32px;"/>
+                            <div class="flex-grow-1 overflow-hidden" style="line-height: 1.2;">
+                                <div class="small text-muted">Creado · <t t-esc="state.createdAgo"/></div>
+                                <div class="text-truncate fw-bold small"><t t-esc="state.createdBy"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Cover Selection Modal -->
+            <t t-if="state.showCoverModal">
+                <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5); z-index: 2000;">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content shadow-lg border-0">
+                            <div class="modal-header border-bottom-0 pb-0">
+                                <h5 class="modal-title fw-bold">Elija una portada</h5>
+                                <button type="button" class="btn-close" t-on-click="closeCoverModal"></button>
+                            </div>
+                            
+                            <!-- Tabs -->
+                            <div class="modal-body pt-2">
+                                <ul class="nav nav-tabs border-bottom-0 mb-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link cursor-pointer fw-bold px-4" t-att-class="state.coverModalTab === 'gallery' ? 'active border-bottom border-primary border-3 text-primary' : 'text-muted border-0'" t-on-click="() => state.coverModalTab = 'gallery'">Galería</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link cursor-pointer fw-bold px-4" t-att-class="state.coverModalTab === 'upload' ? 'active border-bottom border-primary border-3 text-primary' : 'text-muted border-0'" t-on-click="() => state.coverModalTab = 'upload'">Subir</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link cursor-pointer fw-bold px-4" t-att-class="state.coverModalTab === 'url' ? 'active border-bottom border-primary border-3 text-primary' : 'text-muted border-0'" t-on-click="() => state.coverModalTab = 'url'">Vincular</a>
+                                    </li>
+                                </ul>
+
+                                <div class="overflow-auto custom-scrollbar" style="max-height: 450px; min-height: 300px;">
+                                    <!-- Gallery -->
+                                    <t t-if="state.coverModalTab === 'gallery'">
+                                        <div class="row g-3 p-1">
+                                            <t t-set="galleryImages" t-value="[
+                                                'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&amp;w=2071&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&amp;w=2070&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&amp;w=2074&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&amp;w=2070&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&amp;w=2070&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&amp;w=2070&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&amp;w=2070&amp;auto=format&amp;fit=crop',
+                                                'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&amp;w=2070&amp;auto=format&amp;fit=crop'
+                                            ]"/>
+                                            <t t-foreach="galleryImages" t-as="imgUrl" t-key="imgUrl">
+                                                <div class="col-md-4">
+                                                    <div class="ratio ratio-16x9 rounded overflow-hidden cursor-pointer shadow-sm hover-brightness active-scale border"
+                                                         t-on-click="() => this.updateCover('url', imgUrl)">
+                                                        <img t-att-src="imgUrl" class="object-fit-cover w-100 h-100"/>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+
+                                    <!-- Upload -->
+                                    <t t-if="state.coverModalTab === 'upload'">
+                                        <div class="d-flex flex-column align-items-center justify-content-center p-5 border rounded-3 bg-light" style="border: 2px dashed #dee2e6 !important;">
+                                            <i class="fa fa-cloud-upload fa-4x text-muted mb-3 opacity-25"/>
+                                            <h6 class="text-muted fw-bold">Subir una imagen</h6>
+                                            <input type="file" class="form-control w-75 mt-3 shadow-sm" accept="image/*" t-on-change="onCoverUpload"/>
+                                            <p class="small text-muted mt-3 text-center">Formatos soportados: JPG, PNG, WEBP.<br/>Tamaño recomendado: 1500x400px</p>
+                                        </div>
+                                    </t>
+
+                                    <!-- URL -->
+                                    <t t-if="state.coverModalTab === 'url'">
+                                        <div class="p-4 bg-light rounded-3">
+                                            <label class="form-label fw-bold">Enlace de la imagen</label>
+                                            <div class="input-group shadow-sm">
+                                                <input type="text" class="form-control" placeholder="https://ejemplo.com/imagen.jpg"
+                                                       t-on-input="(e) => state.coverImageURLInput = e.target.value"/>
+                                                <button class="btn btn-primary px-4 fw-bold" t-on-click="() => this.updateCover('url', state.coverImageURLInput)">Agregar URL</button>
+                                            </div>
+                                            <div class="alert alert-info mt-3 small mb-0">
+                                                <i class="fa fa-info-circle me-1"/> Pega el enlace directo a una imagen pública.
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="modal-footer bg-light border-0 justify-content-center py-2">
+                                <span class="small text-muted">Búsqueda avanzada y Unsplash próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="MoveTree">
+        <t t-set="toggleCollapse" t-value="toggleCollapse or (() => {})"/>
+        <t t-set="collapsedNodes" t-value="collapsedNodes or new Set()"/>
+
+        <ul class="ms-3 ps-2 border-start">
+            <t t-foreach="nodes" t-as="node" t-key="node.id">
+                <li>
+                    <t t-set="children" t-value="articles.filter(a => a.parent_id === node.id)"/>
+
+                    <div class="tree-node px-1 py-1 rounded"
+                         style="cursor: pointer;"
+                         t-att-class="{'tree-node selected': state.selectedMoveTarget === node.id, 'tree-node': state.selectedMoveTarget !== node.id}"
+                         t-on-click="() => this.selectMoveTarget(node.id)">
+                        <i t-if="children.length"
+                           class="fa"
+                           t-att-class="collapsedNodes.has(node.id) ? 'fa-caret-right me-1' : 'fa-caret-down me-1'"
+                           style="cursor: pointer;"
+
+                           t-on-click.stop="() => toggleCollapse(node.id)"
+                        />
+                        📁
+                        <t t-esc="node.name"/>
+                    </div>
+
+                    <t t-if="children.length and !collapsedNodes.has(node.id)">
+                        <t t-call="MoveTree">
+                            <t t-set="nodes" t-value="children"/>
+                            <t t-set="toggleCollapse" t-value="toggleCollapse"/>
+                            <t t-set="collapsedNodes" t-value="collapsedNodes"/>
+                        </t>
+                    </t>
+                </li>
+            </t>
+        </ul>
+    </t>
+
+</odoo>

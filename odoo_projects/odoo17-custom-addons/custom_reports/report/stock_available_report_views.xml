@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_stock_avail" model="ir.actions.report">
+        <field name="name">Reporte de Existencias</field>
+        <field name="model">stock.available.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.report_stock_available_template</field>
+        <field name="report_file">custom_reports.report_stock_available_template</field>
+        <field name="print_report_name">'Reporte_Existencias'</field>
+        <field name="binding_model_id" ref="model_stock_available_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_stock_available_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <style>
+                    .table-main th {
+                        background-color: #714B67;
+                        color: white;
+                        text-transform: uppercase;
+                        font-size: 11px;
+                    }
+                    .table-main td {
+                        font-size: 11px;
+                        border-bottom: 1px solid #eee;
+                    }
+                    .header-info {
+                        font-size: 12px;
+                        margin-bottom: 15px;
+                    }
+                </style>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center" style="border-bottom: 2px solid #714B67; margin-bottom: 20px;">
+                        <h2 style="color: #714B67; margin-top: 5px;">Reporte de Existencias</h2>
+                    </div>
+
+                    <div class="row header-info">
+                        <div class="col-6">
+                            <strong>Compañía:</strong> <t t-out="company"/><br/>
+                            <strong>Método de Costeo:</strong> <t t-out="cost_method"/>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Fecha Generación:</strong> <t t-out="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm table-main mt-2">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Almacén</th>
+                                <th class="text-left">Ubicación</th>
+                                <th class="text-left">Categoría</th>
+                                <th class="text-left">Código</th>
+                                <th class="text-left">Producto</th>
+                                <th class="text-center">UdM</th>
+                                <th class="text-right">Cantidad a Mano</th>
+                                <th class="text-right">Disponible</th>
+                                <th class="text-right">Costo Unitario</th>
+                                <th class="text-right">Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_val" t-value="0"/>
+                            <t t-foreach="data" t-as="row">
+                                <tr>
+                                    <td><t t-out="row['warehouse_name']"/></td>
+                                    <td><t t-out="row['location_name']"/></td>
+                                    <td><t t-out="row['category_name']"/></td>
+                                    <td><t t-out="row['default_code']"/></td>
+                                    <td><t t-out="row['product_name']"/></td>
+                                    <td class="text-center"><t t-out="row['uom_name']"/></td>
+                                    <td class="text-right"><t t-out="row['quantity']" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right"><t t-out="row['available_quantity']" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    <td class="text-right">
+                                        <t t-out="row['cost']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-out="row['total_value']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                    </td>
+                                    <t t-set="total_val" t-value="total_val + row['total_value']"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr style="background-color: #f8f9fa; font-weight: bold; font-size: 13px;">
+                                <td colspan="9" class="text-right" style="color: #714B67;">TOTAL VALORIZADO</td>
+                                <td class="text-right" style="color: #714B67;">
+                                    <t t-out="total_val" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

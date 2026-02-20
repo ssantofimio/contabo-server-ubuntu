@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem
+        id="menu_custom_reports_root"
+        name="Reportes"
+        sequence="100"
+        web_icon="custom_reports,static/description/icon.png"/>
+
+    <!-- Compras Section Parent -->
+    <menuitem
+        id="menu_custom_reports_purchase"
+        name="Compras"
+        parent="menu_custom_reports_root"
+        sequence="10"/>
+
+    <!-- Inventarios Section Parent -->
+    <menuitem
+        id="menu_custom_reports_inventory"
+        name="Inventarios"
+        parent="menu_custom_reports_root"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_custom_reports_inventory_reports"
+        name="Reportes"
+        parent="menu_custom_reports_inventory"
+        sequence="10"/>
+
+    <!-- Contabilidad Section Parent -->
+    <menuitem
+        id="menu_custom_reports_accounting"
+        name="Contabilidad"
+        parent="menu_custom_reports_root"
+        sequence="30"/>
+</odoo>

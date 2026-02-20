@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="pos_self_order.LandingPage" t-inherit-mode="extension">
+        
+        <!-- Table Occupancy Warning: Purely additive (Passive) -->
+        <xpath expr="//div[hasclass('o_pos_landing_footer')]" position="before">
+            <t t-if="selfOrder.customIdentificationEnabled">
+                <div t-if="state.showBusyWarning" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 1050;">
+                    <div class="bg-white p-4 p-md-5 rounded-4 shadow-lg text-center mx-3" style="max-width: 450px;">
+                        <div class="mb-4">
+                            <span class="display-1 text-warning">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-bold mb-3">Mesa Ocupada</h2>
+                        <p class="text-muted mb-4 fs-5">Esta mesa tiene un pedido activo en curso. Si es su pedido, identifíquese para continuar.</p>
+                        <div class="d-grid gap-3">
+                            <button class="btn btn-primary btn-lg fw-bold py-3 px-5 rounded-pill shadow-sm" t-on-click="() => this.router.navigate('customer_info')">
+                                SOY YO (IDENTIFICARME)
+                            </button>
+                        </div>
+                        <p class="mt-4 small text-muted">Si desea un pedido nuevo separado, por favor consulte con un salonero.</p>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+
+        <!-- Use attributes to hide standard button when our module is ON -->
+        <xpath expr="//t[@t-if='showMyOrderBtn()']/a" position="attributes">
+            <attribute name="t-if">!selfOrder.customIdentificationEnabled</attribute>
+        </xpath>
+
+        <!-- Add our custom button after the standard one -->
+        <xpath expr="//t[@t-if='showMyOrderBtn()']/a" position="after">
+            <a t-if="selfOrder.customIdentificationEnabled" type="button" t-on-click="clickMyOrder" class="btn btn-lg btn-primary">
+                Mi Orden
+            </a>
+        </xpath>
+
+    </t>
+</templates>

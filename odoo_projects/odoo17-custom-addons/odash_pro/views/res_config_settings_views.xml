@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_odash_pro" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.odash_pro</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <field name="is_root_company" invisible="1"/>
+                    <app data-string="Odashboard Pro"
+                         string="Odashboard Pro" name="odash_pro"
+                         logo="/odash_pro/static/description/icon.png">
+ 
+                        <div id="odash_pro_key" invisible="1">
+                            <block title="License"
+                                   name="odash_pro_key_container">
+                                <div class="d-flex justify-content-end">
+                                    <button name="action_manage_plan"
+                                            string="Manage my plan"
+                                            type="object"
+                                            icon="fa-bullseye"
+                                            class="btn btn-link"
+                                            invisible="not odash_pro_key_synchronized"/>
+                                </div>
+                                <div class="row mt16 o_settings_container"
+                                     id="odash_pro_settings">
+                                    <div class="col-12 col-lg-6 o_setting_box"
+                                         id="odash_pro_key_settings">
+                                        <div class="o_setting_left_pane"/>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Odashboard License key</span>
+                                            <div class="text-muted">Standalone Pro - Registration not required</div>
+                                            <field name="odash_pro_key"
+                                                   readonly="1"
+                                                   class="oe_input_key"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 o_setting_box"
+                                         id="odash_pro_actions">
+                                        <div class="o_setting_left_pane">
+                                             <span class="fa fa-check text-success" />
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Status</span>
+                                            <div class="text-muted">License is active and synchronized (Standalone)</div>
+                                            <div class="mt8 text-success">
+                                                <span class="fa fa-check"/>
+                                                Pro Plan Active
+                                            </div>
+                                            <field name="odash_pro_key_synchronized" invisible="True"/>
+                                            <field name="odash_pro_plan" invisible="True"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 o_setting_box"
+                                         id="odash_pro_uuid">
+                                        <div class="o_setting_left_pane"/>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Instance UUID</span>
+                                            <div class="text-muted">Unique identifier for support</div>
+                                            <field name="odash_pro_uuid"
+                                                   readonly="1"
+                                                   class="oe_input_uuid"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6 o_setting_box"
+                                         id="odash_pro_plan_info">
+                                        <div class="o_setting_left_pane"/>
+                                        <div class="o_setting_right_pane">
+                                            <span class="o_form_label">Engine Version</span>
+                                            <div class="text-muted">Current engine version</div>
+                                            <field name="odash_pro_engine_version" readonly="1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </block>
+                        </div>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

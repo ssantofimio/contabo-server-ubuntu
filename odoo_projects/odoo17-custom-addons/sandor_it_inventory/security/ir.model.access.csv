@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_it_components,it.components,model_it_components,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_it_assets,it.assets,model_it_assets,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_asset_type,asset.type,model_asset_type,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_asset_model,asset.model,model_asset_model,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_asset_brand,asset.brand,model_asset_brand,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_system_system,system.system,model_system_system,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_it_assignment_user,it.assignment,model_it_assignment,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_it_assignment_line_user,it.assignment.line,model_it_assignment_line,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_it_assignment_discount_user,it.assignment.discount,model_it_assignment_discount,sandor_it_inventory.group_it_asset_user,1,1,1,1
+access_it_assignment_confirm_wizard,it.assignment.confirm.wizard,model_it_assignment_confirm_wizard,sandor_it_inventory.group_it_asset_user,1,1,1,1

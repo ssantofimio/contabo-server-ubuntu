@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="menu_it_inventory_and_asset_management_root" name="Inventario TIC" sequence="1" groups="sandor_it_inventory.group_it_asset_user" web_icon="sandor_it_inventory,static/description/icon.png"/>
+
+        <!-- Top Level Items -->
+
+
+        <!-- Group: TIC -->
+        <menuitem id="menu_tic_category" name="TIC" parent="menu_it_inventory_and_asset_management_root" sequence="1"/>
+            <menuitem id="menu_it_assignment" name="Asignación TIC" parent="menu_tic_category" action="action_it_assignment" sequence="0"/>
+            <menuitem id="menu_it_inventory_products" name="Productos" parent="menu_tic_category" action="action_it_inventory_products" sequence="1"/>
+            <menuitem id="menu_hr_employee" name="Empleados" parent="menu_tic_category" action="hr.open_view_employee_list_my" sequence="2"/>
+
+        <!-- Group: IT Assets (Activos TI) -->
+        <menuitem id="menu_it_assets_category" name="Activos TI" parent="menu_it_inventory_and_asset_management_root" sequence="2"/>
+            <menuitem id="menu_it_assets" name="Activos" parent="menu_it_assets_category" action="action_it_assets" sequence="0"/>
+            <menuitem id="menu_system_system" name="Sistemas" parent="menu_it_assets_category" action="action_system_system" sequence="1"/>
+            <menuitem id="menu_it_components" name="Componentes" parent="menu_it_assets_category" action="action_it_components" sequence="2"/>
+
+        <!-- Configuration Group -->
+        <menuitem id="menu_configuration" name="Configuración" parent="menu_it_inventory_and_asset_management_root" sequence="10"/>
+            <menuitem id="menu_asset_model" name="Modelos de Activos" parent="menu_configuration" action="action_asset_model"/>
+            <menuitem id="menu_asset_type_main" name="Tipos de Activos" parent="menu_configuration" action="action_asset_type"/>
+            <menuitem id="menu_asset_brand_main" name="Marcas de Activos" parent="menu_configuration" action="action_asset_brand"/>
+
+</odoo>

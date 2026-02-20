@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_system_tree" model="ir.ui.view">
+        <field name="name">system.system.tree</field>
+        <field name="model">system.system</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="user"/>
+                <field name="state"/>
+                <field name="update_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_system_form" model="ir.ui.view">
+        <field name="name">system.system.form</field>
+        <field name="model">system.system</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="user"/>
+                        <field name="state"/>
+                        <field name="update_date"/>
+                        <field name="assets" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'post_refresh': True}"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+          
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_system_system" model="ir.actions.act_window">
+        <field name="name">Systems</field>
+        <field name="res_model">system.system</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+</odoo>

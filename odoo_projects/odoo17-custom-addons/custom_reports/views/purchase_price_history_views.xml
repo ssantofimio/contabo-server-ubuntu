@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_report_price_history_tree" model="ir.ui.view">
+        <field name="name">purchase.report.price.history.tree</field>
+        <field name="model">purchase.report.price.history</field>
+        <field name="arch" type="xml">
+            <tree string="Histórico de Precios (Facturas de Proveedor)" create="0" edit="0" delete="0">
+                <header>
+                    <button name="%(custom_reports.action_purchase_price_history_wizard)d" 
+                            string="Filtros" 
+                            type="action" 
+                            class="btn-primary" 
+                            context="{'is_adjustment': True}"
+                            display="always"/>
+                </header>
+                <field name="date" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="warehouse_id" optional="show"/>
+                <field name="location_id" optional="hide"/>
+                <field name="product_categ_id" optional="show"/>
+                <field name="product_id"/>
+                <field name="invoice_id" optional="show"/>
+                <field name="quantity" sum="Total Cantidad"/>
+                <field name="uom_id" string="UdM" groups="uom.group_uom"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="price_unit" widget="monetary" string="Precio Unitario"/>
+                <field name="price_total" widget="monetary" sum="Total Valor" string="Total"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_purchase_report_price_history_pivot" model="ir.ui.view">
+        <field name="name">purchase.report.price.history.pivot</field>
+        <field name="model">purchase.report.price.history</field>
+        <field name="arch" type="xml">
+            <pivot string="Histórico de Precios (Facturas de Proveedor)" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="date" interval="month" type="col"/>
+                <field name="price_unit" type="measure"/>
+                <field name="quantity" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_purchase_report_price_history_search" model="ir.ui.view">
+        <field name="name">purchase.report.price.history.search</field>
+        <field name="model">purchase.report.price.history</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Histórico">
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="warehouse_id"/>
+                <field name="product_categ_id"/>
+                <field name="invoice_id"/>
+                <separator/>
+                <filter string="Este Mes" name="this_month" domain="[('date', '&gt;=', (context_today()).strftime('%%Y-%%m-01'))]"/>
+                <group expand="1" string="Agrupar Por">
+                    <filter string="Proveedor" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Almacén" name="group_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                    <filter string="Producto" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Categoría" name="group_category" context="{'group_by': 'product_categ_id'}"/>
+                    <filter string="Fecha" name="group_date" context="{'group_by': 'date:month'}"/>
+                    <filter string="Compañía" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="action_purchase_report_price_history" model="ir.actions.act_window">
+        <field name="name">Histórico de Precios (Facturas de Proveedor)</field>
+        <field name="res_model">purchase.report.price.history</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="search_view_id" ref="view_purchase_report_price_history_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Utilice el asistente para generar el reporte.
+            </p>
+        </field>
+    </record>
+</odoo>

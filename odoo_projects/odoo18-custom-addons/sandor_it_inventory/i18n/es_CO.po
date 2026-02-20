@@ -1,0 +1,3715 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sandor_it_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-30 13:09+0000\n"
+"PO-Revision-Date: 2025-12-30 13:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.report,print_report_name:sandor_it_inventory.action_report_it_return
+msgid "'Documento de Devolución - %s' % (object.name)"
+msgstr "'Documento de Devolución - %s' % (object.name)"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.report,print_report_name:sandor_it_inventory.action_report_it_assignment
+msgid "'Documento de Entrega - %s' % (object.name)"
+msgstr "'Documento de Entrega - %s' % (object.name)"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "(Token de Custodia:"
+msgstr "(Token de Custodia:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"), culminando el periodo de responsabilidad del trabajador detallado a "
+"continuación:"
+msgstr ""
+"), culminando el periodo de responsabilidad del trabajador detallado a "
+"continuación:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ", Una vez el equipo electrónico se encuentre fuera de las oficinas de"
+msgstr ", Una vez el equipo electrónico se encuentre fuera de las oficinas de"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ", con respecto a otro acuerdo de pago."
+msgstr ", con respecto a otro acuerdo de pago."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ", este será responsabilidad de la persona que firma esta acta."
+msgstr ", este será responsabilidad de la persona que firma esta acta."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+", proceda a su descuento por nómina en (_____) cuotas mensuales descontables"
+" a partir del ______________________________________. En el evento en que mi"
+" contrato laboral se termine por cualquier causa justificada o no, autorizo "
+"a que con cargo a mi liquidación final se descuente el valor total de la "
+"suma pendiente y la misma sea entregada a"
+msgstr ", proceda a su descuento por nómina en (_____) cuotas mensuales descontables a partir del ______________________________________. En el evento en que mi contrato laboral se termine por cualquier causa justificada o no, autorizo a que con cargo a mi liquidación final se descuente el valor total de la suma pendiente y la misma sea entregada a"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+", se procede a formalizar el reintegro de los activos tecnológicos "
+"relacionados en el Documento de Entrega original"
+msgstr ", se procede a formalizar el reintegro de los activos tecnológicos relacionados en el Documento de Entrega original"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+". Es claro que, en términos legales que la presente autorización es "
+"suficiente y plena prueba para que se generen los descuentos "
+"correspondientes. Suscribo la presente autorización con observancia de las "
+"disposiciones contenidas en los artículos 1714 a 1716 del Código Civil, y 59"
+" literal 1 y 149 del Código Sustantivo de Trabajo y demás normas "
+"concordantes y complementarias."
+msgstr ". Es claro que, en términos legales que la presente autorización es suficiente y plena prueba para que se generen los descuentos correspondientes. Suscribo la presente autorización con observancia de las disposiciones contenidas en los artículos 1714 a 1716 del Código Civil, y 59 literal 1 y 149 del Código Sustantivo de Trabajo y demás normas concordantes y complementarias."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+". La presente autorización es de carácter irrevocable y no puede modificarse"
+" ni suspenderse a menos que exista de por medio una autorización escrita por"
+" parte de"
+msgstr ". La presente autorización es de carácter irrevocable y no puede modificarse ni suspenderse a menos que exista de por medio una autorización escrita por parte de"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "/ PLACA:"
+msgstr "/ PLACA:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "/ SERIE:"
+msgstr "/ SERIE:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid ""
+"<br/>\n"
+"                                        <strong>Fecha Reintegro:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Fecha Reintegro:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid ""
+"<br/>\n"
+"                                        <strong>Fecha:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Fecha:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid ""
+"<br/>\n"
+"                                        <strong>ID:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>ID:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid ""
+"<br/>\n"
+"                                        <strong>Identificación:</strong>"
+msgstr ""
+"<br/>\n"
+"                                        <strong>Identificación:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"<br/>\n"
+"                                        C.C.:"
+msgstr ""
+"<br/>\n"
+"                                        C.C.:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid ""
+"<br/>\n"
+"                                <i class=\"fa fa-check text-success mr-1\"/> Navegador:"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid ""
+"<br/>\n"
+"                        <i class=\"fa fa-check text-success mr-1\"/> Navegador:"
+msgstr ""
+"<br/>\n"
+"                        <i class=\"fa fa-check text-success mr-1\"/> Navegador:"
+"<br/>\n"
+"                                <i class=\"fa fa-check text-success mr-1\"/> Navegador:"
+
+#. module: sandor_it_inventory
+#: model:mail.template,body_html:sandor_it_inventory.email_template_it_assignment_v2
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        Hola <t t-out=\"object.employee_id.name or ''\">Empleado</t>,<br><br>\n"
+"                        Se ha generado un nuevo <strong>Documento de Entrega (<t t-out=\"object.name or ''\">referencia</t>)</strong> correspondiente a los equipos TIC que te han sido asignados.\n"
+"                        <br><br>\n"
+"                        <strong>Resumen de Equipos Asignados:</strong><br>\n"
+"                        <table border=\"1\" style=\"border-collapse: collapse; width: 100%; margin-top: 10px; font-size: 12px;\">\n"
+"                            <thead style=\"background-color: #f2f2f2;\">\n"
+"                                <tr>\n"
+"                                    <th style=\"padding: 8px; text-align: left;\">Producto</th>\n"
+"                                    <th style=\"padding: 8px; text-align: left;\">Marca</th>\n"
+"                                    <th style=\"padding: 8px; text-align: left;\">Serie / Referencia</th>\n"
+"                                </tr>\n"
+"                            </thead>\n"
+"                            <tbody>\n"
+"                                <t t-foreach=\"object.line_ids\" t-as=\"line\">\n"
+"                                    <tr>\n"
+"                                        <td style=\"padding: 8px;\"><t t-out=\"line.product_id.name\"></t></td>\n"
+"                                        <td style=\"padding: 8px;\"><t t-out=\"line.it_brand_id.name or 'N/A'\"></t></td>\n"
+"                                        <td style=\"padding: 8px;\"><t t-out=\"line.it_serial_number or line.default_code or 'N/A'\"></t></td>\n"
+"                                    </tr>\n"
+"                                </t>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                        <br><br>\n"
+"                        Por favor, utiliza el siguiente enlace para revisar el documento formal y realizar la firma electrónica:\n"
+"                        <br><br>\n"
+"                        <div style=\"margin: 16px 0px 16px 0px; text-align: center;\">\n"
+"                            <a t-att-href=\"object.portal_sign_url\" style=\"background-color: #875A7B; padding: 10px 20px 10px 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 14px; font-weight: bold;\">\n"
+"                                Revisar y Firmar Documento Online\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        <br>\n"
+"                        Este proceso es obligatorio para formalizar la entrega de tus herramientas de trabajo.\n"
+"                        <br><br>\n"
+"                        Atentamente,<br>\n"
+"                        <t t-out=\"object.company_id.name or ''\">Empresa</t>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model:mail.template,body_html:sandor_it_inventory.email_template_it_return_v2
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        Hola <t t-out=\"object.employee_id.name or ''\">Empleado</t>,<br><br>\n"
+"                        Se ha iniciado el proceso de <strong>Devolución de Equipos TIC</strong> relacionado con el documento <strong><t t-out=\"object.name or ''\">referencia</t></strong>.\n"
+"                        <br><br>\n"
+"                        Para cerrar formalmente tu responsabilidad sobre estos activos y generar tu <strong>Certificado de Paz y Salvo</strong>, es necesario que realices la firma electrónica del documento de reintegro en el siguiente enlace:\n"
+"                        <br><br>\n"
+"                        <div style=\"margin: 16px 0px 16px 0px; text-align: center;\">\n"
+"                            <a t-att-href=\"object.portal_return_url\" style=\"background-color: #28a745; padding: 10px 20px 10px 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 14px; font-weight: bold;\">\n"
+"                                Firmar Devolución y Paz y Salvo\n"
+"                            </a>\n"
+"                        </div>\n"
+"                        <br>\n"
+"                        Una vez firmado, el sistema liberará los equipos de tu custodia y podrás descargar el documento soporte legalizado.\n"
+"                        <br><br>\n"
+"                        Atentamente,<br>\n"
+"                        Departamento de TIC - <t t-out=\"object.company_id.name or ''\">Empresa</t>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model:mail.template,body_html:sandor_it_inventory.email_template_it_assignment_signed_v2
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                        Hola <t t-out=\"object.employee_id.name or ''\">Empleado</t>,<br><br>\n"
+"                        Te informamos que el proceso de firma del <strong>Documento de Entrega <t t-out=\"object.name or ''\">referencia</t></strong> ha sido completado exitosamente.\n"
+"                        <br><br>\n"
+"                        Adjunto a este correo encontrarás el documento PDF legalizado, el cual incluye el certificado de auditoría, las firmas digitales y el código QR de verificación de autenticidad. \n"
+"                        Este documento sirve como comprobante oficial de la entrega de tus equipos.\n"
+"                        <br><br>\n"
+"                        Puedes verificar la integridad de este documento en cualquier momento escaneando el código QR contenido en el PDF.\n"
+"                        <br><br>\n"
+"                        Atentamente,<br>\n"
+"                        <t t-out=\"object.company_id.name or ''\">Empresa</t>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid ""
+"<i class=\"fa fa-check-square-o mr-1\"/> Formalizar Devolución y Paz y Salvo"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_completed
+msgid ""
+"<i class=\"fa fa-download mr-2\"/> Descargar Documento de Devolución y Paz y "
+"Salvo"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_completed
+msgid "<i class=\"fa fa-download mr-2\"/> Descargar Documento Firmado"
+msgstr "<i class=\"fa fa-download mr-2\"/> Descargar Documento Firmado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_completed
+msgid ""
+"<i class=\"fa fa-envelope mr-2\"/> Hemos enviado una copia del documento a "
+"tu correo electrónico:"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "<i class=\"fa fa-eraser mr-1\"/> Limpiar"
+msgstr "<i class=\"fa fa-eraser mr-1\"/> Limpiar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "<i class=\"fa fa-file-pdf-o\"/> Descargar Firmado"
+msgstr "<i class=\"fa fa-file-pdf-o\"/> Descargar Firmado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "<i class=\"fa fa-file-pdf-o\"/> Descargar Original"
+msgstr "<i class=\"fa fa-file-pdf-o\"/> Descargar Original"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "<i class=\"fa fa-file-pdf-o\"/> Descargar Paz y Salvo"
+msgstr "<i class=\"fa fa-file-pdf-o\"/> Descargar Paz y Salvo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid ""
+"<i class=\"fa fa-info-circle mr-1\"/>\n"
+"                                Configure los productos y sus valores base para el cálculo de la tabla de descuentos en el reporte PDF.<br/>\n"
+"                                <strong>Nota:</strong> Solo se permiten productos cuyo Tipo de Activo esté marcado como 'Descontable'."
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "<i class=\"fa fa-pencil-square-o mr-1\"/> Confirmar Firma"
+msgstr "<i class=\"fa fa-pencil-square-o mr-1\"/> Confirmar Firma"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_kanban_view_it_inventory
+msgid ""
+"<span class=\"badge rounded-pill bg-danger text-white px-2 py-1\" style=\"font-size: 10px; font-weight: bold;\">\n"
+"                        <i class=\"fa fa-lock mr-1\"/> ASIGNADO\n"
+"                    </span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid ""
+"<span class=\"badge rounded-pill bg-primary text-white px-2 py-1 shadow-sm d-inline-flex align-items-center\" style=\"font-size: 11px;\">\n"
+"                    <i class=\"fa fa-shield mr-2\"/> Cerrado y Reintegrado\n"
+"                </span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid ""
+"<span class=\"badge rounded-pill bg-success text-white px-2 py-1 shadow-sm d-inline-flex align-items-center\" style=\"font-size: 11px;\">\n"
+"                    <i class=\"fa fa-check-circle mr-2\"/> Concluido (Asignado)\n"
+"                </span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "<span class=\"o_form_label\">Asignación TIC</span>"
+msgstr "<span class=\"o_form_label\">Asignación TIC</span>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid ""
+"<span class=\"text-muted\"><i class=\"fa fa-shield mr-1\" style=\"color: "
+"#714B67 !important;\"/> Autenticación reconocida</span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid ""
+"<span class=\"text-muted\"><i class=\"fa fa-shield text-success mr-1\"/> "
+"Autenticación reconocida</span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "<span invisible=\"name != 'Nuevo' or state != 'draft'\">Borrador</span>"
+msgstr "<span invisible=\"name != 'Nuevo' or state != 'draft'\">Borrador</span>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"<span style=\"color: #000; display: block; margin-top: 5px;\">Representante "
+"Legal:</span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "<span style=\"display: block; margin-top: 5px;\">Firma:</span>"
+msgstr "<span style=\"display: block; margin-top: 5px;\">Firma:</span>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<span>Firma Autorizada</span>"
+msgstr "<span>Firma Autorizada</span>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid ""
+"<strong class=\"mr-2\">Status:</strong> \n"
+"                                <span class=\"badge rounded-pill bg-success text-white px-2 py-1 shadow-sm d-inline-flex align-items-center\" style=\"font-size: 11px; letter-spacing: 0.3px; font-weight: 500;\">\n"
+"                                    <i class=\"fa fa-check-circle mr-2\" style=\"font-size: 12px;\"/> Concluido\n"
+"                                </span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"<strong style=\"color: #000; display: block; margin-bottom: 5px;\">Por parte"
+" del Trabajador,</strong>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"<strong style=\"color: #28a745; font-size: 16px; display: inline-block; vertical-align: baseline;\">ASIGNADO</strong>\n"
+"                                        <span style=\"font-size: 11px; color: #888; margin-left: 10px; vertical-align: baseline;\">via Token (Powered by Odoo)</span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"<strong style=\"color: #28a745; font-size: 16px; display: inline-block; vertical-align: baseline;\">FIRMADO (REINTEGRO)</strong>\n"
+"                                            <span style=\"font-size: 11px; color: #888; margin-left: 10px; vertical-align: baseline;\">via Token</span>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"<strong style=\"display: block; margin-bottom: 5px;\">Entregado por "
+"(Trabajador):</strong>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"<strong style=\"display: block; margin-bottom: 60px;\">Recibido por "
+"(TIC):</strong>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assets_kanban
+msgid "<strong>Asset Code:</strong>"
+msgstr "<strong>Código de Activo:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assets_kanban
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_kanban
+msgid "<strong>Assignee:</strong>"
+msgstr "<strong>Asignado a:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_kanban
+msgid "<strong>Component No:</strong>"
+msgstr "<strong>No. Componente:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"<strong>DECLARACIÓN DE RECIBIDO:</strong> Se certifica que los elementos "
+"tecnológicos y accesorios relacionados anteriormente han sido reintegrados "
+"al departamento de TIC. Se ha evaluado el estado de los mismos, concluyendo "
+"que se reciben conforme a lo estipulado en la cláusula de \"Cuidados y "
+"condiciones\" de la asignación original, validando que el deterioro "
+"corresponde al uso normal y no se presentan daños malintencionados ni "
+"faltantes."
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Dispositivo:</strong>"
+msgstr "<strong>Dispositivo:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "<strong>Documento:</strong>"
+msgstr "<strong>Documento:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Documento:</strong> Documento de Devolución -"
+msgstr "<strong>Documento:</strong> Documento de Devolución -"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "<strong>Documento:</strong> Documento de Entrega TIC -"
+msgstr "<strong>Documento:</strong> Documento de Entrega TIC -"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "<strong>Empleado:</strong>"
+msgstr "<strong>Empleado:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "<strong>Estado:</strong> Asignado"
+msgstr "<strong>Estado:</strong> Asignado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Estado:</strong> Devolución Completada"
+msgstr "<strong>Estado:</strong> Devolución Completada"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "<strong>Fecha de Asignación:</strong>"
+msgstr "<strong>Fecha de Asignación:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Fecha de creación:</strong>"
+msgstr "<strong>Fecha de creación:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid ""
+"<strong>Firma Pendiente:</strong> Puede copiar el siguiente enlace para que "
+"el empleado firme el acta de forma remota:"
+msgstr "<strong>Firma Pendiente:</strong> Puede copiar el siguiente enlace para que el empleado firme el acta de forma remota:"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "<strong>Firmada la entrega por:</strong>"
+msgstr "<strong>Firmada la entrega por:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "<strong>Firmado el reintegro por:</strong>"
+msgstr "<strong>Firmado el reintegro por:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Hash del Documento (SHA256):</strong>"
+msgstr "<strong>Hash del Documento (SHA256):</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "<strong>Hash del Documento (SHA256):</strong> <br/>"
+msgstr "<strong>Hash del Documento (SHA256):</strong> <br/>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>IP de Retorno:</strong>"
+msgstr "<strong>IP de Retorno:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "<strong>IP:</strong>"
+msgstr "<strong>IP:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid ""
+"<strong>Puntos de autenticación:</strong><br/>\n"
+"                                <i class=\"fa fa-check text-success mr-1\"/> Correo validado:"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid ""
+"<strong>Puntos de autenticación:</strong><br/>\n"
+"                        <i class=\"fa fa-check text-success mr-1\"/> Correo validado:"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid "<strong>Referencia Original:</strong>"
+msgstr "<strong>Referencia Original:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "<strong>Referencia:</strong>"
+msgstr "<strong>Referencia:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid ""
+"<strong>Retorno en Proceso:</strong> El empleado puede formalizar la "
+"devolución en este enlace:"
+msgstr "<strong>Retorno en Proceso:</strong> El empleado puede formalizar la devolución en este enlace:"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "<strong>Security Token:</strong>"
+msgstr "<strong>Security Token:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_kanban
+msgid "<strong>Serial No:</strong>"
+msgstr "<strong>No. Serial:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "<strong>Token:</strong>"
+msgstr "<strong>Token:</strong>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"A continuación se detallan los equipos y elementos asignados al empleado:"
+msgstr "A continuación se detallan los equipos y elementos asignados al empleado:"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "ACTA DE DEVOLUCIÓN DE EQUIPOS Y ELEMENTOS"
+msgstr "ACTA DE DEVOLUCIÓN DE EQUIPOS Y ELEMENTOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "ASIGNACIÓN Y ALISTAMIENTO DE EQUIPOS"
+msgstr "ASIGNACIÓN Y ALISTAMIENTO DE EQUIPOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Abstenerse de manipular los componentes internos de los elementos "
+"tecnológicos, de los accesorios y/o los sellos de garantía de cualquiera de "
+"estos."
+msgstr "Abstenerse de manipular los componentes internos de los elementos tecnológicos, de los accesorios y/o los sellos de garantía de cualquiera de estos."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Acceso denegado"
+msgstr "Acceso denegado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__access_warning
+msgid "Access warning"
+msgstr "Access warning"
+
+#. module: sandor_it_inventory
+#: model:mail.template,subject:sandor_it_inventory.email_template_it_return_v2
+msgid "Acción Requerida: Firma de Documento de Devolución - {{ object.name }}"
+msgstr "Acción Requerida: Firma de Documento de Devolución - {{ object.name }}"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Documento N° -"
+msgstr "Documento N° -"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid "Documento de Devolución"
+msgstr "Documento de Devolución"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Documento/Referencia"
+msgstr "Documento/Referencia"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_needaction
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_needaction
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_needaction
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__asset_type__status__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_active_assignments
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_active_assignments
+msgid "Active Assignments"
+msgstr "Asignaciones Activas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_exception_decoration
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_exception_decoration
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_exception_decoration
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_state
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_state
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_state
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_type_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_type_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_type_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_assets_category
+msgid "Activos TI"
+msgstr "Activos TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__filter
+msgid "Add filter"
+msgstr "Agregar filtro"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__fa_icon
+msgid "Add icon for tile"
+msgstr "Agregar icono para ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__model_name
+msgid "Added model_id model"
+msgstr "Modelo model_id agregado"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+#, python-format
+msgid "Advertencia de Descuentos"
+msgstr "Advertencia de Descuentos"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid ""
+"Al firmar este documento, usted acepta haber recibido los equipos detallados"
+" en el acta arriba mencionada en buen estado y se compromete a cumplir con "
+"la política de uso de activos TIC de la empresa."
+msgstr "Al firmar este documento, usted acepta haber recibido los equipos detallados en el acta arriba mencionada en buen estado y se compromete a cumplir con la política de uso de activos TIC de la empresa."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid ""
+"Al firmar este documento, usted formaliza la entrega de los equipos y "
+"confirma que se encuentra a Paz y Salvo con la empresa por este concepto. Se"
+" anularán automáticamente los compromisos de descuento por pérdida o daño "
+"vinculados a esta acta."
+msgstr "Al firmar este documento, usted formaliza la entrega de los equipos y confirma que se encuentra a Paz y Salvo con la empresa por este concepto. Se anularán automáticamente los compromisos de descuento por pérdida o daño vinculados a esta acta."
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__all_components
+msgid "All Components"
+msgstr "Todos los Componentes"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_chart.js:0
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_tile.js:0
+#, python-format
+msgid "Are you sure you want to delete this item?"
+msgstr "¿Está seguro de que desea eliminar este elemento?"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Area:"
+msgstr "Área:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Asignaciones Activas"
+msgstr "Asignaciones Activas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__assignment_id
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Asignación"
+msgstr "Asignación"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_assignment
+msgid "Asignación TIC"
+msgstr "Asignación TIC"
+
+#. module: sandor_it_inventory
+#: model:mail.template,name:sandor_it_inventory.email_template_it_assignment_signed_v2
+msgid "Asignación TIC: Documento Legalizada (Firmada)"
+msgstr "Asignación TIC: Documento Legalizada (Firmada)"
+
+#. module: sandor_it_inventory
+#: model:mail.template,name:sandor_it_inventory.email_template_it_assignment_v2
+msgid "Asignación TIC: Invitación a Firmar"
+msgstr "Asignación TIC: Invitación a Firmar"
+
+#. module: sandor_it_inventory
+#: model:mail.template,name:sandor_it_inventory.email_template_it_return_v2
+msgid "Asignación TIC: Invitación a Firmar Devolución"
+msgstr "Asignación TIC: Invitación a Firmar Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__signed
+msgid "Asignado"
+msgstr "Asignado"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_asset_brand
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_asset_brand_main
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_asset_brand_tree
+msgid "Asset Brands"
+msgstr "Marcas de Activos"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__item_code
+msgid "Asset Code"
+msgstr "Código de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__asset_kind
+msgid "Asset Kind"
+msgstr "Tipo de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_asset_model
+msgid "Asset Model"
+msgstr "Modelo de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_asset_model
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_asset_model_tree
+msgid "Asset Models"
+msgstr "Modelos de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__name
+msgid "Asset Name"
+msgstr "Nombre de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__asset_repaired
+msgid "Asset Repairing"
+msgstr "Reparando Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__asset_type
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__it_asset_type_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_asset_type_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_asset_type_id
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "Asset Type"
+msgstr "Tipo de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_asset_type
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_asset_type_main
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_asset_type_tree
+msgid "Asset Types"
+msgstr "Tipos de Activos"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__item_user
+msgid "Asset User"
+msgstr "Usuario de Activo"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_it_assets
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__assets
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_assets
+msgid "Assets"
+msgstr "Activos"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__state__assigned
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__system_system__state__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__assignment_line_id
+msgid "Assigned Asset"
+msgstr "Assigned Asset"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_current_employee_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_current_employee_id
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "Assigned Employee"
+msgstr "Empleado Asignado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__user
+msgid "Assignees"
+msgstr "Asignados"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__assignment_id
+msgid "Assignment"
+msgstr "Assignment"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__assignment_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__assignment_date
+msgid "Assignment Date"
+msgstr "Fecha de Asignación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__line_ids
+msgid "Assignment Lines"
+msgstr "Líneas de Asignación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__assignment_id
+msgid "Assignment Reference"
+msgstr "Referencia de Asignación"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Atentamente,"
+msgstr "Atentamente,"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_attachment_count
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_attachment_count
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_attachment_count
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Adjuntos"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Auditoría de Devolución"
+msgstr "Auditoría de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__available_quantity
+msgid "Available Quanity"
+msgstr "Cantidad Disponible"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__available_in_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__available_in_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "Available in IT Inventory"
+msgstr "Disponible en Inventario TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__operation__avg
+msgid "Average"
+msgstr "Promedio"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__bar
+msgid "Bar"
+msgstr "Barra"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Bar Chart"
+msgstr "Gráfico de Barras"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__discount_value
+msgid "Base Value for Table"
+msgstr "Base Value for Table"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.dashboard_block_view_form
+msgid "Block Information"
+msgstr "Información del Bloque"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.dashboard_block_view_form
+msgid "Block Name"
+msgstr "Nombre del Bloque"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Bogotá D. C, ______________________________"
+msgstr "Bogotá D. C, ______________________________"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__draft
+msgid "Borrador"
+msgstr "Borrador"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__it_brand_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__brand
+msgid "Brand"
+msgstr "Marca"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__buy_date
+msgid "Buy Date"
+msgstr "Fecha de Compra"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "C.C."
+msgstr "C.C."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "C.C.:"
+msgstr "C.C.:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "CANTIDAD DE CUOTAS"
+msgstr "CANTIDAD DE CUOTAS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "CERTIFICADO DE PAZ Y SALVO DE ACTIVOS"
+msgstr "CERTIFICADO DE PAZ Y SALVO DE ACTIVOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Cambiar a Borrador"
+msgstr "Cambiar a Borrador"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__cancelled
+msgid "Cancelado"
+msgstr "Cancelado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#, python-format
+msgid ""
+"Cannot enable 'Unique Assignment' because this product is currently assigned"
+" to multiple employees. Please ensure it is assigned to 0 or 1 employee only"
+" before enabling this restriction."
+msgstr ""
+"No se puede habilitar 'Asignación Única' porque este producto está asignado "
+"actualmente a múltiples empleados. Asegúrese de que esté asignado a 0 o 1 "
+"empleado únicamente antes de habilitar esta restricción."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Cargo:"
+msgstr "Cargo:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid "Certificación de Paz y Salvo"
+msgstr "Certificación de Paz y Salvo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Certificado emitido automáticamente mediante Token."
+msgstr "Certificado emitido automáticamente mediante Token."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__type__graph
+msgid "Chart"
+msgstr "Gráfico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__graph_type
+msgid "Chart Type"
+msgstr "Tipo de Gráfico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__x_axis
+msgid "Chart X-axis"
+msgstr "Eje X del Gráfico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__y_axis
+msgid "Chart Y-axis"
+msgstr "Eje Y del Gráfico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_product_product__available_in_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_product_template__available_in_it_inventory
+msgid ""
+"Check if you want this product to appear in the IT Asset Management module."
+msgstr ""
+"Marque si desea que este producto aparezca en el módulo de Gestión de "
+"Activos TI."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__client_action_id
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__client_action_id
+msgid "Client action"
+msgstr "Acción del cliente"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__component_id
+msgid "Component"
+msgstr "Componente"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assets_kanban
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_kanban
+msgid "Component Image"
+msgstr "Imagen del Componente"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__comp_number
+msgid "Component Number"
+msgstr "Número de Componente"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_it_components
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__component_ids
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_components
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assets_form
+msgid "Components"
+msgstr "Componentes"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Con el fin de que el <strong>Trabajador</strong> desarrolle de manera óptima"
+" sus funciones,"
+msgstr "Con el fin de que el <strong>Trabajador</strong> desarrolle de manera óptima sus funciones,"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Con la firma de este documento el <strong>Trabajador</strong> acepta libre y"
+" voluntariamente que la autorización de descuento sea diligenciada sin "
+"previo aviso."
+msgstr "Con la firma de este documento el <strong>Trabajador</strong> acepta libre y voluntariamente que la autorización de descuento sea diligenciada sin previo aviso."
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__confirmed
+msgid "Confirmado"
+msgstr "Confirmado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Confirmar"
+msgstr "Confirmar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+msgid "Confirmar de todas formas"
+msgstr "Confirmar de todas formas"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Correo electrónico:"
+msgstr "Correo electrónico:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__standard_price
+msgid "Cost Price"
+msgstr "Precio de Costo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__operation__count
+msgid "Count"
+msgstr "Contar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.actions.act_window,help:sandor_it_inventory.action_it_assignment
+msgid "Crea tu primera asignación IT"
+msgstr "Crea tu primera asignación IT"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.actions.act_window,help:sandor_it_inventory.action_it_inventory_products
+msgid "Create a new product for IT inventory"
+msgstr "Crear un nuevo producto para inventario TI"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.actions.act_window,help:sandor_it_inventory.action_it_assets
+msgid "Create your first asset"
+msgstr "Cree su primer activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__create_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__create_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Cuidados y condiciones:"
+msgstr "Cuidados y condiciones:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__currency_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_current_assignment_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_current_assignment_id
+msgid "Current Allocation"
+msgstr "Asignación Actual"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__access_url
+msgid "Customer Portal URL"
+msgstr "Customer Portal URL"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "DEPURACIÓN DE VALORES:"
+msgstr "DEPURACIÓN DE VALORES:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "DESCRIPCION"
+msgstr "DESCRIPCIÓN"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "DESCRIPCIÓN"
+msgstr "DESCRIPCIÓN"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "DESCRIPCIÓN DE ELEMENTOS TECNOLOGICOS Y/O SUS ACCESORIOS"
+msgstr "DESCRIPCIÓN DE ELEMENTOS TECNOLÓGICOS Y/O SUS ACCESORIOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "DOCUMENTO DE DEVOLUCION - REINTEGRO"
+msgstr "DOCUMENTO DE DEVOLUCION - REINTEGRO"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "DOCUMENTO DE DEVOLUCIÓN N° -"
+msgstr "DOCUMENTO DE DEVOLUCIÓN N° -"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "DOCUMENTO DE ENTREGA"
+msgstr "DOCUMENTO DE ENTREGA"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.client,name:sandor_it_inventory.dashboard_view_action
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_dashboard
+msgid "Dashboard"
+msgstr "Tablero"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.dashboard_block_action
+#: model:ir.model,name:sandor_it_inventory.model_dashboard_block
+msgid "Dashboard Block"
+msgstr "Bloque de Tablero"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.dashboard_block_menu
+msgid "Dashboard Blocks"
+msgstr "Bloques de Tablero"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__data_x
+msgid "Data x value for resize"
+msgstr "Valor de datos x para redimensionar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__data_y
+msgid "Data y value for resize"
+msgstr "Valor de datos y para redimensionar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__data_x
+msgid "Data_X"
+msgstr "Datos_X"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__data_y
+msgid "Data_Y"
+msgstr "Datos_Y"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__last_used_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_assignment_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_assignment_date
+msgid "Date Assigned"
+msgstr "Fecha Asignada"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Datos del Activo"
+msgstr "Datos del Activo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"De conformidad con lo anterior, acepto y autorizo descontar el valor total "
+"de lo causado, correspondiente a la suma de "
+"_________________________________________________ ($______________,), a fin "
+"de que mi empleador"
+msgstr "De conformidad con lo anterior, acepto y autorizo descontar el valor total de lo causado, correspondiente a la suma de _________________________________________________ ($______________,), a fin de que mi empleador"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Debe constar acuerdo entre las partes por escrito y firmado por aquellas, en"
+" caso contrario, no surtirá ningún efecto."
+msgstr "Debe constar acuerdo entre las partes por escrito y firmado por aquellas, en caso contrario, no surtirá ningún efecto."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Dejar los elementos tecnológicos y/o los accesorios bajo llave or "
+"vigilancia, cuando no lo(s) esté(n) utilizando o cuando se encuentre alejado"
+" de éste(os)."
+msgstr ""
+"Dejar los elementos tecnológicos y/o los accesorios bajo llave o vigilancia,"
+" cuando no lo(s) esté(n) utilizando o cuando se encuentre alejado de "
+"éste(os)."
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_chart.js:0
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_tile.js:0
+#, python-format
+msgid "Delete Confirmation"
+msgstr "Confirmación de Eliminación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Descuentos"
+msgstr "Descuentos"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Desde el mes 25 en caso de pérdida daño o hurto, del celular el "
+"<strong>Trabajador</strong> asuma el valor del último rango, esto es, el "
+"indicado en el mes 24."
+msgstr "Desde el mes 25 en caso de pérdida daño o hurto, del celular el <strong>Trabajador</strong> asuma el valor del último rango, esto es, el indicado en el mes 24."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Detalles de Auditoría (Firma Electrónica)"
+msgstr "Detalles de Auditoría (Firma Electrónica)"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Devolución"
+msgstr "Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__returned
+msgid "Devuelto"
+msgstr "Devuelto"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_signed_on
+msgid "Devuelto el"
+msgstr "Devuelto el"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_signed_by
+msgid "Devuelto por"
+msgstr "Devuelto por"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__signer_ip
+msgid "Dirección IP desde donde se realizó la firma"
+msgstr "Dirección IP desde donde se realizó la firma"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__is_discountable
+msgid "Discountable"
+msgstr "Discountable"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__discount_ids
+msgid "Discounts/Depreciation"
+msgstr "Discounts/Depreciation"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__display_name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_signer_user_agent
+msgid "Dispositivo de Devolución"
+msgstr "Dispositivo de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__signer_user_agent
+msgid "Dispositivo/Navegador"
+msgstr "Dispositivo/Navegador"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.report,name:sandor_it_inventory.action_report_it_return
+msgid "Documento de Devolución"
+msgstr "Documento de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.report,name:sandor_it_inventory.action_report_it_assignment
+msgid "Documento de Entrega"
+msgstr "Documento de Entrega"
+
+#. module: sandor_it_inventory
+#: model:mail.template,subject:sandor_it_inventory.email_template_it_assignment_signed_v2
+msgid "Documento de Entrega Legalizado - {{ object.name }}"
+msgstr "Documento de Entrega Legalizado - {{ object.name }}"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "Documento de Entrega de Equipos TIC"
+msgstr "Documento de Entrega de Equipos TIC"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__doughnut
+msgid "Doughnut"
+msgstr "Donut"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Doughnut Chart"
+msgstr "Gráfico de Donut"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "EQUIPOS Y ELEMENTOS RECIBIDOS"
+msgstr "EQUIPOS Y ELEMENTOS RECIBIDOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "ESTADO"
+msgstr "ESTADO"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Edit Layout"
+msgstr "Editar Diseño"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__edit_mode
+msgid "Edit Mode"
+msgstr "Modo de Edición"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El (los) equipo(s) y/o accesorios es (son) entregados con todos los "
+"elementos de seguridad necesarios para uso dentro de las oficinas de"
+msgstr "El (los) equipo(s) y/o accesorios es (son) entregados con todos los elementos de seguridad necesarios para uso dentro de las oficinas de"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El <strong>Trabajador</strong> debe adquirir los elementos tecnológicos y/o "
+"accesorios en un lugar autorizado para la venta de aquellos."
+msgstr "El <strong>Trabajador</strong> debe adquirir los elementos tecnológicos y/o accesorios en un lugar autorizado para la venta de aquellos."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El <strong>Trabajador</strong> deberá informar de inmediato y por escrito a"
+msgstr "El <strong>Trabajador</strong> deberá informar de inmediato y por escrito a"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El <strong>Trabajador</strong> deberá notificar al área TIC o quien haga sus"
+" veces si requiere más días adicionales, en caso contrario, aplicará la "
+"regla inicial."
+msgstr "El <strong>Trabajador</strong> deberá notificar al área TIC o quien haga sus veces si requiere más días adicionales, en caso contrario, aplicará la regla inicial."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El <strong>Trabajador</strong> deberá tener en cuenta las demás "
+"especificaciones que le indique"
+msgstr "El <strong>Trabajador</strong> deberá tener en cuenta las demás especificaciones que le indique"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El <strong>Trabajador</strong> reconoce plenamente con la firma de la "
+"presente acta, que el único propietario de los elementos tecnológicos y/o de"
+" los accesorios entregado(s) para el cumplimiento de sus funciones es (son) "
+"de"
+msgstr "El <strong>Trabajador</strong> reconoce plenamente con la firma de la presente acta, que el único propietario de los elementos tecnológicos y/o de los accesorios entregado(s) para el cumplimiento de sus funciones es (son) de"
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"El Documento de Entrega ha sido generado automáticamente al confirmar la "
+"asignación."
+msgstr "El Documento de Entrega ha sido generado automáticamente al confirmar la asignación."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "El Software instalado en los equipos está licensed a nombre de"
+msgstr "El Software instalado en los equipos está licenciado a nombre de"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "El acta ha sido firmada correctamente. Puede cerrar esta ventana."
+msgstr "El acta ha sido firmada correctamente. Puede cerrar esta ventana."
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#, python-format
+msgid ""
+"El campo 'Número de Serie TI' es obligatorio cuando se activa 'Asignación "
+"Única (Serie)'. Por favor, ingrese un número de serie antes de activar esta "
+"opción."
+msgstr "El campo 'Número de Serie TI' es obligatorio cuando se activa 'Asignación Única (Serie)'. Por favor, ingrese un número de serie antes de activar esta opción."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#, python-format
+msgid ""
+"El campo 'Tipo de Activo' es obligatorio cuando se activa 'Disponible en "
+"Inventario TI'. Por favor, seleccione un tipo de activo antes de activar "
+"esta opción."
+msgstr "El campo 'Tipo de Activo' es obligatorio cuando se activa 'Disponible en Inventario TI'. Por favor, seleccione un tipo de activo antes de activar esta opción."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El presente documento de entiende perfeccionado con la firma de las Partes. "
+"Para constancia de lo anterior, se firma en dos ejemplares con el mismo "
+"valor probatorio, uno para cada parte interviniente el"
+msgstr ""
+"El presente documento se entiende perfeccionado con la firma de las Partes. "
+"Para constancia de lo anterior, se firma en dos ejemplares con el mismo "
+"valor probatorio, uno para cada parte interviniente el"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"El producto '%s' es de Asignación Única (Serie) y ya ha sido agregado a esta"
+" asignación. No se permiten duplicados del mismo producto serializado en el "
+"mismo documento."
+msgstr "El producto '%s' es de Asignación Única (Serie) y ya ha sido agregado a esta asignación. No se permiten duplicados del mismo producto serializado en el mismo documento."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"El producto '%s' ya se encuentra asignado en el documento %s. No se puede "
+"confirmar esta entrega hasta que el producto esté disponible."
+msgstr "El producto '%s' ya se encuentra asignado en el documento %s. No se puede confirmar esta entrega hasta que el producto esté disponible."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El recibo de los elementos tecnológicos y/o accesorios deben ser aprobados "
+"previamente por el área de TIC de"
+msgstr "El recibo de los elementos tecnológicos y/o accesorios deben ser aprobados previamente por el área de TIC de"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"El valor para pagar por el <strong>Trabajador</strong> no puede en ningún "
+"caso superar diez (10) cuotas mensuales de descuento a menos que exista "
+"autorización de la Gerencia General de"
+msgstr "El valor para pagar por el <strong>Trabajador</strong> no puede en ningún caso superar diez (10) cuotas mensuales de descuento a menos que exista autorización de la Gerencia General de"
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__employee_email
+#, python-format
+msgid "Email"
+msgstr "Email"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Email:"
+msgstr "Email:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Empleado:"
+msgstr "Empleado:"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_hr_employee
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__employee_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_hr_employee
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_assignment__state__returning
+msgid "En Devolución"
+msgstr "En Devolución"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En caso de mantenimiento, de los elementos tecnológicos y/o accesorios "
+"deberá(n) ser entregado(s) de manera inmediata al área de TIC de"
+msgstr "En caso de mantenimiento, de los elementos tecnológicos y/o accesorios deberá(n) ser entregado(s) de manera inmediata al área de TIC de"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En caso de pérdida daño o hurto del portátil y/o computador por "
+"responsabilidad del <strong>trabajador</strong>, el "
+"<strong>trabajador</strong> asumirá el 100% del valor del activo depreciado "
+"que sea reportado por el proveedor de servicios o de la Empresa a la fecha "
+"de la perdida, daño o hurto."
+msgstr "En caso de pérdida daño o hurto del portátil y/o computador por responsabilidad del <strong>trabajador</strong>, el <strong>trabajador</strong> asumirá el 100% del valor del activo depreciado que sea reportado por el proveedor de servicios o de la Empresa a la fecha de la perdida, daño o hurto."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En caso de pérdida, robo o daño a los equipos y/o accesorios por mal uso o "
+"culpa exclusiva del <strong>trabajador</strong>, los costos de reposición "
+"y/o reparación serán asumidos por el responsable de este que firma esta "
+"acta."
+msgstr "En caso de pérdida, robo o daño a los equipos y/o accesorios por mal uso o culpa exclusiva del <strong>trabajador</strong>, los costos de reposición y/o reparación serán asumidos por el responsable de este que firma esta acta."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En caso de retiro de la empresa, el usuario se compromete a devolver los "
+"equipos y/o accesorios en el mismo estado en que los recibió, salvo por el "
+"deterioro normal, incluida toda la información procesada, correspondiente a "
+"su labor realizada para la empresa."
+msgstr "En caso de retiro de la empresa, el usuario se compromete a devolver los equipos y/o accesorios en el mismo estado en que los recibió, salvo por el deterioro normal, incluida toda la información procesada, correspondiente a su labor realizada para la empresa."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En el diligenciamiento de la autorización de descuento, se describirá la "
+"circunstancia que dio origen al cobro siendo estas, pero sin limitarse: "
+"hurto, pérdida, venta no autorizada a un tercero, entre otros."
+msgstr "En el diligenciamiento de la autorización de descuento, se describirá la circunstancia que dio origen al cobro siendo estas, pero sin limitarse: hurto, pérdida, venta no autorizada a un tercero, entre otros."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En el evento de pactar con el <strong>Trabajador</strong> la sustitución o "
+"remplazo de los elementos tecnológicos o de cualquiera de sus accesorios, se"
+" debe tener en cuenta lo siguiente:"
+msgstr ""
+"En el evento de pactar con el <strong>Trabajador</strong> la sustitución o "
+"reemplazo de los elementos tecnológicos o de cualquiera de sus accesorios, "
+"se debe tener en cuenta lo siguiente:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En el evento de utilizar la autorización de descuento por presentarse alguna"
+" novedad de pérdida o daño, el <strong>Trabajador</strong> deberá suscribir "
+"una nueva en caso de recibir otro aparato electrónico y/o accesorios."
+msgstr "En el evento de utilizar la autorización de descuento por presentarse alguna novedad de pérdida o daño, el <strong>Trabajador</strong> deberá suscribir una nueva en caso de recibir otro aparato electrónico y/o accesorios."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En el evento que al <strong>Trabajador</strong> se le haga entrega de algún "
+"aparato electrónico y/o accesorios diferente a los acá descritos, se "
+"adjuntará un cuadro de relación de estos en el que constará la firma de las "
+"partes y que de igual manera formará parte integral del contrato laboral."
+msgstr "En el evento que al <strong>Trabajador</strong> se le haga entrega de algún aparato electrónico y/o accesorios diferente a los acá descritos, se adjuntará un cuadro de relación de estos en el que constará la firma de las partes y que de igual manera formará parte integral del contrato laboral."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "En la ciudad de Bogotá D.C., el día"
+msgstr "En la ciudad de Bogotá D.C., el día"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "En ningún caso,"
+msgstr "En ningún caso,"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"En todo caso el <strong>Trabajador</strong> deberá entregar los elementos "
+"tecnológicos y/o accesorios en un plazo no superior a tres (3) días hábiles "
+"contados a partir de que"
+msgstr "En todo caso el <strong>Trabajador</strong> deberá entregar los elementos tecnológicos y/o accesorios en un plazo no superior a tres (3) días hábiles contados a partir de que"
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__edit_mode
+msgid "Enable to edit chart and tile"
+msgstr "Habilitar para editar gráfico y ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__portal_return_url
+msgid "Enlace de Devolución"
+msgstr "Enlace de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__portal_sign_url
+msgid "Enlace de Firma"
+msgstr "Enlace de Firma"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__portal_verify_url
+msgid "Enlace de Verificación"
+msgstr "Enlace de Verificación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__portal_return_url
+msgid "Enlace para formalizar la devolución desde el portal."
+msgstr "Enlace para formalizar la devolución desde el portal."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__portal_sign_url
+msgid "Enlace para que el empleado firme el acta desde el portal."
+msgstr "Enlace para que el empleado firme el acta desde el portal."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__portal_verify_url
+msgid "Enlace para verificar la autenticidad del acta."
+msgstr "Enlace para verificar la autenticidad del acta."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Entregar los elementos tecnológicos y/o accesorios y cada vez que se "
+"requiera, única y exclusivamente a la(s) persona(s) autorizada(s) por"
+msgstr "Entregar los elementos tecnológicos y/o accesorios y cada vez que se requiera, única y exclusivamente a la(s) persona(s) autorizada(s) por"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Enviar por Correo"
+msgstr "Enviar por Correo"
+
+#. module: sandor_it_inventory
+#: model:mail.template,description:sandor_it_inventory.email_template_it_assignment_v2
+msgid "Envío de invitación con enlace para firmar el documento de entrega."
+msgstr "Envío de invitación con enlace para firmar el documento de entrega."
+
+#. module: sandor_it_inventory
+#: model:mail.template,description:sandor_it_inventory.email_template_it_return_v2
+msgid "Envío de invitación para firmar el documento de devolución."
+msgstr "Envío de invitación para firmar el documento de devolución."
+
+#. module: sandor_it_inventory
+#: model:mail.template,description:sandor_it_inventory.email_template_it_assignment_signed_v2
+msgid "Envío del documento firmado con el certificado de auditoría."
+msgstr "Envío del documento firmado con el certificado de auditoría."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__asset_ids
+msgid "Equipment (Serial Numbers)"
+msgstr "Equipos (Números de Serie)"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Equipo Asignado"
+msgstr "Equipo Asignado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_employee_form_it_assignment
+msgid "Equipos TIC"
+msgstr "Equipos TIC"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+msgid "Equipos sin configurar"
+msgstr "Equipos sin configurar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Escanee o haga clic para verificar"
+msgstr "Escanee o haga clic para verificar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__state
+msgid "Estado"
+msgstr "Estado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Estado Documento"
+msgstr "Estado Documento"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Estado de Asignación"
+msgstr "Estado de Asignación"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Este documento ya ha sido firmado."
+msgstr "Este documento ya ha sido firmado."
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Este reintegro ya ha sido formalizado."
+msgstr "Este reintegro ya ha sido formalizado."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Fecha y hora de firma:"
+msgstr "Fecha y hora de firma:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_signed_on
+msgid "Fecha y hora de la devolución"
+msgstr "Fecha y hora de la devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__signed_on
+msgid "Fecha y hora de la firma"
+msgstr "Fecha y hora de la firma"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Fecha y hora de reintegro:"
+msgstr "Fecha y hora de reintegro:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "Fecha y hora:"
+msgstr "Fecha y hora:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"Fechas y horas en UTC-0500 (America/Bogota)<br/>\n"
+"                                    Última actualización en"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Fechas y horas en UTC-0500 (America/Bogota)<br/>\n"
+"                                Última actualización en"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__group_by_id
+msgid "Field value for Y-Axis"
+msgstr "Valor del campo para Eje Y"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__filter
+msgid "Filter"
+msgstr "Filtro"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__signature
+msgid "Firma Empleado"
+msgstr "Firma Empleado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_signature
+msgid "Firma capturada al momento del reintegro"
+msgstr "Firma capturada al momento del reintegro"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__signature
+msgid "Firma capturada del empleado"
+msgstr "Firma capturada del empleado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_signature
+msgid "Firma de Devolución"
+msgstr "Firma de Devolución"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Firma de Devolución / Paz y Salvo"
+msgstr "Firma de Devolución / Paz y Salvo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Firma del Empleado"
+msgstr "Firma del Empleado"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Firma requerida"
+msgstr "Firma requerida"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Firma requerida para el Paz y Salvo"
+msgstr "Firma requerida para el Paz y Salvo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Firma:"
+msgstr "Firma:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__signed_on
+msgid "Firmado el"
+msgstr "Firmado el"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__signed_by
+msgid "Firmado por"
+msgstr "Firmado por"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Firmas"
+msgstr "Firmas"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "Firmas Realizadas"
+msgstr "Firmas Realizadas"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Firmas de Reintegro"
+msgstr "Firmas de Reintegro"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "Firme a continuación:"
+msgstr "Firme a continuación:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid "Firme el REINTEGRO a continuación:"
+msgstr "Firme el REINTEGRO a continuación:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_follower_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_follower_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_follower_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_partner_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_partner_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_partner_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__activity_type_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__activity_type_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__activity_type_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de font awesome ej. fa-tasks"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__group_by_id
+msgid "Group by(Y-Axis)"
+msgstr "Agrupar por (Eje Y)"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__has_message
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__has_message
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__has_message
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_document_hash
+msgid "Hash de Devolución"
+msgstr "Hash de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__document_hash
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Hash del Documento (SHA256)"
+msgstr "Hash del Documento (SHA256)"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_document_hash
+msgid "Hash único que certifica el cierre del acta"
+msgstr "Hash único que certifica el cierre del acta"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__height
+msgid "Height "
+msgstr "Alto "
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__height
+msgid "Height of the block"
+msgstr "Alto del bloque"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/order_stats_tile.xml:0
+#, python-format
+msgid "Hello, Odoo!"
+msgstr "¡Hola, Odoo!"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Historial de Asignaciones"
+msgstr "Historial de Asignaciones"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_assignment_history_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_assignment_history_ids
+msgid "History of Assignments"
+msgstr "Historial de Asignaciones"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__employee_id_number
+msgid "ID Number"
+msgstr "Número de ID"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "ID Transacción:"
+msgstr "ID Transacción:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__employee_id_type_id
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "ID Type"
+msgstr "Tipo de ID"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__ip_address
+msgid "IP Address"
+msgstr "Dirección IP"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__return_signer_ip
+msgid "IP de Devolución"
+msgstr "IP de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__signer_ip
+msgid "IP del Firmante"
+msgstr "IP del Firmante"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_signer_ip
+msgid "IP desde donde se firmó el reintegro"
+msgstr "IP desde donde se firmó el reintegro"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify_return
+msgid "IP:"
+msgstr "IP:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assets_form
+msgid "IT Asset"
+msgstr "Activo TI"
+
+#. module: sandor_it_inventory
+#: model:res.groups,name:sandor_it_inventory.group_it_asset_user
+msgid "IT Asset User"
+msgstr "Usuario de Activos TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_it_assets
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__it_assets
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_form
+msgid "IT Assets"
+msgstr "Activos TI"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_it_assignment
+#: model:ir.model,name:sandor_it_inventory.model_it_assignment
+msgid "IT Assignment"
+msgstr "Asignación TIC"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_it_assignment_discount
+msgid "IT Assignment Discount Detail"
+msgstr "IT Assignment Discount Detail"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_it_assignment_line
+msgid "IT Assignment Line"
+msgstr "Línea de Asignación TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_report_sandor_it_inventory_report_it_assignment_template
+msgid "IT Assignment Report"
+msgstr "IT Assignment Report"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_hr_employee__it_assignment_count
+msgid "IT Assignments"
+msgstr "IT Assignments"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_brand_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_brand_id
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "IT Brand"
+msgstr "Marca TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_serial_number
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_serial_number
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "IT Serial Number"
+msgstr "Número de Serie TI"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__fa_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_exception_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_exception_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_exception_icon
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__fa_color
+msgid "Icon Color"
+msgstr "Color del Icono"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__fa_color
+msgid "Icon Color of Tile"
+msgstr "Color del Icono de la Ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__activity_exception_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__activity_exception_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__activity_exception_icon
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Identificación"
+msgstr "Identificación"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Identificación:"
+msgstr "Identificación:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__document_hash
+msgid "Identificador único del contenido del documento al momento de firmar"
+msgstr "Identificador único del contenido del documento al momento de firmar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__message_needaction
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__message_needaction
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__message_needaction
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__message_has_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__message_has_sms_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__message_has_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__message_has_sms_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__message_has_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__message_has_sms_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__message_has_error
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment_line__it_unique_assignment
+#: model:ir.model.fields,help:sandor_it_inventory.field_product_product__it_unique_assignment
+#: model:ir.model.fields,help:sandor_it_inventory.field_product_template__it_unique_assignment
+msgid ""
+"If checked, this product can only be assigned to one employee at a time and "
+"will be hidden from assignment lists if already assigned."
+msgstr ""
+"Si está marcado, este producto solo puede ser asignado a un empleado a la "
+"vez y se ocultará de las listas de asignación si ya está asignado."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__image_1920
+msgid "Image 1920"
+msgstr "Imagen 1920"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Imprimir Documento de Devolución"
+msgstr "Imprimir Documento de Devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__state__in_repair
+msgid "In Repair"
+msgstr "En Reparación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__asset_type__status__inactive
+msgid "In-Active"
+msgstr "Inactivo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_signer_user_agent
+msgid "Información del dispositivo que firma la devolución"
+msgstr "Información del dispositivo que firma la devolución"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__signer_user_agent
+msgid "Información detallada del dispositivo y navegador del firmante"
+msgstr "Información detallada del dispositivo y navegador del firmante"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Informe de Firma de Devolución"
+msgstr "Informe de Firma de Devolución"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Informe de Firmas"
+msgstr "Informe de Firmas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__default_code
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__default_code
+msgid "Internal Reference"
+msgstr "Referencia Interna"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Inventario TI"
+msgstr "Inventario TI"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_inventory_and_asset_management_root
+msgid "Inventario TIC"
+msgstr "Inventario TIC"
+
+#. module: sandor_it_inventory
+#: model:mail.template,subject:sandor_it_inventory.email_template_it_assignment_v2
+msgid ""
+"Invitación a firmar: Documento de Entrega de Equipos TIC - {{ object.name }}"
+msgstr "Invitación a firmar: Documento de Entrega de Equipos TIC - {{ object.name }}"
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_is_follower
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_is_follower
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_is_follower
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_res_partner__is_vendor
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_res_users__is_vendor
+msgid "Is Vendor"
+msgstr "Es Proveedor"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__job_id
+msgid "Job Position"
+msgstr "Posición Laboral"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_completed
+msgid "La devolución del documento"
+msgstr "La devolución del documento"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__write_uid
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__write_date
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__license
+msgid "License"
+msgstr "Licencia"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__line
+msgid "Line"
+msgstr "Línea"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Line Chart"
+msgstr "Gráfico de Líneas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__display_name
+msgid "Line Name"
+msgstr "Nombre de Línea"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Logo"
+msgstr "Logo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Los elementos tecnológicos y/o accesorios entregados(s) hace(n) parte de los"
+" implementos del <strong>Trabajador</strong>, en consecuencia, deberá "
+"responder por aquellos como requisito de Paz y Salvo sin importar si son "
+"nuevos o usados, teniendo en cuenta la siguiente tabla de tarifas:"
+msgstr "Los elementos tecnológicos y/o accesorios entregados(s) hace(n) parte de los implementos del <strong>Trabajador</strong>, en consecuencia, deberá responder por aquellos como requisito de Paz y Salvo sin importar si son nuevos o usados, teniendo en cuenta la siguiente tabla de tarifas:"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Los elementos tecnológicos y/o los accesorios asignados(s) queda(n) bajo la "
+"responsabilidad del <strong>Trabajador</strong>, por lo que"
+msgstr "Los elementos tecnológicos y/o los accesorios asignados(s) queda(n) bajo la responsabilidad del <strong>Trabajador</strong>, por lo que"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Los equipos y/o elementos que serán entregados al "
+"<strong>Trabajador</strong> para la ejecución de sus funciones. Es claro "
+"para las partes que la presente acta hace parte integral del contrato de "
+"trabajo y que su contenido es aceptado en su totalidad por el "
+"<strong>Trabajador</strong> con la simple firma de este."
+msgstr "Los equipos y/o elementos que serán entregados al <strong>Trabajador</strong> para la ejecución de sus funciones. Es claro para las partes que la presente acta hace parte integral del contrato de trabajo y que su contenido es aceptado en su totalidad por el <strong>Trabajador</strong> con la simple firma de este."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "MARCA"
+msgstr "MARCA"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "MES"
+msgstr "MES"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Manipular los elementos tecnológicos y/o accesorios con el mayor cuidado, "
+"evitando golpes, rayones, presiones y ambientes muy contaminados."
+msgstr "Manipular los elementos tecnológicos y/o accesorios con el mayor cuidado, evitando golpes, rayones, presiones y ambientes muy contaminados."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Mantener líquidos y otras sustancias nocivas alejados de los elementos "
+"tecnológicos y/o de los accesorios."
+msgstr "Mantener líquidos y otras sustancias nocivas alejados de los elementos tecnológicos y/o de los accesorios."
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__measured_field_id
+msgid "Measured Field"
+msgstr "Campo Medido"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__message
+msgid "Mensaje"
+msgstr "Mensaje"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_has_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_has_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_has_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__model_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__model
+msgid "Model"
+msgstr "Modelo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__model_name
+msgid "Model Name"
+msgstr "Nombre del Modelo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi Fecha Límite de Actividad"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "NIT:"
+msgstr "NIT:"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_chart.js:0
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_tile.js:0
+#, python-format
+msgid "NO, GO BACK"
+msgstr "NO, REGRESAR"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_brand__name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_model__name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__name
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__name
+msgid "Name of the block"
+msgstr "Nombre del bloque"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__state__new
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__system_system__state__new
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_date_deadline
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de Próxima Actividad"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_summary
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_summary
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_summary
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Próxima Actividad"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_type_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_type_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_type_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.actions.act_window,help:sandor_it_inventory.action_it_components
+msgid "No components found. Create one now!"
+msgstr "No se encontraron componentes. ¡Cree uno ahora!"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"No se puede cancelar un acta que ya ha sido firmada. Debe registrar una "
+"devolución si desea anular la entrega."
+msgstr "No se puede cancelar un acta que ya ha sido firmada. Debe registrar una devolución si desea anular la entrega."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"No se puede confirmar la asignación porque los siguientes datos del empleado son obligatorios para la legalidad del acta:\n"
+"- %s\n"
+"\n"
+"Por favor, complete estos datos en la ficha del empleado o en su contacto vinculado."
+msgstr ""
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#, python-format
+msgid ""
+"No se puede desactivar 'Disponible en Inventario TI' para el producto '%s' "
+"porque tiene %s asignación(es) activa(s). Por favor, devuelva o cancele "
+"todas las asignaciones antes de desactivar esta opción."
+msgstr "No se puede desactivar 'Disponible en Inventario TI' para el producto '%s' porque tiene %s asignación(es) activa(s). Por favor, devuelva o cancele todas las asignaciones antes de desactivar esta opción."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#, python-format
+msgid ""
+"No se puede eliminar el producto '%s' porque tiene %s asignación(es) "
+"activa(s). Por favor, devuelva o cancele todas las asignaciones antes de "
+"eliminar este producto."
+msgstr "No se puede eliminar el producto '%s' porque tiene %s asignación(es) activa(s). Por favor, devuelva o cancele todas las asignaciones antes de eliminar este producto."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/report/it_assignment_report.py:0
+#, python-format
+msgid ""
+"No se puede imprimir el Documento de Entrega porque no existen productos "
+"asignados en 'Productos TIC'. Por favor, agregue al menos un producto antes "
+"de imprimir."
+msgstr "No se puede imprimir el Documento de Entrega porque no existen productos asignados en 'Productos TIC'. Por favor, agregue al menos un producto antes de imprimir."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid "No se pueden eliminar descuentos una vez confirmada el acta."
+msgstr "No se pueden eliminar descuentos una vez confirmada el acta."
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid "No se pueden modificar descuentos una vez confirmada el acta."
+msgstr "No se pueden modificar descuentos una vez confirmada el acta."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"No variar la destinación, ni el uso propuesto para los elementos "
+"tecnológicos y/o para cualquiera de sus accesorios. De igual manera el "
+"<strong>Trabajador</strong> deberá supervisar su correcta utilización."
+msgstr "No variar la destinación, ni el uso propuesto para los elementos tecnológicos y/o para cualquiera de sus accesorios. De igual manera el <strong>Trabajador</strong> deberá supervisar su correcta utilización."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Nombre Empleado:"
+msgstr "Nombre Empleado:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__return_signed_by
+msgid "Nombre de la persona que devuelve"
+msgstr "Nombre de la persona que devuelve"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__signed_by
+msgid "Nombre de la persona que firmó"
+msgstr "Nombre de la persona que firmó"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Nombre:"
+msgstr "Nombre:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Notas"
+msgstr "Notas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__notes
+msgid "Notes"
+msgstr "Notas"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_needaction_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_needaction_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_needaction_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_has_error_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_has_error_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_has_error_counter
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__message_needaction_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__message_needaction_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__message_needaction_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__message_has_error_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__message_has_error_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__message_has_error_counter
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid "Número de Identificación"
+msgstr "Número de Identificación"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Número de cédula:"
+msgstr "Número de cédula:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "OBSERVACIONES:"
+msgstr "OBSERVACIONES:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__os_type
+msgid "OS Type"
+msgstr "Tipo de SO"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "OTROS ELEMENTOS"
+msgstr "OTROS ELEMENTOS"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Observaciones adicionales..."
+msgstr "Observaciones adicionales..."
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid "Operación no válida: Debe agregar líneas antes de validar."
+msgstr "Operación no válida: Debe agregar líneas antes de validar."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__operation
+msgid "Operation"
+msgstr "Operación"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "PLACA"
+msgstr "PLACA"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "PORCENTAJE A DESCONTAR"
+msgstr "PORCENTAJE A DESCONTAR"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__asset_kind__physical
+msgid "Physical"
+msgstr "Físico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__pie
+msgid "Pie"
+msgstr "Pastel"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Pie Chart"
+msgstr "Gráfico de Pastel"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Placa"
+msgstr "Placa"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Polar Area Chart"
+msgstr "Gráfico de Área Polar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Por medio de la presente,"
+msgstr "Por medio de la presente,"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Por parte de"
+msgstr "Por parte de"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__access_url
+msgid "Portal Access URL"
+msgstr "Portal Access URL"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_sign
+msgid "Previsualización de Documento de Devolución"
+msgstr "Previsualización de Documento de Devolución"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "Previsualización del Documento"
+msgstr "Previsualización del Documento"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment_line__list_price
+msgid "Price at which the product is sold to customers."
+msgstr "Precio al cual se vende el producto a los clientes."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__tile_color
+msgid "Primary Color of Tile"
+msgstr "Color Primario de la Ficha"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assets.py:0
+#: model:ir.model,name:sandor_it_inventory.model_product_template
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__product_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__product_id
+#, python-format
+msgid "Product"
+msgstr "Producto"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+msgid "Producto"
+msgstr "Producto"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Productos TIC"
+msgstr "Productos TIC"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_confirm_wizard__product_ids
+msgid "Productos sin descuento"
+msgstr "Productos sin descuento"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_it_inventory_products
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_it_inventory_products
+msgid "Products"
+msgstr "Productos"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_asset_type__is_discountable
+msgid "Products of this type can be included in the discount table."
+msgstr "Products of this type can be included in the discount table."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Puntos de autenticación:"
+msgstr "Puntos de autenticación:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Página: <span class=\"page\"/> / <span class=\"topage\"/>"
+msgstr "Página: <span class=\"page\"/> / <span class=\"topage\"/>"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "QR de Seguridad"
+msgstr "QR de Seguridad"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "RELACION DE EQUIPOS Y ELEMENTOS ASIGNADOS"
+msgstr "RELACIÓN DE EQUIPOS Y ELEMENTOS ASIGNADOS"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__radar
+msgid "Radar"
+msgstr "Radar"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Radar Chart"
+msgstr "Gráfico de Radar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__rating_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__rating_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__rating_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Recibido conforme"
+msgstr "Recibido conforme"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_form_view_it_inventory
+msgid "Referencia"
+msgstr "Referencia"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Registrar Devolución"
+msgstr "Registrar Devolución"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/controllers/portal.py:0
+#, python-format
+msgid "Registro no encontrado"
+msgstr "Registro no encontrado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+msgid "Regresar y Corregir"
+msgstr "Regresar y Corregir"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__is_repair
+msgid "Repairing"
+msgstr "Reparando"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__activity_user_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__activity_user_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__activity_user_id
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "SERIAL / IMEI"
+msgstr "SERIE / IMEI"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "SERIAL / IMEI / PLACA"
+msgstr "SERIAL / IMEI / PLACA"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__message_has_sms_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__message_has_sms_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__message_has_sms_error
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__list_price
+msgid "Sale Price"
+msgstr "Precio de Venta"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Salvo el desgaste natural de los elementos tecnológicos y/o accesorios "
+"entregados, el <strong>Trabajador</strong> deberá responder ante"
+msgstr "Salvo el desgaste natural de los elementos tecnológicos y/o accesorios entregados, el <strong>Trabajador</strong> deberá responder ante"
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Save Layout"
+msgstr "Guardar Diseño"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Se debe entregar a"
+msgstr "Se debe entregar a"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"Se ha iniciado el proceso de devolución. El empleado puede ahora firmar el "
+"Documento de Devolución y Paz y Salvo desde el portal para formalizar la entrega "
+"de equipos."
+msgstr "Se ha iniciado el proceso de devolución. El empleado puede ahora firmar el Documento de Devolución y Paz y Salvo desde el portal para formalizar la entrega de equipos."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Se prohíben las siguientes actividades, sin limitarse a éstas, de los "
+"elementos tecnológicos y/o con cualquiera de sus accesorios: jugar, vender, "
+"empeñar o de uso personal."
+msgstr "Se prohíben las siguientes actividades, sin limitarse a éstas, de los elementos tecnológicos y/o con cualquiera de sus accesorios: jugar, vender, empeñar o de uso personal."
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__access_token
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Security Token"
+msgstr "Security Token"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Sede:"
+msgstr "Sede:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__measured_field_id
+msgid "Select the Measured"
+msgstr "Seleccionar el Medido"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__model_id
+msgid "Select the module name"
+msgstr "Seleccionar el nombre del módulo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__serial_number
+msgid "Serial No."
+msgstr "No. Serial"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_discount__it_serial_number
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__it_serial_number
+msgid "Serial Number"
+msgstr "Número de Serie"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_confirm_wizard_form
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Serie"
+msgstr "Serie"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Señores:<br/>\n"
+"                            <strong>ELITE FACILITY MANAGEMENT SAS.</strong>"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Si en definitiva el <strong>Trabajador</strong> no entrega los elementos "
+"tecnológicos, los accesorios y/o las sumas requeridas (de acuerdo con cada "
+"caso)"
+msgstr "Si en definitiva el <strong>Trabajador</strong> no entrega los elementos tecnológicos, los accesorios y/o las sumas requeridas (de acuerdo con cada caso)"
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"Solo se pueden agregar descuentos cuando el acta está en estado Borrador."
+msgstr "Solo se pueden agregar descuentos cuando el acta está en estado Borrador."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"Solo se pueden registrar devoluciones de documentos confirmados o firmados."
+msgstr "Solo se pueden registrar devoluciones de documentos confirmados o firmados."
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_asset_type__status
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__state
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__state
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__activity_state
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__activity_state
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__activity_state
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencida: La fecha límite ya pasó\n"
+"Hoy: La fecha de actividad es hoy\n"
+"Planificada: Actividades futuras."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__operation__sum
+msgid "Sum"
+msgstr "Suma"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__system_id
+msgid "System"
+msgstr "Sistema"
+
+#. module: sandor_it_inventory
+#: model:ir.actions.act_window,name:sandor_it_inventory.action_system_system
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_system_system
+msgid "Systems"
+msgstr "Sistemas"
+
+#. module: sandor_it_inventory
+#: model:ir.ui.menu,name:sandor_it_inventory.menu_tic_category
+msgid "TIC"
+msgstr "TIC"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_form
+msgid "Technical Info"
+msgstr "Información Técnica"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Tel:"
+msgstr "Tel:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"Teniendo en cuenta que los elementos tecnológicos entregados son de uso "
+"corporativo, el Gerente TIC de"
+msgstr "Teniendo en cuenta que los elementos tecnológicos entregados son de uso corporativo, el Gerente TIC de"
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__text_color
+msgid "Text Color"
+msgstr "Color del Texto"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__text_color
+msgid "Text Color of Tile"
+msgstr "Color del Texto de la Ficha"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/order_stats_tile.xml:0
+#, python-format
+msgid "This is a simple Owl component template."
+msgstr "Esta es una plantilla simple de componente Owl."
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__type__tile
+#, python-format
+msgid "Tile"
+msgstr "Ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__tile_color
+msgid "Tile Color"
+msgstr "Color de la Ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__operation
+msgid "Tile Operation that needs to bring values for tile"
+msgstr "Operación de Ficha que necesita traer valores para la ficha"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid "Tipo de Identificación"
+msgstr "Tipo de Identificación"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "Toggle navigation"
+msgstr "Alternar navegación"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Token"
+msgstr "Token"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Token:"
+msgstr "Token:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__total_quantity
+msgid "Total quantity"
+msgstr "Cantidad total"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__translate_x
+msgid "Translate_X"
+msgstr "Traducir_X"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__translate_y
+msgid "Translate_Y"
+msgstr "Traducir_Y"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_completed
+msgid "Tu firma fue un éxito y el documento"
+msgstr "Tu firma fue un éxito y el documento"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__type
+msgid "Type of Block ie, Chart or Tile"
+msgstr "Tipo de Bloque es decir, Gráfico o Ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__graph_type
+msgid "Type of Chart"
+msgstr "Tipo de Gráfico"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__activity_exception_decoration
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__activity_exception_decoration
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__activity_exception_decoration
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de la actividad de excepción en el registro."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "Una vez"
+msgstr "Una vez"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__state__unassigned
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__system_system__state__unassigned
+msgid "Unassigned"
+msgstr "Sin Asignar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.product_template_search_view_it_inventory
+msgid "Unassigned IT Products"
+msgstr "Productos TI Sin Asignar"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment_line__it_unique_assignment
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_product__it_unique_assignment
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_product_template__it_unique_assignment
+msgid "Unique Assignment (Serial)"
+msgstr "Asignación Única (Serie)"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__update_date
+msgid "Update Date"
+msgstr "Fecha de Actualización"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__used_users
+msgid "Used User"
+msgstr "Usuario Utilizado"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_form
+msgid "Used Users"
+msgstr "Usuarios Utilizados"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_used_user_logs__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__user
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "VALOR A PAGAR EN CASO DE PERDIDA O HURTO"
+msgstr "VALOR A PAGAR EN CASO DE PERDIDA O HURTO"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "VALOR TOTAL"
+msgstr "VALOR TOTAL"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "VALOR UNITARIO"
+msgstr "VALOR UNITARIO"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_assignment_form
+msgid "Valor Base"
+msgstr "Valor Base"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__val_color
+msgid "Value Color"
+msgstr "Color del Valor"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__val_color
+msgid "Value Color of Tile"
+msgstr "Color del Valor de la Ficha"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment_line__standard_price
+msgid ""
+"Value of the product (automatically computed in AVCO).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+"Valor del producto (calculado automáticamente en AVCO).\n"
+"        Se usa para valorar el producto cuando el costo de compra no se conoce (ej. ajuste de inventario).\n"
+"        Se usa para calcular márgenes en órdenes de venta."
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__vendor_id
+msgid "Vendor"
+msgstr "Proveedor"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "Verificador de Autenticidad"
+msgstr "Verificador de Autenticidad"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_completed
+msgid "Verificar Trazabilidad del Documento"
+msgstr "Verificar Trazabilidad del Documento"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__it_components__asset_kind__virtual
+msgid "Virtual"
+msgstr "Virtual"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__warranty_end_date
+msgid "Warranty End Date"
+msgstr "Fecha Fin de Garantía"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.view_it_component_form
+msgid "Warranty Info"
+msgstr "Información de Garantía"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__warranty
+msgid "Warranty(In Months)"
+msgstr "Garantía (En Meses)"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "Web:"
+msgstr "Web:"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assets__website_message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__website_message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_components__website_message_ids
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_system_system__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assets__website_message_ids
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_assignment__website_message_ids
+#: model:ir.model.fields,help:sandor_it_inventory.field_it_components__website_message_ids
+#: model:ir.model.fields,help:sandor_it_inventory.field_system_system__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__width
+msgid "Width"
+msgstr "Ancho"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__width
+msgid "Width of the block"
+msgstr "Ancho del bloque"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_it_assignment_confirm_wizard
+msgid "Wizard de Confirmación de Asignación"
+msgstr "Wizard de Confirmación de Asignación"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_it_assignment__work_location_id
+msgid "Work Location"
+msgstr "Ubicación de Trabajo"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__x_axis
+msgid "X-Axis"
+msgstr "Eje X"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,field_description:sandor_it_inventory.field_dashboard_block__y_axis
+msgid "Y-Axis"
+msgstr "Eje Y"
+
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_chart.js:0
+#: code:addons/sandor_it_inventory/static/src/js/dynamic_dashboard_tile.js:0
+#, python-format
+msgid "YES, I'M SURE"
+msgstr "SÍ, ESTOY SEGURO"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_asset_brand
+msgid "asset.brand"
+msgstr "marca.activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_asset_model
+msgid "asset.model"
+msgstr "modelo.activo"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_asset_type
+msgid "asset.type"
+msgstr "tipo.activo"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"asumirá el costo de reparaciones que deriven del hecho, culpa o dolo del "
+"<strong>Trabajador</strong>, como tampoco su descuido o negligencia."
+msgstr "asumirá el costo de reparaciones que deriven del hecho, culpa o dolo del <strong>Trabajador</strong>, como tampoco su descuido o negligencia."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"conozca de la pérdida, hurto, daño y/o cualquier situación que altere el "
+"buen estado y/o la existencia de los elementos tecnológicos y/o accesorios, "
+"diligenciará la autorización de descuento para hacer exigible la obligación "
+"a cargo del <strong>Trabajador</strong>."
+msgstr "conozca de la pérdida, hurto, daño y/o cualquier situación que altere el buen estado y/o la existencia de los elementos tecnológicos y/o accesorios, diligenciará la autorización de descuento para hacer exigible la obligación a cargo del <strong>Trabajador</strong>."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "de"
+msgstr "de"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"en ningún caso eximirá al <strong>Trabajador</strong> de la responsabilidad "
+"civil o penal derivada de su participación en un eventual delito cometido "
+"con los elementos asignados a este."
+msgstr "en ningún caso eximirá al <strong>Trabajador</strong> de la responsabilidad civil o penal derivada de su participación en un eventual delito cometido con los elementos asignados a este."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"entregará al <strong>Trabajador</strong> los elementos relacionados en este "
+"documento, cuyo uso será exclusivamente corporativo y, por lo tanto, su uso "
+"queda sujeto a las restricciones y condiciones que"
+msgstr "entregará al <strong>Trabajador</strong> los elementos relacionados en este documento, cuyo uso será exclusivamente corporativo y, por lo tanto, su uso queda sujeto a las restricciones y condiciones que"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"expedida en _____________________, en mi calidad de trabajador al servicio "
+"de <strong>ELITE FACILITY MANAGEMENT SAS.</strong>, empresa dentro de la "
+"cual desempeño el cargo de"
+msgstr "expedida en _____________________, en mi calidad de trabajador al servicio de <strong>ELITE FACILITY MANAGEMENT SAS.</strong>, empresa dentro de la cual desempeño el cargo de"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid ""
+"ha reintegrado satisfactoriamente la totalidad de los elementos tecnológicos a su cargo vinculados al presente documento.\n"
+"                                <br/><br/>\n"
+"                                En consecuencia, <strong>se declara al trabajador a PAZ Y SALVO</strong> por concepto de custodia de herramientas TIC correspondientes a esta asignación. Se informa al área de Nómina y Talento Humano que <strong>NO se aplicarán los descuentos</strong> autorizados en el acta original, toda vez que no hubo pérdida, hurto o daño comprobado al momento de la entrega."
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_completed
+msgid ""
+"ha sido procesada con éxito. El equipo ha sido liberado de su custodia."
+msgstr "ha sido procesada con éxito. El equipo ha sido liberado de su custodia."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "hace constar que el trabajador"
+msgstr "hace constar que el trabajador"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"hace entrega al <strong>Trabajador</strong> del o los equipos tecnológicos "
+"y/o accesorios que se relaciona(n) en el formato asignación y alistamiento "
+"de equipos, y el <strong>Trabajador</strong> deberá destinar el uso de éste "
+"(tos) única y exclusivamente para el cumplimiento de sus funciones, según lo"
+" establecen las Normas Laborales, el contrato de trabajo y el Reglamento "
+"Interno de Trabajo."
+msgstr "hace entrega al <strong>Trabajador</strong> del o los equipos tecnológicos y/o accesorios que se relaciona(n) en el formato asignación y alistamiento de equipos, y el <strong>Trabajador</strong> deberá destinar el uso de éste (tos) única y exclusivamente para el cumplimiento de sus funciones, según lo establecen las Normas Laborales, el contrato de trabajo y el Reglamento Interno de Trabajo."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_return_template
+msgid "identificado con C.C."
+msgstr "identificado con C.C."
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_it_components
+msgid "it.components"
+msgstr "componentes.ti"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"le informa en el presente documento, el <strong>Trabajador</strong> entiende"
+" y declara que: (1.) En el evento que guarde información personal en los "
+"elementos tecnológicos corporativos entregados,"
+msgstr "le informa en el presente documento, el <strong>Trabajador</strong> entiende y declara que: (1.) En el evento que guarde información personal en los elementos tecnológicos corporativos entregados,"
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"los elementos tecnológicos y/o accesorios de iguales o mejores "
+"características."
+msgstr "los elementos tecnológicos y/o accesorios de iguales o mejores características."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "mayor de edad identificado(a) con la cédula de ciudadanía No"
+msgstr "mayor de edad identificado(a) con la cédula de ciudadanía No"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"no responderá por aquella a la que tenga acceso o deba eliminar. (2.) Acepta"
+" desde ya y sin restricciones cooperar para que la auditoria se lleve a "
+"cabo. (3.) Responder disciplinariamente por todas aquellas actividades que "
+"contrarias a la ley, a este documento, al contrato de trabajo o al "
+"Reglamento Interno de Trabajo se evidencien en la auditoria."
+msgstr ""
+"no responderá por aquella a la que tenga acceso o deba eliminar. (2.) Acepta"
+" desde ya y sin restricciones cooperar para que la auditoría se lleve a "
+"cabo. (3.) Responder disciplinariamente por todas aquellas actividades que "
+"contrarias a la ley, a este documento, al contrato de trabajo o al "
+"Reglamento Interno de Trabajo se evidencien en la auditoría."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"o por quien haga sus veces, en caso de rechazo se procederá con el descuento"
+" de nómina respectivo."
+msgstr "o por quien haga sus veces, en caso de rechazo se procederá con el descuento de nómina respectivo."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "o quien haga sus veces."
+msgstr "o quien haga sus veces."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"podrá descontar de la liquidación final del <strong>Trabajador</strong> "
+"(prestaciones sociales, salario, primas, bonificaciones, liquidaciones, "
+"indemnizaciones, seguros y/o cualquiera otra remuneración o prestación legal"
+" o extralegal a que tenga derecho) el valor total de lo causado."
+msgstr "podrá descontar de la liquidación final del <strong>Trabajador</strong> (prestaciones sociales, salario, primas, bonificaciones, liquidaciones, indemnizaciones, seguros y/o cualquiera otra remuneración o prestación legal o extralegal a que tenga derecho) el valor total de lo causado."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"podrá realizar en cualquier tiempo, auditorias aleatorias con el fin de "
+"comprobar que el <strong>Trabajador</strong> se encuentre utilizando los "
+"elementos tecnológicos y/o los accesorios tal y como"
+msgstr ""
+"podrá realizar en cualquier tiempo, auditorías aleatorias con el fin de "
+"comprobar que el <strong>Trabajador</strong> se encuentre utilizando los "
+"elementos tecnológicos y/o los accesorios tal y como"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields.selection,name:sandor_it_inventory.selection__dashboard_block__graph_type__polararea
+msgid "polarArea"
+msgstr "areaPolar"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"por la(s) pérdida(s), hurto(s) y/o daño(s) que se le ocasione(n) a los "
+"mismos por causa del mismo <strong>trabajador</strong>, pues es entendido y "
+"aceptado por el <strong>Trabajador</strong> que aquellos son entregados bajo"
+" su estricta responsabilidad. El valor por el cual debe responder el "
+"<strong>Trabajador</strong> se detalla más adelante."
+msgstr "por la(s) pérdida(s), hurto(s) y/o daño(s) que se le ocasione(n) a los mismos por causa del mismo <strong>trabajador</strong>, pues es entendido y aceptado por el <strong>Trabajador</strong> que aquellos son entregados bajo su estricta responsabilidad. El valor por el cual debe responder el <strong>Trabajador</strong> se detalla más adelante."
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"por medio del presente escrito manifiesto que autorizo a mi empleador "
+"<strong>ELITE FACILITY MANAGEMENT SAS.</strong> para que retenga de mis "
+"prestaciones sociales, salario, primas, bonificaciones, liquidaciones, "
+"indemnizaciones, seguros y/o cualquiera otra remuneración or prestación "
+"legal or extralegal a que tenga derecho, la siguiente suma de dinero con el "
+"fin de amortiguar el valor del(la) daño (____) pérdida (____) hurto (____) "
+"otro motivo (____), ¿cuál? __________________________________) de los "
+"elementos tecnológicos y/o accesorios que a continuación se relacionan:"
+msgstr ""
+"por medio del presente escrito manifiesto que autorizo a mi empleador "
+"<strong>ELITE FACILITY MANAGEMENT SAS.</strong> para que retenga de mis "
+"prestaciones sociales, salario, primas, bonificaciones, liquidaciones, "
+"indemnizaciones, seguros y/o cualquiera otra remuneración o prestación legal"
+" o extralegal a que tenga derecho, la siguiente suma de dinero con el fin de"
+" amortiguar el valor del(la) daño (____) pérdida (____) hurto (____) otro "
+"motivo (____), ¿cuál? __________________________________) de los elementos "
+"tecnológicos y/o accesorios que a continuación se relacionan:"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"procederá a efectuar el descuento de nómina respectivo, So pena de existir "
+"una autorización con fecha de entrega diferente."
+msgstr ""
+"procederá a efectuar el descuento de nómina respectivo, so pena de existir "
+"una autorización con fecha de entrega diferente."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "pueda imponer en cualquier momento."
+msgstr "pueda imponer en cualquier momento."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_completed
+msgid "queda oficialmente firmado."
+msgstr "queda oficialmente firmado."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"sobre cualquier irregularidad, accidente, falla o cualquier situación que "
+"afecte o pudiere afectar o involucrar al <strong>Trabajador</strong>, los "
+"elementos tecnológicos o sus accesorios o la responsabilidad de"
+msgstr "sobre cualquier irregularidad, accidente, falla o cualquier situación que afecte o pudiere afectar o involucrar al <strong>Trabajador</strong>, los elementos tecnológicos o sus accesorios o la responsabilidad de"
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_system_system
+msgid "system.system"
+msgstr "sistema.sistema"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"tenga conocimiento del hurto, pérdida and/o daño, en caso de incumplir el "
+"anterior plazo,"
+msgstr ""
+"tenga conocimiento del hurto, pérdida y/o daño, en caso de incumplir el "
+"anterior plazo,"
+
+#. module: sandor_it_inventory
+#: model:ir.model,name:sandor_it_inventory.model_used_user_logs
+msgid "used.user.logs"
+msgstr "logs.usuario.usado"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__translate_x
+msgid "x value for the style transform translate"
+msgstr "valor x para la transformación de estilo translate"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid "y en el(los) sitio(s) que ésta última le indique."
+msgstr "y en el(los) sitio(s) que ésta última le indique."
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"y libre de cualquier virus informático, por lo cual no se autoriza a la "
+"persona que firma la presente Documento, a copiarlo, duplicarlo, borrarlo, ni "
+"instalar ningún software adicional, sin la previa autorización del área de "
+"TIC and se compromete a que su uso será únicamente para labores propias de"
+msgstr ""
+"y libre de cualquier virus informático, por lo cual no se autoriza a la "
+"persona que firma la presente Documento, a copiarlo, duplicarlo, borrarlo, ni "
+"instalar ningún software adicional, sin la previa autorización del área de "
+"TIC y se compromete a que su uso será únicamente para labores propias de"
+
+#. module: sandor_it_inventory
+#: model:ir.model.fields,help:sandor_it_inventory.field_dashboard_block__translate_y
+msgid "y value for the style transform translate"
+msgstr "valor y para la transformación de estilo translate"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.report_it_assignment_template
+msgid ""
+"y/o de los propietarios con los que esta última suscriba convenios "
+"comerciales para abastecerse de aparatos electrónicos."
+msgstr "y/o de los propietarios con los que esta última suscriba convenios comerciales para abastecerse de aparatos electrónicos."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"¡ATENCIÓN! Los siguientes productos están sujetos a depreciación pero no se han configurado en la pestaña de Descuentos.\n"
+"¿Desea confirmar el acta de todas formas o prefiere regresar para agregarlos?"
+msgstr ""
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_completed
+msgid "¡Firma completada!"
+msgstr "¡Firma completada!"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_sign
+msgid "¡Gracias!"
+msgstr "¡Gracias!"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_return_completed
+msgid "¡Paz y Salvo Generado!"
+msgstr "¡Paz y Salvo Generado!"
+
+#. module: sandor_it_inventory
+#: model_terms:ir.ui.view,arch_db:sandor_it_inventory.portal_my_assignment_verify
+msgid "Última actualización:"
+msgstr "Última actualización:"
+
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"✅ Ciclo Cerrado: El empleado ha firmado la devolución satisfactoriamente. Se"
+" adjunta el Documento de Devolución y Certificado de Paz y Salvo legalizado."
+msgstr "✅ Ciclo Cerrado: El empleado ha firmado la devolución satisfactoriamente. Se adjunta el Documento de Devolución y Certificado de Paz y Salvo legalizado."
+#. module: sandor_it_inventory
+#. odoo-python
+#: code:addons/sandor_it_inventory/models/it_assignment.py:0
+#, python-format
+msgid ""
+"✅ Documento Legalizado: El acta ha sido firmada por el empleado. Se adjunta "
+"el PDF con el certificado de auditoría y código QR de verificación."
+msgstr "✅ Documento Legalizado: El acta ha sido firmada por el empleado. Se adjunta el PDF con el certificado de auditoría y código QR de verificación."
+#. module: sandor_it_inventory
+#. odoo-javascript
+#: code:addons/sandor_it_inventory/static/src/xml/dynamic_dashboard_template.xml:0
+#, python-format
+msgid "⠀Add Items"
+msgstr "Agregar"

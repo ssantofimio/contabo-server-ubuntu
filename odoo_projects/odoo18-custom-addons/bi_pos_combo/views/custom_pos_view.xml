@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           
+        <record id="product_bundle_product_form_view" model="ir.ui.view">
+			<field name="name">product.product.pack</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view" />
+			<field name="arch" type="xml">
+				
+				<xpath expr="//div[@name='options']" position="inside">
+					<span class="d-inline-block">
+						<field name="is_pack"/>  
+						<label for="is_pack"/> 
+					</span>
+				</xpath>
+				
+				<xpath expr="//page[@name='inventory']" position="after">
+					<page string='Combo Products' invisible="not is_pack">
+						<field name="pack_ids">
+							<list string="Pack Products" editable="bottom">
+								<field name="is_required"/>
+								<field name="category_id"/>
+								<field name="product_ids" widget="many2many_tags"/>
+							</list>
+						</field>
+					</page>
+				</xpath>
+
+			</field>
+		</record>
+
+		 <record id="product_combo_limitation_form_view" model="ir.ui.view">
+			<field name="name">product.combo.limit</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="point_of_sale.product_template_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='pos_categ_ids']" position="after">
+					<field name="combo_limitation" />
+				</xpath>
+			</field>
+		</record>
+	
+	
+		<record id="product_template_inherit_form" model="ir.ui.view">
+			<field name="name">product.product.pack</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[@name='variants']" position="attributes">
+				  <attribute name="invisible">is_pack</attribute> 
+				</xpath>
+
+				<xpath expr="//notebook/page[@name='variants']" position="after">
+				  <page string="Variants" name="bi_variants" invisible="not is_pack">
+					<h1> You cannot create variants of the Pack </h1>
+				  </page>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="product_bundle_product_search_view" model="ir.ui.view">
+			<field name="name">product.template.search</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_search_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//search/filter[@name='filter_to_sell']" position="after">
+					<filter string="Is a pack" name="is_a_pack"  domain="[('is_pack','=', True)]"/>
+				</xpath>  
+			</field>
+		</record>
+
+		<record id="action_pack" model="ir.actions.act_window">
+			<field name="name">Product Packs</field>
+			<field name="res_model">product.template</field>
+			<field name="domain">[('is_pack', '=', True)]</field>
+			<field name="context">{'default_is_pack':True}</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+
+	   	<record model="ir.ui.view" id="custom_pos_combo">
+	        <field name="name">res.config.setting.form.extended.view</field>
+	        <field name="model">res.config.settings</field>
+	        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//block[@id='pos_interface_section']" position="before">
+	                <h2 name="pos_interface">Configuración Combo POS</h2>
+	                <div class="row mt16 o_settings_container" id="service_charge_section">
+	                    <div class="col-12 col-lg-6 o_setting_box" id="default_sales_tax_setting">
+	                    	<div class="o_setting_left_pane">
+                                <field name="use_combo"/>
+                            </div>
+	                        <div class="o_setting_right_pane">
+	                            <div>
+	                                <label for="use_combo"/>
+	                                <div class="text-muted">
+	                                    Utilice la combinación de productos POS
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="o_setting_right_pane" invisible="not use_combo">
+	                            <div>
+	                                <label for="combo_pack_price"/>
+	                                <div class="content-group mt16">
+	                                    <field name="combo_pack_price" colspan="4" nolabel="1" widget="radio"/>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </xpath>
+	        </field>
+	    </record>
+
+
+	   	<record model="ir.ui.view" id="custom_pos_order_extended_form_view">
+			<field name="name">pos.order.form.extended.view</field>
+			<field name="model">pos.order</field>
+			<field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page/field/list/field[@name='product_id']" position="after">
+	        		<field name="combo_prod_ids" widget="many2many_tags"/>
+				</xpath>
+			</field>
+	   	</record>
+    </data>
+</openerp>

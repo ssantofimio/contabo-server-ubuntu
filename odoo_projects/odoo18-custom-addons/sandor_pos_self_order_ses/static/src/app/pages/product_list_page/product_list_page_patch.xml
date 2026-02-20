@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="pos_self_order.ProductListPage" t-inherit-mode="extension">
+        <!-- Safeguard category iteration in navbar -->
+        <xpath expr="//nav[@id='listgroup-categories']/a" position="attributes">
+            <attribute name="t-if">category</attribute>
+        </xpath>
+        
+        <!-- Safeguard category iteration in list -->
+        <xpath expr="//section" position="attributes">
+            <attribute name="t-if">category</attribute>
+        </xpath>
+        
+        <!-- Safeguard products access -->
+        <xpath expr="//t[@t-set='products']" position="replace">
+            <t t-set="products" t-value="category and this.selfOrder.productByCategIds[category.id] or []" />
+        </xpath>
+    </t>
+</templates>

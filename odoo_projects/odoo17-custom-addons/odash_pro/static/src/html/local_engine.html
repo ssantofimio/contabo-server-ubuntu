@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odashboard Pro Local Engine</title>
+  <script>
+    // Mock pathname to '/' so React Router matches the root route
+    try {
+      const originalLocation = window.location;
+      const mockLocation = new Proxy(originalLocation, {
+        get: (target, prop) => {
+          if (prop === 'pathname') return '/';
+          const value = target[prop];
+          return typeof value === 'function' ? value.bind(target) : value;
+        }
+      });
+      // We can't overwrite window.location, but many apps use a local variable or just 'location'
+      // Let's also try to overwrite the property on the object if possible
+      Object.defineProperty(window, 'location', {
+        value: mockLocation,
+        configurable: true,
+        enumerable: true
+      });
+    } catch (e) {
+      console.warn("Could not mock window.location directly, trying fallback property override");
+      try {
+        Object.defineProperty(window.location, 'pathname', {
+          get: function () { return '/'; },
+          configurable: true
+        });
+      } catch (e2) {
+        console.error("Critical: Failed to mock pathname for React Router", e2);
+      }
+    }
+  </script>
+  <!-- Use absolute Odoo static paths -->
+  <script type="module" crossorigin src="/odash_pro/static/src/remote_assets/js/index.js"></script>
+  <link rel="stylesheet" crossorigin href="/odash_pro/static/src/remote_assets/css/index.css">
+  <style>
+    body,
+    html,
+    #root {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

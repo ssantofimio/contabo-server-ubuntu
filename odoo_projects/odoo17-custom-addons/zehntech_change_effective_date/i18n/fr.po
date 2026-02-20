@@ -1,0 +1,185 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* zehntech_change_effective_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-21 06:14+0000\n"
+"PO-Revision-Date: 2025-05-21 11:49+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: zehntech_change_effective_date
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_change_effective_date_wizard
+msgid "Apply"
+msgstr "Appliquer"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_stock_picking__can_change_effective_date
+msgid "Can Change Effective Date"
+msgstr "Peut changer la date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_change_effective_date_wizard
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: zehntech_change_effective_date
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_change_effective_date_wizard
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_picking_form_inherit_effective_date
+msgid "Change Effective Date"
+msgstr "Modification de la date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_res_users__change_effective_date
+msgid "Change Effective Date Privilege"
+msgstr "Privilège de modification de la date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: zehntech_change_effective_date
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_picking_form_inherit_effective_date
+msgid "Effective Date"
+msgstr "Date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_stock_picking__x_effective_date
+msgid "Effective Date (Manual)"
+msgstr "Date d'entrée en vigueur (manuel)"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,help:zehntech_change_effective_date.field_res_users__change_effective_date
+msgid ""
+"Enable this option to allow the user to change the effective date on stock "
+"transfers and update valuation accordingly."
+msgstr ""
+"Activez cette option pour permettre à l'utilisateur de modifier la date "
+"d'effet des transferts de stock et de mettre à jour l'évaluation en "
+"conséquence."
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__id
+msgid "ID"
+msgstr "IDENTIFIANT"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,help:zehntech_change_effective_date.field_stock_picking__can_change_effective_date
+msgid ""
+"Indicates if the current user has permission to change the effective date, "
+"based on the 'Change Effective Date Privilege' setting."
+msgstr ""
+"Indique si l'utilisateur actuel est autorisé à modifier la date d'effet, en "
+"fonction du paramètre « Modifier le privilège de date d'effet »."
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_res_users__is_admin_settings
+msgid "Is Admin Settings Group"
+msgstr "Est-ce le groupe Paramètres d'administration"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,help:zehntech_change_effective_date.field_stock_picking__x_effective_date
+msgid ""
+"Manually set the effective date for this stock transfer, used for stock "
+"valuation and currency conversion."
+msgstr ""
+"Définissez manuellement la date d'effet de ce transfert de stock, utilisée "
+"pour l'évaluation des stocks et la conversion des devises."
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__new_effective_date
+msgid "New Effective Date"
+msgstr "Nouvelle date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#. odoo-python
+#: code:addons/zehntech_change_effective_date/models/change_effective_date_wizard.py:0
+#, python-format
+msgid "No Exchange rate found for this currency"
+msgstr "Aucun taux de change trouvé pour cette devise"
+
+#. module: zehntech_change_effective_date
+#. odoo-python
+#: code:addons/zehntech_change_effective_date/models/change_effective_date_wizard.py:0
+#, python-format
+msgid "Please set the Effective date"
+msgstr "Veuillez définir la date d'entrée en vigueur"
+
+#. module: zehntech_change_effective_date
+#. odoo-python
+#: code:addons/zehntech_change_effective_date/models/stock_picking.py:0
+#, python-format
+msgid "No exchange rate found for the selected date."
+msgstr "Aucun taux de change trouvé pour la date sélectionnée."
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,field_description:zehntech_change_effective_date.field_change_effective_date_wizard__picking_id
+msgid "Picking"
+msgstr "Cueillette"
+
+#. module: zehntech_change_effective_date
+#. odoo-python
+#: code:addons/zehntech_change_effective_date/models/stock_picking.py:0
+#, python-format
+msgid "Please set the Effective date before validating the transfer."
+msgstr "Veuillez définir la date d'effet avant de valider le transfert."
+
+#. module: zehntech_change_effective_date
+#: model_terms:ir.ui.view,arch_db:zehntech_change_effective_date.view_picking_form_inherit_effective_date
+msgid "Set date before validating"
+msgstr "Définir la date avant de valider"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model.fields,help:zehntech_change_effective_date.field_change_effective_date_wizard__new_effective_date
+msgid ""
+"Set the new effective date for the stock transfer. This date will be used "
+"to recalculate the stock valuation based on the currency rate at that time."
+msgstr ""
+"Définissez la nouvelle date d'effet du transfert de stock. Cette date "
+"servira à recalculer la valeur du stock en fonction du taux de change en "
+"vigueur."
+
+#. module: zehntech_change_effective_date
+#: model:ir.model,name:zehntech_change_effective_date.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model,name:zehntech_change_effective_date.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: zehntech_change_effective_date
+#: model:ir.model,name:zehntech_change_effective_date.model_change_effective_date_wizard
+msgid "Wizard to Change Effective Date"
+msgstr "Assistant pour modifier la date d'effet"

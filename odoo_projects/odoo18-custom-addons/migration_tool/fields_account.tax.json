@@ -1,0 +1,286 @@
+{
+    "message_is_follower": {
+        "required": false,
+        "string": "Is Follower",
+        "type": "boolean"
+    },
+    "message_follower_ids": {
+        "relation": "mail.followers",
+        "required": false,
+        "string": "Followers",
+        "type": "one2many"
+    },
+    "message_partner_ids": {
+        "relation": "res.partner",
+        "required": false,
+        "string": "Followers (Partners)",
+        "type": "many2many"
+    },
+    "message_ids": {
+        "relation": "mail.message",
+        "required": false,
+        "string": "Messages",
+        "type": "one2many"
+    },
+    "has_message": {
+        "required": false,
+        "string": "Has Message",
+        "type": "boolean"
+    },
+    "message_needaction": {
+        "help": "If checked, new messages require your attention.",
+        "required": false,
+        "string": "Action Needed",
+        "type": "boolean"
+    },
+    "message_needaction_counter": {
+        "help": "Number of messages requiring action",
+        "required": false,
+        "string": "Number of Actions",
+        "type": "integer"
+    },
+    "message_has_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "Message Delivery error",
+        "type": "boolean"
+    },
+    "message_has_error_counter": {
+        "help": "Number of messages with delivery error",
+        "required": false,
+        "string": "Number of errors",
+        "type": "integer"
+    },
+    "message_attachment_count": {
+        "required": false,
+        "string": "Attachment Count",
+        "type": "integer"
+    },
+    "website_message_ids": {
+        "help": "Website communication history",
+        "relation": "mail.message",
+        "required": false,
+        "string": "Website Messages",
+        "type": "one2many"
+    },
+    "message_has_sms_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "SMS Delivery error",
+        "type": "boolean"
+    },
+    "name": {
+        "required": true,
+        "string": "Tax Name",
+        "type": "char"
+    },
+    "name_searchable": {
+        "help": "This dummy field lets us use another search method on the field 'name'.This allows more freedom on how to search the 'name' compared to 'filter_domain'.See '_search_name' and '_parse_name_search' for why this is not possible with 'filter_domain'.",
+        "required": false,
+        "string": "Name Searchable",
+        "type": "char"
+    },
+    "type_tax_use": {
+        "help": "Determines where the tax is selectable. Note: 'None' means a tax can't be used by itself, however it can still be used in a group. 'adjustment' is used to perform tax adjustment.",
+        "required": true,
+        "string": "Tax Type",
+        "type": "selection"
+    },
+    "tax_scope": {
+        "help": "Restrict the use of taxes to a type of product.",
+        "required": false,
+        "string": "Tax Scope",
+        "type": "selection"
+    },
+    "amount_type": {
+        "help": "\n    - Group of Taxes: The tax is a set of sub taxes.\n    - Fixed: The tax amount stays the same whatever the price.\n    - Percentage: The tax amount is a % of the price:\n        e.g 100 * (1 + 10%) = 110 (not price included)\n        e.g 110 / (1 + 10%) = 100 (price included)\n    - Percentage Tax Included: The tax amount is a division of the price:\n        e.g 180 / (1 - 10%) = 200 (not price included)\n        e.g 200 * (1 - 10%) = 180 (price included)\n        ",
+        "required": true,
+        "string": "Tax Computation",
+        "type": "selection"
+    },
+    "active": {
+        "help": "Set active to false to hide the tax without removing it.",
+        "required": false,
+        "string": "Active",
+        "type": "boolean"
+    },
+    "company_id": {
+        "relation": "res.company",
+        "required": true,
+        "string": "Company",
+        "type": "many2one"
+    },
+    "children_tax_ids": {
+        "relation": "account.tax",
+        "required": false,
+        "string": "Children Taxes",
+        "type": "many2many"
+    },
+    "sequence": {
+        "help": "The sequence field is used to define order in which the tax lines are applied.",
+        "required": true,
+        "string": "Sequence",
+        "type": "integer"
+    },
+    "amount": {
+        "required": true,
+        "string": "Amount",
+        "type": "float"
+    },
+    "description": {
+        "required": false,
+        "string": "Description",
+        "type": "html"
+    },
+    "invoice_label": {
+        "required": false,
+        "string": "Label on Invoices",
+        "type": "char"
+    },
+    "price_include": {
+        "help": "Determines whether the price you use on the product and invoices includes this tax.",
+        "required": false,
+        "string": "Price Include",
+        "type": "boolean"
+    },
+    "company_price_include": {
+        "help": "Default on whether the sales price used on the product and invoices with this Company includes its taxes.",
+        "required": false,
+        "string": "Default Sales Price Include",
+        "type": "selection"
+    },
+    "price_include_override": {
+        "help": "Overrides the Company's default on whether the price you use on the product and invoices includes this tax.",
+        "required": false,
+        "string": "Included in Price",
+        "type": "selection"
+    },
+    "include_base_amount": {
+        "help": "If set, taxes with a higher sequence than this one will be affected by it, provided they accept it.",
+        "required": false,
+        "string": "Affect Base of Subsequent Taxes",
+        "type": "boolean"
+    },
+    "is_base_affected": {
+        "help": "If set, taxes with a lower sequence might affect this one, provided they try to do it.",
+        "required": false,
+        "string": "Base Affected by Previous Taxes",
+        "type": "boolean"
+    },
+    "analytic": {
+        "help": "If set, the amount computed by this tax will be assigned to the same analytic account as the invoice line (if any)",
+        "required": false,
+        "string": "Include in Analytic Cost",
+        "type": "boolean"
+    },
+    "tax_group_id": {
+        "relation": "account.tax.group",
+        "required": true,
+        "string": "Tax Group",
+        "type": "many2one"
+    },
+    "hide_tax_exigibility": {
+        "required": false,
+        "string": "Hide Use Cash Basis Option",
+        "type": "boolean"
+    },
+    "tax_exigibility": {
+        "help": "Based on Invoice: the tax is due as soon as the invoice is validated.\nBased on Payment: the tax is due as soon as the payment of the invoice is received.",
+        "required": false,
+        "string": "Tax Exigibility",
+        "type": "selection"
+    },
+    "cash_basis_transition_account_id": {
+        "help": "Account used to transition the tax amount for cash basis taxes. It will contain the tax amount as long as the original invoice has not been reconciled ; at reconciliation, this amount cancelled on this account and put on the regular tax account.",
+        "relation": "account.account",
+        "required": false,
+        "string": "Cash Basis Transition Account",
+        "type": "many2one"
+    },
+    "invoice_repartition_line_ids": {
+        "help": "Distribution when the tax is used on an invoice",
+        "relation": "account.tax.repartition.line",
+        "required": false,
+        "string": "Distribution for Invoices",
+        "type": "one2many"
+    },
+    "refund_repartition_line_ids": {
+        "help": "Distribution when the tax is used on a refund",
+        "relation": "account.tax.repartition.line",
+        "required": false,
+        "string": "Distribution for Refund Invoices",
+        "type": "one2many"
+    },
+    "repartition_line_ids": {
+        "relation": "account.tax.repartition.line",
+        "required": false,
+        "string": "Distribution",
+        "type": "one2many"
+    },
+    "country_id": {
+        "help": "The country for which this tax is applicable.",
+        "relation": "res.country",
+        "required": true,
+        "string": "Country",
+        "type": "many2one"
+    },
+    "country_code": {
+        "help": "The ISO country code in two chars. \nYou can use this field for quick search.",
+        "required": false,
+        "string": "Country Code",
+        "type": "char"
+    },
+    "is_used": {
+        "required": false,
+        "string": "Tax used",
+        "type": "boolean"
+    },
+    "repartition_lines_str": {
+        "required": false,
+        "string": "Repartition Lines",
+        "type": "char"
+    },
+    "invoice_legal_notes": {
+        "help": "Legal mentions that have to be printed on the invoices.",
+        "required": false,
+        "string": "Legal Notes",
+        "type": "html"
+    },
+    "has_negative_factor": {
+        "required": false,
+        "string": "Has Negative Factor",
+        "type": "boolean"
+    },
+    "id": {
+        "required": false,
+        "string": "ID",
+        "type": "integer"
+    },
+    "display_name": {
+        "required": false,
+        "string": "Display Name",
+        "type": "char"
+    },
+    "create_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Created by",
+        "type": "many2one"
+    },
+    "create_date": {
+        "required": false,
+        "string": "Created on",
+        "type": "datetime"
+    },
+    "write_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Last Updated by",
+        "type": "many2one"
+    },
+    "write_date": {
+        "required": false,
+        "string": "Last Updated on",
+        "type": "datetime"
+    }
+}

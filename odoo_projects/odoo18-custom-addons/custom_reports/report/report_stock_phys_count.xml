@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_stock_phys_count" model="ir.actions.report">
+        <field name="name">Reporte de Conteos Físicos</field>
+        <field name="model">stock.report.phys.count</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.report_stock_phys_count_document</field>
+        <field name="report_file">custom_reports.report_stock_phys_count_document</field>
+        <field name="print_report_name">'Conteos Fisicos'</field>
+        <field name="paperformat_id" ref="custom_reports.paperformat_purchase_report_compact"/>
+    </record>
+
+    <template id="report_stock_phys_count_document">
+        <t t-call="web.html_container">
+            <t t-set="o" t-value="res_company"/>
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Arial Narrow', 'Arial', sans-serif;">
+                    <style>
+                        .clean-report-table {
+                            width: 100%;
+                            table-layout: fixed;
+                            border-collapse: separate !important;
+                            border-spacing: 0 !important;
+                        }
+                        .clean-report-table tr, 
+                        .clean-report-table td, 
+                        .clean-report-table th {
+                            border: none !important;
+                            padding: 4px 8px !important;
+                        }
+                        .clean-report-table thead th {
+                            background-color: #f8f9fa !important;
+                            border-top: 1px solid #dee2e6 !important;
+                            border-bottom: 2px solid #adb5bd !important;
+                            font-weight: bold;
+                            color: #495057;
+                            text-transform: uppercase;
+                            font-size: 9px;
+                        }
+                        .data-row td {
+                            color: #333;
+                            border-bottom: 1px solid #eee !important;
+                        }
+                        .text-danger { color: #dc3545 !important; }
+                        .uppercase { text-transform: uppercase; }
+                    </style>
+
+                    <t t-set="is_first" t-value="True"/>
+                    <t t-foreach="grouped_data" t-as="group">
+                        <div t-att-style="'page-break-before: always;' if not is_first else ''">
+                            <t t-set="is_first" t-value="False"/>
+                            
+                            <!-- Encabezado Estilo Original con Almacén a la Izquierda -->
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 60px;" alt="Logo"/>
+                                    <div style="font-size: 11px; font-weight: bold; margin-top: 25px !important; text-transform: uppercase;">
+                                        ALMACÉN: <span t-esc="group['warehouse']"/>
+                                    </div>
+                                    <t t-set="v_method" t-value="valuation_method or o.env.context.get('valuation_method') or 'avg'"/>
+                                    <div style="font-size: 11px; font-weight: bold; margin-top: 5px !important; color: #333;">
+                                        Método de Costeo: 
+                                        <span t-if="v_method == 'avg'">Precio Promedio Mensual</span>
+                                        <span t-if="v_method == 'last'">Último Precio de Compra</span>
+                                    </div>
+                                </div>
+                                <div class="col-7 text-end">
+                                    <h5 class="m-0" style="font-weight: bold; color: #111; font-size: 16px;">
+                                        CONTEOS FISICOS
+                                    </h5>
+                                    <div style="font-size: 12px; color: #444; font-weight: bold; text-transform: uppercase;">
+                                        Reporte Detallado
+                                    </div>
+                                    <div style="font-size: 10px; color: #555; margin-top: 3px;">
+                                        <span t-field="res_company.name" style="font-weight: bold;"/> | 
+                                        Generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cálculo de Totales Pre-Render -->
+                            <t t-set="wh_total_stock" t-value="sum(group['lines'].mapped('stock_value'))"/>
+                            <t t-set="wh_total_counted" t-value="sum(group['lines'].mapped('total_value'))"/>
+                            <t t-set="wh_total_diff" t-value="sum(group['lines'].mapped('diff_value'))"/>
+
+                            <!-- Resumen de Totales (Superior) -->
+                            <div class="row" style="margin: 10px 0 20px 0 !important;">
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Total Stock (Teórico)</div>
+                                        <div style="font-size: 14px; font-weight: bold; color: #333;">
+                                            <span t-esc="wh_total_stock" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Total Contado (Físico)</div>
+                                        <div style="font-size: 14px; font-weight: bold; color: #333;">
+                                            <span t-esc="wh_total_counted" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Diferencia Valorizada</div>
+                                        <div t-attf-style="font-size: 14px; font-weight: bold; color: {{ '#d9534f' if wh_total_diff &lt; 0 else ('#28a745' if wh_total_diff &gt; 0 else '#333') }};">
+                                            <span t-esc="wh_total_diff" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="clean-report-table" style="font-size: 10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%; text-align: left;">Categoría</th>
+                                        <th style="width: 20%; text-align: left;">Producto</th>
+                                        <th style="width: 5%; text-align: left;">UdM</th>
+                                        <th style="width: 9%; text-align: right;">Costo</th>
+                                        <th style="width: 7%; text-align: right;">Stock</th>
+                                        <th style="width: 11%; text-align: right;">Valor Stock</th>
+                                        <th style="width: 7%; text-align: right;">Contado</th>
+                                        <th style="width: 12%; text-align: right;">Total Contado</th>
+                                        <th style="width: 7%; text-align: right;">Dif.</th>
+                                        <th style="width: 12%; text-align: right;">Valor Dif.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="group['lines']" t-as="line">
+                                        <tr class="data-row">
+                                            <td style="text-align: left;"><span t-field="line.product_categ_id.name"/></td>
+                                            <td style="text-align: left;"><span t-field="line.product_id.display_name"/></td>
+                                            <td style="text-align: left;"><span t-field="line.product_uom_id.name"/></td>
+                                            <td style="text-align: right;">
+                                                <span t-field="line.unit_cost" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td style="text-align: right;"><t t-esc="'{:,.2f}'.format(line.expected_qty)"/></td>
+                                            <td style="text-align: right;">
+                                                <span t-field="line.stock_value" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td style="text-align: right;"><t t-esc="'{:,.2f}'.format(line.counted_qty)"/></td>
+                                            <td style="text-align: right;">
+                                                <span t-field="line.total_value" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td t-attf-style="text-align: right !important; color: {{ '#d9534f' if line.difference &lt; 0 else ('#28a745' if line.difference &gt; 0 else '#333') }}; font-weight: {{ 'bold' if line.difference != 0 else 'normal' }};">
+                                                <t t-esc="'{:,.2f}'.format(line.difference)"/>
+                                            </td>
+                                            <td t-attf-style="text-align: right !important; color: {{ '#d9534f' if line.diff_value &lt; 0 else ('#28a745' if line.diff_value &gt; 0 else '#333') }}; font-weight: {{ 'bold' if line.diff_value != 0 else 'normal' }};">
+                                                <span t-field="line.diff_value" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+                <!-- Pie de Página -->
+                <div class="footer text-center" style="font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px;">
+                    Página <span class="page"/> de <span class="topage"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_stock_phys_summary" model="ir.actions.report">
+        <field name="name">Resumen de Conteos por Categoría</field>
+        <field name="model">stock.report.phys.count</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_reports.report_stock_phys_summary_document</field>
+        <field name="report_file">custom_reports.report_stock_phys_summary_document</field>
+        <field name="print_report_name">'Resumen de Conteos'</field>
+        <field name="paperformat_id" ref="custom_reports.paperformat_purchase_report_compact"/>
+    </record>
+
+    <template id="report_stock_phys_summary_document">
+        <t t-call="web.html_container">
+            <t t-set="o" t-value="res_company"/>
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Arial Narrow', 'Arial', sans-serif;">
+                    <style>
+                        .clean-report-table {
+                            width: 100%;
+                            table-layout: fixed;
+                            border-collapse: separate !important;
+                            border-spacing: 0 !important;
+                        }
+                        .clean-report-table tr, 
+                        .clean-report-table td, 
+                        .clean-report-table th {
+                            border: none !important;
+                            padding: 6px 8px !important;
+                        }
+                        .clean-report-table thead th {
+                            background-color: #f8f9fa !important;
+                            border-top: 1px solid #dee2e6 !important;
+                            border-bottom: 2px solid #adb5bd !important;
+                            font-weight: bold;
+                            color: #495057;
+                            text-transform: uppercase;
+                            font-size: 10px;
+                        }
+                        .data-row td {
+                            color: #333;
+                            border-bottom: 1px solid #eee !important;
+                        }
+                        .text-danger { color: #dc3545 !important; }
+                        .uppercase { text-transform: uppercase; }
+                    </style>
+
+                    <t t-set="is_first" t-value="True"/>
+                    <t t-foreach="grouped_data" t-as="group">
+                        <div t-att-style="'page-break-before: always;' if not is_first else ''">
+                            <t t-set="is_first" t-value="False"/>
+                            
+                            <!-- Encabezado Estilo Original con Almacén a la Izquierda -->
+                            <div class="row mb-3">
+                                <div class="col-5">
+                                    <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" style="max-height: 60px;" alt="Logo"/>
+                                    <div style="font-size: 11px; font-weight: bold; margin-top: 25px !important; text-transform: uppercase;">
+                                        ALMACÉN: <span t-esc="group['warehouse']"/>
+                                    </div>
+                                    <t t-set="v_method" t-value="valuation_method or o.env.context.get('valuation_method') or 'avg'"/>
+                                    <div style="font-size: 11px; font-weight: bold; margin-top: 5px !important; color: #333;">
+                                        Método de Costeo: 
+                                        <span t-if="v_method == 'avg'">Precio Promedio Mensual</span>
+                                        <span t-if="v_method == 'last'">Último Precio de Compra</span>
+                                    </div>
+                                </div>
+                                <div class="col-7 text-end">
+                                    <h5 class="m-0" style="font-weight: bold; color: #111; font-size: 16px;">
+                                        CONTEOS FISICOS
+                                    </h5>
+                                    <div style="font-size: 12px; color: #444; font-weight: bold; text-transform: uppercase;">
+                                        Resumen por Categoria
+                                    </div>
+                                    <div style="font-size: 10px; color: #555; margin-top: 3px;">
+                                        <span t-field="res_company.name" style="font-weight: bold;"/> | 
+                                        Generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cálculo de Totales Pre-Render (Resumen) -->
+                            <t t-set="wh_total_stock" t-value="sum(c['expected_qty'] * (c['total_value'] / c['counted_qty'] if c['counted_qty'] else 0) for c in group['categories'])"/>
+                            <t t-set="wh_total_counted" t-value="sum(c['total_value'] for c in group['categories'])"/>
+                            <t t-set="wh_total_diff" t-value="sum(c['difference'] * (c['total_value'] / c['counted_qty'] if c['counted_qty'] else 0) for c in group['categories'])"/>
+
+                            <!-- Resumen de Totales (Superior) -->
+                            <div class="row" style="margin: 10px 0 20px 0 !important;">
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Total Stock (Teórico)</div>
+                                        <div style="font-size: 14px; font-weight: bold; color: #333;">
+                                            <span t-esc="wh_total_stock" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Total Contado (Físico)</div>
+                                        <div style="font-size: 14px; font-weight: bold; color: #333;">
+                                            <span t-esc="wh_total_counted" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="padding: 5px;">
+                                    <div style="border: 1px solid #ddd; border-radius: 4px; padding: 10px; text-align: center; background-color: #fcfcfc; min-height: 55px;">
+                                        <div style="font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 4px;">Diferencia Valorizada</div>
+                                        <div t-attf-style="font-size: 14px; font-weight: bold; color: {{ '#d9534f' if wh_total_diff &lt; 0 else ('#28a745' if wh_total_diff &gt; 0 else '#333') }};">
+                                            <span t-esc="wh_total_diff" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="clean-report-table" style="font-size: 11px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%; text-align: left;">Categoría</th>
+                                        <th style="width: 10%; text-align: right;">Stock</th>
+                                        <th style="width: 12%; text-align: right;">Valor Stock</th>
+                                        <th style="width: 10%; text-align: right;">Contado</th>
+                                        <th style="width: 15%; text-align: right;">Total Valorizado</th>
+                                        <th style="width: 10%; text-align: right;">Dif.</th>
+                                        <th style="width: 13%; text-align: right;">Valor Dif.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="group['categories']" t-as="doc">
+                                        <tr class="data-row">
+                                            <td style="text-align: left;"><t t-esc="doc['category']"/></td>
+                                            <td style="text-align: right;"><t t-esc="'{:,.2f}'.format(doc['expected_qty'])"/></td>
+                                            <td style="text-align: right;">
+                                                <t t-set="val_stock" t-value="doc['expected_qty'] * (doc['total_value'] / doc['counted_qty'] if doc['counted_qty'] else 0)"/>
+                                                <span t-esc="val_stock" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td style="text-align: right;"><t t-esc="'{:,.2f}'.format(doc['counted_qty'])"/></td>
+                                            <td style="text-align: right;">
+                                                <span t-esc="doc['total_value']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                            <td t-attf-style="text-align: right !important; color: {{ '#d9534f' if doc['difference'] &lt; 0 else ('#28a745' if doc['difference'] &gt; 0 else '#333') }}; font-weight: {{ 'bold' if doc['difference'] != 0 else 'normal' }};">
+                                                <t t-esc="'{:,.2f}'.format(doc['difference'])"/>
+                                            </td>
+                                            <td t-attf-style="text-align: right !important; color: {{ '#d9534f' if doc['difference'] &lt; 0 else ('#28a745' if doc['difference'] &gt; 0 else '#333') }}; font-weight: {{ 'bold' if doc['difference'] != 0 else 'normal' }};">
+                                                <t t-set="val_diff" t-value="doc['difference'] * (doc['total_value'] / doc['counted_qty'] if doc['counted_qty'] else 0)"/>
+                                                <span t-esc="val_diff" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+                <!-- Pie de Página -->
+                <div class="footer text-center" style="font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px;">
+                    Página <span class="page"/> de <span class="topage"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

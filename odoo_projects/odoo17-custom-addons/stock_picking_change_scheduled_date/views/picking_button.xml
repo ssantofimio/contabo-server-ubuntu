@@ -1,0 +1,16 @@
+<odoo>
+    <record id="stock_picking_view_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.view.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(stock_picking_change_scheduled_date.action_picking_change_state_wizard)d" 
+                        string="Fecha operación" 
+                        type="action"
+                        invisible="state != 'done'"
+                        groups="stock_picking_change_scheduled_date.group_edit_picking_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

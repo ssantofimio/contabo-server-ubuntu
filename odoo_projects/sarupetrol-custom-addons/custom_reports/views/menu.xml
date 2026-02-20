@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Compras Section -->
+    <menuitem
+        id="menu_custom_reports_purchase_status"
+        name="Compras por Estado"
+        parent="menu_custom_reports_purchase"
+        action="action_purchase_status_report"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_report_purchase_blancos"
+        name="Informe de Blancos"
+        parent="menu_custom_reports_purchase"
+        action="action_purchase_blancos_wizard"
+        sequence="20"/>
+    <menuitem
+        id="menu_purchase_warehouse_report"
+        name="Compras por Producto"
+        parent="menu_custom_reports_purchase"
+        action="action_purchase_warehouse_wizard"
+        sequence="30"/>
+
+    <!-- Contabilidad Section -->
+    <menuitem
+        id="menu_purchase_report_price_comparison"
+        name="Histórico de Precios (F-PRO)"
+        parent="menu_custom_reports_accounting"
+        action="action_purchase_price_history_wizard"
+        sequence="10"/>
+
+    <!-- Inventarios Section -->
+    <menuitem
+        id="menu_custom_reports_stock_available"
+        name="Análisis de Existencias"
+        parent="menu_custom_reports_inventory"
+        action="action_stock_available_report_wizard"
+        sequence="5"/>
+
+
+    <menuitem
+        id="menu_stock_balance_report"
+        name="Balance de Inventario (Kardex)"
+        parent="menu_custom_reports_inventory"
+        action="action_stock_balance_wizard"
+        sequence="30"/>
+
+    <menuitem
+        id="menu_stock_phys_count_report"
+        name="Conteos Físicos"
+        parent="menu_custom_reports_inventory"
+        action="action_stock_phys_count_wizard"
+        sequence="6"/>
+
+</odoo>

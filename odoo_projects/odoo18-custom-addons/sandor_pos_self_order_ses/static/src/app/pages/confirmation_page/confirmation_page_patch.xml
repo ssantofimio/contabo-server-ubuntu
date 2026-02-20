@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="sandor_pos_self_order_ses.ConfirmationPage" t-inherit="pos_self_order.ConfirmationPage" t-inherit-mode="extension">
+        
+        <!-- Standard Content: Conditional visibility (Passive) -->
+        <xpath expr="//div[hasclass('confirmation-page')]" position="attributes">
+            <attribute name="t-if">!selfOrder.customIdentificationEnabled</attribute>
+        </xpath>
+
+        <!-- Custom Content: Add as sibling (Passive) -->
+        <xpath expr="//div[hasclass('confirmation-page')]" position="after">
+            <t t-if="selfOrder.customIdentificationEnabled">
+                <div class="d-flex flex-column h-100 bg-100 overflow-hidden">
+                    <div t-if="this.state.onReload" class="self_order_success_loader position-absolute vh-100 w-100 d-flex justify-content-center align-items-center opacity-50 bg-dark z-index-1">
+                        <div class="page-loader d-flex justify-content-center align-items-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Scrollable Layout -->
+                    <div class="flex-grow-1 overflow-y-auto px-3 text-center d-flex flex-column align-items-center pt-3">
+                        <h1 t-if="state.payment and selfOrder.config.self_ordering_pay_after !== 'each'" class="mb-2 fs-2 fw-bold text-primary">¡Esperamos que disfrute su comida!</h1>
+                        <h1 t-else="" class="mb-2 fs-2 fw-bold text-primary">Estamos preparando su orden</h1>
+
+                        <h3 t-if="state.payment and confirmedOrder.state !== 'paid'" class="mt-1 text-muted mb-2 small">Pague en caja <t t-esc="selfOrder.formatMonetary(confirmedOrder.amount_total)" /></h3>
+
+                        <div class="d-inline-flex flex-column border rounded-4 py-2 px-3 bg-view mb-2 shadow-sm" style="min-width: 180px;">
+                            <span class="fs-small text-muted mb-0" style="font-size: 0.8rem;">Su número de orden</span>
+                            <span class="number lh-1 display-4 fw-bold text-dark" t-esc="confirmedOrder.tracking_number" />
+                        </div>
+
+                        <div t-if="confirmedOrder.table_id || confirmedOrder.table_stand_number" class="text-muted mb-3 small fw-normal" style="font-size: 0.85rem;">
+                            Servicio a la mesa 
+                            <t t-if="selfOrder.config.self_ordering_mode === 'mobile'" t-esc="confirmedOrder.table_id?.getName() + ' (' + confirmedOrder.table_id?.floor_id?.name + ')'" />
+                            <t t-else="" t-esc="confirmedOrder.table_stand_number" />
+                        </div>
+                        <div t-else="" class="text-muted mb-3 small fw-normal" style="font-size: 0.85rem;">Pedido para recoger en el mostrador</div>
+
+                        <div class="d-flex flex-column align-items-center w-100 gap-2 pb-3" style="max-width: 450px;">
+                            <div t-if="confirmedOrder and (confirmedOrder.partner_id or confirmedOrder.partner_name)" class="customer-info p-3 border rounded-3 bg-view w-100 shadow-sm">
+                                <div class="d-flex align-items-center border-bottom mb-2 pb-1 text-primary text-start">
+                                    <i class="fa fa-user-circle fs-6 me-2"></i>
+                                    <span class="fw-bold small">Detalles del Cliente</span>
+                                </div>
+                                <div class="d-flex flex-column gap-1 text-start" style="font-size: 0.85rem;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-id-card-o me-2" style="width: 16px;"></i>Nombre</span>
+                                        <span class="fw-bold text-end ps-2 text-truncate" style="max-width: 180px;" t-esc="confirmedOrder.partner_name || (confirmedOrder.partner_id and (confirmedOrder.partner_id.name || confirmedOrder.partner_id))"/>
+                                    </div>
+                                    <div t-if="confirmedOrder.partner_vat" class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-hashtag me-2" style="width: 16px;"></i>Identificación</span>
+                                        <span t-esc="confirmedOrder.partner_vat"/>
+                                    </div>
+                                    <div t-if="confirmedOrder.partner_mobile or confirmedOrder.partner_phone" class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-phone me-2" style="width: 16px;"></i>Celular</span>
+                                        <span t-esc="confirmedOrder.partner_mobile || confirmedOrder.partner_phone || 'N/A'"/>
+                                    </div>
+                                    <div t-if="confirmedOrder.partner_email" class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-envelope-o me-2" style="width: 16px;"></i>Correo</span>
+                                        <span class="text-truncate ps-2" style="max-width: 180px;" t-esc="confirmedOrder.partner_email"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-info p-3 border rounded-3 bg-view w-100 shadow-sm">
+                                <div class="d-flex align-items-center border-bottom mb-2 pb-1 text-primary text-start">
+                                    <i class="fa fa-credit-card fs-6 me-2"></i>
+                                    <span class="fw-bold small">Información de Pagos</span>
+                                </div>
+                                <div class="d-flex flex-column gap-1 text-start" style="font-size: 0.85rem;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-whatsapp me-2" style="width: 16px;"></i>Contacto</span>
+                                        <span class="fw-bold">317 3311470</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-file-text-o me-2" style="width: 16px;"></i>Requisito</span>
+                                        <span class="fw-bold text-end ps-2">Enviar comprobante</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted"><i class="fa fa-percent me-2" style="width: 16px;"></i>Facturación Electrónica</span>
+                                        <span class="fw-bold text-end ps-2">Costo adicional +8%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fixed Footer Actions (Custom) -->
+                    <div class="px-3 py-3 border-top bg-view d-flex gap-2 justify-content-center shadow-sm mt-auto">
+                        <button class="btn btn-secondary py-3 fw-bold flex-grow-1" t-on-click="viewDetail" style="max-width: 200px; font-size: 1.1rem;">
+                            Detalle Orden
+                        </button>
+                        <button class="btn btn-primary py-3 fw-bold flex-grow-1" t-on-click="backToHome" style="max-width: 200px; font-size: 1.1rem;">
+                            De acuerdo
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+
+        <!-- Standard Footer: Conditional visibility (Passive) -->
+        <xpath expr="//div[hasclass('text-center') and .//button[contains(@t-on-click, 'backToHome')]]" position="attributes">
+            <attribute name="t-if">!selfOrder.customIdentificationEnabled</attribute>
+        </xpath>
+    </t>
+</templates>

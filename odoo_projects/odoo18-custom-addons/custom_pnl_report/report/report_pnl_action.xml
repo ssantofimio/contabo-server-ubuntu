@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_pnl" model="ir.actions.report">
+        <field name="name">Estado de Resultados</field>
+        <field name="model">account.pnl.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_pnl_report.report_pnl_template</field>
+        <field name="report_file">custom_pnl_report.report_pnl_template</field>
+        <field name="print_report_name">'Estado de Resultados - %s' % (object.date_to)</field>
+        <field name="binding_model_id" ref="model_account_pnl_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

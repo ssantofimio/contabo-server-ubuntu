@@ -1,0 +1,267 @@
+{
+    "message_is_follower": {
+        "required": false,
+        "string": "Is Follower",
+        "type": "boolean"
+    },
+    "message_follower_ids": {
+        "relation": "mail.followers",
+        "required": false,
+        "string": "Followers",
+        "type": "one2many"
+    },
+    "message_partner_ids": {
+        "relation": "res.partner",
+        "required": false,
+        "string": "Followers (Partners)",
+        "type": "many2many"
+    },
+    "message_ids": {
+        "relation": "mail.message",
+        "required": false,
+        "string": "Messages",
+        "type": "one2many"
+    },
+    "has_message": {
+        "required": false,
+        "string": "Has Message",
+        "type": "boolean"
+    },
+    "message_needaction": {
+        "help": "If checked, new messages require your attention.",
+        "required": false,
+        "string": "Action Needed",
+        "type": "boolean"
+    },
+    "message_needaction_counter": {
+        "help": "Number of messages requiring action",
+        "required": false,
+        "string": "Number of Actions",
+        "type": "integer"
+    },
+    "message_has_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "Message Delivery error",
+        "type": "boolean"
+    },
+    "message_has_error_counter": {
+        "help": "Number of messages with delivery error",
+        "required": false,
+        "string": "Number of errors",
+        "type": "integer"
+    },
+    "message_attachment_count": {
+        "required": false,
+        "string": "Attachment Count",
+        "type": "integer"
+    },
+    "website_message_ids": {
+        "help": "Website communication history",
+        "relation": "mail.message",
+        "required": false,
+        "string": "Website Messages",
+        "type": "one2many"
+    },
+    "message_has_sms_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "required": false,
+        "string": "SMS Delivery error",
+        "type": "boolean"
+    },
+    "name": {
+        "required": true,
+        "string": "Account Name",
+        "type": "char"
+    },
+    "currency_id": {
+        "help": "Forces all journal items in this account to have a specific currency (i.e. bank journals). If no currency is set, entries can use any currency.",
+        "relation": "res.currency",
+        "required": false,
+        "string": "Account Currency",
+        "type": "many2one"
+    },
+    "company_currency_id": {
+        "relation": "res.currency",
+        "required": false,
+        "string": "Company Currency",
+        "type": "many2one"
+    },
+    "company_fiscal_country_code": {
+        "required": false,
+        "string": "Company Fiscal Country Code",
+        "type": "char"
+    },
+    "code": {
+        "required": false,
+        "string": "Code",
+        "type": "char"
+    },
+    "code_store": {
+        "required": false,
+        "string": "Code Store",
+        "type": "char"
+    },
+    "placeholder_code": {
+        "required": false,
+        "string": "Display code",
+        "type": "char"
+    },
+    "deprecated": {
+        "required": false,
+        "string": "Deprecated",
+        "type": "boolean"
+    },
+    "used": {
+        "required": false,
+        "string": "Used",
+        "type": "boolean"
+    },
+    "account_type": {
+        "help": "Account Type is used for information purpose, to generate country-specific legal reports, and set the rules to close a fiscal year and generate opening entries.",
+        "required": true,
+        "string": "Type",
+        "type": "selection"
+    },
+    "include_initial_balance": {
+        "help": "Used in reports to know if we should consider journal items from the beginning of time instead of from the fiscal year only. Account types that should be reset to zero at each new fiscal year (like expenses, revenue..) should not have this option set.",
+        "required": false,
+        "string": "Bring Accounts Balance Forward",
+        "type": "boolean"
+    },
+    "internal_group": {
+        "required": false,
+        "string": "Internal Group",
+        "type": "selection"
+    },
+    "reconcile": {
+        "help": "Check this box if this account allows invoices & payments matching of journal items.",
+        "required": false,
+        "string": "Allow Reconciliation",
+        "type": "boolean"
+    },
+    "tax_ids": {
+        "relation": "account.tax",
+        "required": false,
+        "string": "Default Taxes",
+        "type": "many2many"
+    },
+    "note": {
+        "required": false,
+        "string": "Internal Notes",
+        "type": "text"
+    },
+    "company_ids": {
+        "relation": "res.company",
+        "required": true,
+        "string": "Companies",
+        "type": "many2many"
+    },
+    "code_mapping_ids": {
+        "relation": "account.code.mapping",
+        "required": false,
+        "string": "Code Mapping",
+        "type": "one2many"
+    },
+    "tag_ids": {
+        "help": "Optional tags you may want to assign for custom reporting",
+        "relation": "account.account.tag",
+        "required": false,
+        "string": "Tags",
+        "type": "many2many"
+    },
+    "group_id": {
+        "help": "Account prefixes can determine account groups.",
+        "relation": "account.group",
+        "required": false,
+        "string": "Group",
+        "type": "many2one"
+    },
+    "root_id": {
+        "relation": "account.root",
+        "required": false,
+        "string": "Root",
+        "type": "many2one"
+    },
+    "allowed_journal_ids": {
+        "help": "Define in which journals this account can be used. If empty, can be used in all journals.",
+        "relation": "account.journal",
+        "required": false,
+        "string": "Allowed Journals",
+        "type": "many2many"
+    },
+    "opening_debit": {
+        "required": false,
+        "string": "Opening Debit",
+        "type": "monetary"
+    },
+    "opening_credit": {
+        "required": false,
+        "string": "Opening Credit",
+        "type": "monetary"
+    },
+    "opening_balance": {
+        "required": false,
+        "string": "Opening Balance",
+        "type": "monetary"
+    },
+    "current_balance": {
+        "required": false,
+        "string": "Current Balance",
+        "type": "float"
+    },
+    "related_taxes_amount": {
+        "required": false,
+        "string": "Related Taxes Amount",
+        "type": "integer"
+    },
+    "non_trade": {
+        "help": "If set, this account will belong to Non Trade Receivable/Payable in reports and filters.\nIf not, this account will belong to Trade Receivable/Payable in reports and filters.",
+        "required": false,
+        "string": "Non Trade",
+        "type": "boolean"
+    },
+    "display_mapping_tab": {
+        "required": false,
+        "string": "Display Mapping Tab",
+        "type": "boolean"
+    },
+    "id": {
+        "required": false,
+        "string": "ID",
+        "type": "integer"
+    },
+    "display_name": {
+        "required": false,
+        "string": "Display Name",
+        "type": "char"
+    },
+    "create_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Created by",
+        "type": "many2one"
+    },
+    "create_date": {
+        "required": false,
+        "string": "Created on",
+        "type": "datetime"
+    },
+    "write_uid": {
+        "relation": "res.users",
+        "required": false,
+        "string": "Last Updated by",
+        "type": "many2one"
+    },
+    "write_date": {
+        "required": false,
+        "string": "Last Updated on",
+        "type": "datetime"
+    },
+    "cash_flow_type": {
+        "relation": "account.financial.report",
+        "required": false,
+        "string": "Cash Flow type",
+        "type": "many2one"
+    }
+}

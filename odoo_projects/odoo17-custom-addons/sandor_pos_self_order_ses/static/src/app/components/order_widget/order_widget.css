@@ -1,0 +1,37 @@
+/* Force layout on the button to handle longer text like 'Confirmar' */
+.pos_self_order .page-buttons .cart {
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Mobile specific adjustments to preventing overflow */
+@media (max-width: 576px) {
+    .pos_self_order .page-buttons .cart {
+        /* Reduce font size even more */
+        font-size: 13px !important;
+
+        /* Minimal padding to make it as narrow as possible */
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+
+        /* Force height and alignment */
+        height: 48px !important;
+        /* Fixed robust touch height */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        /* Allow flex shrink so it doesn't push the price out */
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+        width: auto !important;
+    }
+
+    /* Ensure the 'Your Order' text scales down if needed */
+    .pos_self_order .page-buttons .to-order {
+        font-size: 0.8rem;
+        padding-right: 4px;
+        /* Ensure space between text and button */
+    }
+}

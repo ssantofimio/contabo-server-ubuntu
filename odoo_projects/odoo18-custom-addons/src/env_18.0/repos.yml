@@ -1,0 +1,27 @@
+##############################################################################
+## Odoo Repository
+##############################################################################
+
+./src/odoo:
+    defaults:
+        depth: 1
+    remotes:
+        odoo: https://github.com/odoo/odoo
+    target: odoo 18.0-target
+    merges:
+        - odoo 18.0
+
+##############################################################################
+## OpenUpgrade Repository
+##############################################################################
+
+./src/openupgrade:
+    defaults:
+        depth: 1
+    remotes:
+        OCA: https://github.com/OCA/OpenUpgrade
+    target: OCA 18.0-target
+    merges:
+        - OCA 18.0
+
+
